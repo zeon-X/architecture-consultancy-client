@@ -1,0 +1,10 @@
+.main_header{
+    position: -webkit-sticky;
+    position: sticky !important;
+    top: 0px;
+    background-color: white;
+}
+
+/* .main_header + .content {
+    padding-top: 102px;
+  } */

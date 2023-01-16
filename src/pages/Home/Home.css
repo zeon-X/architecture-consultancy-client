@@ -1,0 +1,46 @@
+
+/* |||||||||||||||||| HOME SECTION 2 ||||||||||||||| */
+.bg-move:hover{
+    background-position-x: left;
+}
+.bg-move-tb:hover{
+    background-position-y: bottom;
+}
+
+.bg-move,.bg-move-tb{
+    cursor: pointer;
+}
+
+/* |||||||||||||||||| HOME SECTION 3 ||||||||||||||| */
+/* project */
+
+.project-img:hover ~ .project-view-btn{
+    display: flex; 
+}
+
+.project-img{
+    border-style: solid; 
+    border-width: 0px;
+    cursor: pointer;
+}
+.project-img:hover{
+    border-width: 30px;
+}
+
+.project-view-btn{
+    position: absolute;
+    left: 2.4rem;
+    bottom: 0.0rem;
+    pointer-events: none;
+    display: none;
+    justify-content: center;
+    justify-items: center; 
+}
+
+
+/* |||||||||||||||||| HOME SECTION 5 ||||||||||||||| */
+
+/* review */
+.review-card{
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+}
