@@ -95,7 +95,7 @@ const Login = () => {
         </p>
       </div>
       {/* Login card */}
-      <div className="card justify-center items-center rounded-none w-96 bg-base-100 shadow-xl p-5 border border-dashed border-gray-200">
+      <div className="card justify-center items-center rounded w-96 bg-base-100 shadow-xl p-5 border border-dashed border-gray-200">
         <p className="font-bold text-2xl text-center w-full">Login</p>
         <p className="text-xs text-center">RETURNING CUSTOMER</p>
 
@@ -111,7 +111,7 @@ const Login = () => {
               })}
               type="email"
               placeholder="Email"
-              className="input input-bordered w-full max-w-xs rounded-none"
+              className="input input-bordered w-full max-w-xs rounded"
             />
 
             <label className="label">
@@ -130,7 +130,7 @@ const Login = () => {
               })}
               type="password"
               placeholder="Password"
-              className="input input-bordered w-full max-w-xs rounded-none"
+              className="input input-bordered w-full max-w-xs rounded"
             />
 
             <label className="label">
@@ -168,7 +168,7 @@ const Login = () => {
           </label>
           <input
             type="submit"
-            className="btn btn-warning w-full max-w-xs rounded-none"
+            className="btn btn-warning w-full max-w-xs rounded"
             name=""
             value="Login"
           />

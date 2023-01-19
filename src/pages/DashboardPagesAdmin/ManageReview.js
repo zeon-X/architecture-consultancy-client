@@ -5,21 +5,21 @@ import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
-const ManageProducts = () => {
+const ManageReview = () => {
   const [changes, increaseChanges] = useState(0);
   const {
     isLoading,
     isError,
-    data: product,
+    data: category,
     error,
-  } = useQuery(["products", changes], async ({ changes }) => {
+  } = useQuery(["categorys", changes], async ({ changes }) => {
     console.log(changes);
-    return await axiosInstance.get("product/get");
+    return await axiosInstance.get("category/get");
   });
 
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
 
-  const handleDeleteProduct = (_id) => {
+  const handleDeleteCategory = (_id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,7 +30,7 @@ const ManageProducts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.delete(`product/delete?_id=${_id}`).then((res) => {
+        axiosInstance.delete(`category/delete?_id=${_id}`).then((res) => {
           console.log(res.data);
           if (res.status === 200) {
             Swal.fire(
@@ -56,54 +56,37 @@ const ManageProducts = () => {
 
   return (
     <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full">
-      <p className="text-sm font-semibold ">Manage Products</p>
-      {/* purchase products */}
+      <p className="text-sm font-semibold ">Manage Category</p>
+      {/* purchase categorys */}
       <div className="overflow-auto   rounded mt-4">
         <table className="border-collaspe text-xs border border-gray-300 w-full ">
           <thead>
             <tr>
-              <th className="p-2 border border-gray-300 ">Image</th>
-              <th className="p-2 border border-gray-300 ">Title</th>
-              <th className="p-2 border border-gray-300 ">Unit price</th>
-              <th className="p-2 border border-gray-300 ">MCQ</th>
-              <th className="p-2 border border-gray-300 ">stock</th>
-              <th className="p-2 border border-gray-300 ">product _id</th>
-              <th className="p-2 border border-gray-300 ">Details</th>
+              <th className="p-2 border border-gray-300 ">Catrgory Title</th>
+              <th className="p-2 border border-gray-300 ">Catrgory Code</th>
+              <th className="p-2 border border-gray-300 ">Category _id</th>
               <th className="p-2 border border-gray-300 ">Update</th>
               <th className="p-2 border border-gray-300 ">Delete</th>
             </tr>
           </thead>
           <tbody>
-            {product?.data?.map((x, index) => {
+            {category?.data?.map((x, index) => {
               return (
                 <tr key={index}>
-                  {/* product discription */}
-                  <td align="center" className="p-2 border border-gray-300">
-                    <img className=" w-16 h-16" src={x?.img} alt="" />
-                  </td>
-                  <td className="p-2 border border-gray-300 ">{x?.title}</td>
-                  <td align="center" className="p-2 border border-gray-300">
-                    {x?.unit_price}
+                  {/* category discription */}
+
+                  <td className="p-2 border border-gray-300 ">
+                    {x?.categoryTitle}
                   </td>
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?.mcq}
+                    {x?.categoryCode}
                   </td>
-                  <td align="center" className="p-2 border border-gray-300">
-                    {x?.stock}
-                  </td>
+
                   <td align="center" className="p-2 border border-gray-300">
                     {x?._id}
                   </td>
                   {/* BTNS FROM HERE */}
-                  {/* details */}
-                  <td
-                    align="center"
-                    className=" p-2 border  border-gray-300 mx-auto content-center"
-                  >
-                    <button className="btn btn-xs bg-success border-none text-white">
-                      Details
-                    </button>
-                  </td>
+
                   {/* update */}
                   <td
                     align="center"
@@ -120,7 +103,7 @@ const ManageProducts = () => {
                   >
                     <button
                       className="btn btn-xs bg-red-500 border-none "
-                      onClick={() => handleDeleteProduct(x?._id)}
+                      onClick={() => handleDeleteCategory(x?._id)}
                     >
                       Delete
                     </button>
@@ -135,4 +118,4 @@ const ManageProducts = () => {
   );
 };
 
-export default ManageProducts;
+export default ManageReview;

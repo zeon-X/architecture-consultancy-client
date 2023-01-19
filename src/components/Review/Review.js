@@ -5,7 +5,7 @@ const Review = ({ props }) => {
   // console.log(props);
   return (
     <div className="flex justify-center items-center">
-      <div className="card w-80 bg-base-100 shadow-xl rounded-none text-sm border border-gray-100 ">
+      <div className="card w-80 bg-base-100 shadow-xl rounded text-sm border border-gray-100 ">
         <div className="avatar mt-6 ml-6">
           <div className="w-24 rounded-full">
             <img src={userId?.profile_pic} />

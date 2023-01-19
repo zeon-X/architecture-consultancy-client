@@ -7,7 +7,10 @@ const DashboardDrawer = () => {
   // useEffect(() => {
   //   setUserInfo();
   // }, []);
-  let userInfo = JSON.parse(localStorage.getItem("user"));
+  // let userInfo = JSON.parse(localStorage.getItem("user"));
+  let userInfo = {
+    role: "admin",
+  };
   // console.log(userInfo);
   return (
     <div className="drawer drawer-mobile ">
@@ -54,6 +57,7 @@ const DashboardDrawer = () => {
           )}
 
           {/* admin links */}
+
           {userInfo && userInfo?.role === "admin" && (
             <li>
               <NavLink to="manage-orders">Manage All Orders</NavLink>
@@ -61,12 +65,32 @@ const DashboardDrawer = () => {
           )}
           {userInfo && userInfo?.role === "admin" && (
             <li>
-              <NavLink to="manage-add-product">Add A Product</NavLink>
+              <NavLink to="manage-add-category">Add a Category</NavLink>
             </li>
           )}
           {userInfo && userInfo?.role === "admin" && (
             <li>
-              <NavLink to="manage-products">Manage Products</NavLink>
+              <NavLink to="manage-category">Manage Category</NavLink>
+            </li>
+          )}
+          {userInfo && userInfo?.role === "admin" && (
+            <li>
+              <NavLink to="manage-add-project">Add A Project</NavLink>
+            </li>
+          )}
+          {userInfo && userInfo?.role === "admin" && (
+            <li>
+              <NavLink to="manage-projects">Manage Projects</NavLink>
+            </li>
+          )}
+          {userInfo && userInfo?.role === "admin" && (
+            <li>
+              <NavLink to="manage-add-custom-review">Add Custom Review</NavLink>
+            </li>
+          )}
+          {userInfo && userInfo?.role === "admin" && (
+            <li>
+              <NavLink to="manage-review">Manage Reviews</NavLink>
             </li>
           )}
           {userInfo && userInfo?.role === "admin" && (

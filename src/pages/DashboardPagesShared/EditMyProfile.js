@@ -128,7 +128,7 @@ const EditMyProfile = () => {
               ref={eduRef}
               type="text"
               placeholder="Type here"
-              className="input input-bordered rounded-none text-xs lg:w-11/12 md:w-full sm:w-full"
+              className="input input-bordered rounded text-xs lg:w-11/12 md:w-full sm:w-full"
             />
             <p
               onClick={handleEduChanges}
@@ -157,13 +157,13 @@ const EditMyProfile = () => {
               ref={mediaRef}
               type="text"
               placeholder="Social Name"
-              className="input input-bordered rounded-none text-xs lg:w-5/12 md:w-full sm:w-full"
+              className="input input-bordered rounded text-xs lg:w-5/12 md:w-full sm:w-full"
             />
             <input
               ref={valueRef}
               type="text"
               placeholder="Social Link"
-              className="input input-bordered rounded-none text-xs  w-5/12 md:w-full sm:w-full"
+              className="input input-bordered rounded text-xs  w-5/12 md:w-full sm:w-full"
             />
             <p
               onClick={handleSocialLinksChanges}
@@ -203,7 +203,7 @@ const EditMyProfile = () => {
               required: false,
             })}
             value={watch("phone")}
-            className="input input-bordered rounded-none text-xs "
+            className="input input-bordered rounded text-xs "
             placeholder="Type Here"
           ></input>
         </div>
@@ -217,14 +217,14 @@ const EditMyProfile = () => {
               required: false,
             })}
             value={watch("address")}
-            className="textarea textarea-bordered h-24 text-xs rounded-none"
+            className="textarea textarea-bordered h-24 text-xs rounded"
             placeholder="Type Here"
           ></textarea>
         </div>
 
         <input
           type="submit"
-          className="btn btn-warning w-full max-w-xs rounded-none mt-10"
+          className="btn btn-warning w-full max-w-xs rounded mt-10"
           name=""
           value="Update Profile"
         />

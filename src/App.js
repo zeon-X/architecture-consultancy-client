@@ -9,14 +9,18 @@ import DashboardDrawer from "./components/DashboardDrawer";
 import MyProfile from "./pages/DashboardPagesShared/MyProfile";
 import ManageAllOrders from "./pages/DashboardPagesAdmin/ManageAllOrders";
 import RequireAuthAndAdmin from "./utilities/RequireAuth/RequireAuthAndAdmin";
-import ManageProducts from "./pages/DashboardPagesAdmin/ManageProducts";
+import ManageProjects from "./pages/DashboardPagesAdmin/ManageProjects";
 import MakeAdmin from "./pages/DashboardPagesAdmin/MakeAdmin";
-import AddAProduct from "./pages/DashboardPagesAdmin/AddAProduct";
+import AddAProject from "./pages/DashboardPagesAdmin/AddAProject";
 import MyWishlist from "./pages/DashBoardPagesUser/MyWishlist";
 import MyOrders from "./pages/DashBoardPagesUser/MyOrders";
 import AddReview from "./pages/DashBoardPagesUser/AddReview";
 import EditMyProfile from "./pages/DashboardPagesShared/EditMyProfile";
 import NotFound from "./shared/NotFound";
+import AddCategory from "./pages/DashboardPagesAdmin/AddCategory";
+import ManageCategory from "./pages/DashboardPagesAdmin/ManageCategory";
+import AddCustomReview from "./pages/DashboardPagesAdmin/AddCustomReview";
+import ManageReview from "./pages/DashboardPagesAdmin/ManageReview";
 
 function App() {
   return (
@@ -59,9 +63,9 @@ function App() {
           path="/dashboard"
           element={
             <Drawer>
-              <RequireAuth>
-                <DashboardDrawer></DashboardDrawer>
-              </RequireAuth>
+              {/* <RequireAuth> */}
+              <DashboardDrawer></DashboardDrawer>
+              {/* </RequireAuth> */}
             </Drawer>
           }
         >
@@ -80,33 +84,65 @@ function App() {
           <Route
             path="manage-orders"
             element={
-              <RequireAuthAndAdmin>
-                <ManageAllOrders></ManageAllOrders>
-              </RequireAuthAndAdmin>
+              // <RequireAuthAndAdmin>
+              <ManageAllOrders></ManageAllOrders>
+              // </RequireAuthAndAdmin>
             }
           ></Route>
           <Route
-            path="manage-add-product"
+            path="manage-add-category"
             element={
-              <RequireAuthAndAdmin>
-                <AddAProduct></AddAProduct>
-              </RequireAuthAndAdmin>
+              // <RequireAuthAndAdmin>
+              <AddCategory></AddCategory>
+              // </RequireAuthAndAdmin>
             }
           ></Route>
           <Route
-            path="manage-products"
+            path="manage-category"
             element={
-              <RequireAuthAndAdmin>
-                <ManageProducts></ManageProducts>
-              </RequireAuthAndAdmin>
+              // <RequireAuthAndAdmin>
+              <ManageCategory></ManageCategory>
+              // </RequireAuthAndAdmin>
+            }
+          ></Route>
+          <Route
+            path="manage-add-project"
+            element={
+              // <RequireAuthAndAdmin>
+              <AddAProject></AddAProject>
+              // </RequireAuthAndAdmin>
+            }
+          ></Route>
+          <Route
+            path="manage-projects"
+            element={
+              // <RequireAuthAndAdmin>
+              <ManageProjects></ManageProjects>
+              // </RequireAuthAndAdmin>
+            }
+          ></Route>
+          <Route
+            path="manage-add-custom-review"
+            element={
+              // <RequireAuthAndAdmin>
+              <AddCustomReview></AddCustomReview>
+              // </RequireAuthAndAdmin>
+            }
+          ></Route>
+          <Route
+            path="manage-review"
+            element={
+              // <RequireAuthAndAdmin>
+              <ManageReview></ManageReview>
+              // </RequireAuthAndAdmin>
             }
           ></Route>
           <Route
             path="manage-admin"
             element={
-              <RequireAuthAndAdmin>
-                <MakeAdmin></MakeAdmin>
-              </RequireAuthAndAdmin>
+              // <RequireAuthAndAdmin>
+              <MakeAdmin></MakeAdmin>
+              // </RequireAuthAndAdmin>
             }
           ></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>

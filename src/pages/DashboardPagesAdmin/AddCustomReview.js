@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
-const AddReview = () => {
+const AddCustomReview = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   // const location = useLocation();
@@ -116,4 +116,4 @@ const AddReview = () => {
   );
 };
 
-export default AddReview;
+export default AddCustomReview;
