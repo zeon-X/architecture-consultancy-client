@@ -38,17 +38,19 @@ const AddAProject = () => {
     // IMAGE UPLOADS  ----- SINGLE
     let image = "";
     let imgData = new FormData();
-    imgData.append("image", data.img[0]);
-    await axios
-      .post(`https://api.imgbb.com/1/upload?key=${API}`, imgData)
-      .then((res) => {
-        if (res.data.status === 200) {
-          image = res.data.data.display_url;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (data.img[0]) {
+      imgData.append("image", data.img[0]);
+      await axios
+        .post(`https://api.imgbb.com/1/upload?key=${API}`, imgData)
+        .then((res) => {
+          if (res.data.status === 200) {
+            image = res.data.data.display_url;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
     // IMAGE UPLOADS -------- BEFORE
     let len = data.galleryBefore.length;
@@ -414,7 +416,7 @@ const AddAProject = () => {
           <input
             type="submit"
             value="Add Project"
-            className="btn btn-success btn-wide rounded mt-8"
+            className="btn btn-warning w-full max-w-xs rounded mt-10"
           ></input>
         </div>
       </form>

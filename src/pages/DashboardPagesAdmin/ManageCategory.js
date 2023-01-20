@@ -62,8 +62,8 @@ const ManageCategory = () => {
         <table className="border-collaspe text-xs border border-gray-300 w-full ">
           <thead>
             <tr>
-              <th className="p-2 border border-gray-300 ">Catrgory Title</th>
-              <th className="p-2 border border-gray-300 ">Catrgory Code</th>
+              <th className="p-2 border border-gray-300 ">Category Title</th>
+              <th className="p-2 border border-gray-300 ">Category Code</th>
               <th className="p-2 border border-gray-300 ">Category _id</th>
               <th className="p-2 border border-gray-300 ">Update</th>
               <th className="p-2 border border-gray-300 ">Delete</th>

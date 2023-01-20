@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -6,16 +7,9 @@ import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const AddCustomReview = () => {
+  const API = "319969b2b7f96e580b0f112231e21ca5";
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const userdata = JSON.parse(location.search.split("=")[1]);
-  // console.log(location);
-  const [userInfo, setUserInfo] = useState({});
-  useEffect(() => {
-    setUserInfo(JSON.parse(localStorage.getItem("user")));
-  }, []);
-  const userdata = {};
 
   const {
     register,
@@ -26,16 +20,43 @@ const AddCustomReview = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    data.userId = userInfo?._id;
-    data.email = userInfo?.email;
     setLoading(true);
-    axiosInstance.post("review/create", data).then((res) => {
+
+    // IMAGE UPLOADS  ----- SINGLE
+    let image = "";
+    let imgData = new FormData();
+    if (data.clientImg[0]) {
+      imgData.append("image", data.clientImg[0]);
+      await axios
+        .post(`https://api.imgbb.com/1/upload?key=${API}`, imgData)
+        .then((res) => {
+          if (res.data.status === 200) {
+            image = res.data.data.display_url;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    // Data assembling-----------------
+
+    if (image !== "") data.clientImg = image;
+    else data.clientImg = "";
+
+    data.status = "accepted";
+
+    await axiosInstance.post("review/create", data).then((res) => {
       // console.log(res.status);
       setLoading(false);
       if (res.status === 201) {
         Swal.fire("Congratulations!", `You've added a Review!`, "success").then(
           () => {
-            navigate("/dashboard/my-account");
+            resetField("reviewTitle");
+            resetField("reviewDiscription");
+            resetField("clientImg");
+            resetField("clientName");
+            resetField("clientDesignation");
           }
         );
       } else {
@@ -47,9 +68,8 @@ const AddCustomReview = () => {
       }
     });
 
-    // setLoading(false);
-
-    // console.log(data);
+    console.log(data);
+    setLoading(false);
   };
 
   if (loading) {
@@ -64,40 +84,99 @@ const AddCustomReview = () => {
         className="flex flex-col items-center justify-center"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {/* address */}
+        {/* review */}
+
         <div className="form-control text-xs w-full mt-6">
-          <div className="form-control w-full max-w-xs">
-            <p className="text-xs mb-2">
-              Rate your experience on a scale (1-5)
-            </p>
+          <p className="font-bold underline mb-2">Client Information</p>
+          <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 mb-6">
+            {/* client name */}
+            <div className="form-control w-full ">
+              <p className="text-xs mb-2">Client Name</p>
+              <input
+                {...register("clientName", {
+                  required: true,
+                })}
+                type="text"
+                placeholder="Type here"
+                className="input input-bordered text-xs w-full  rounded"
+              />
+              <label className="label">
+                {errors.clientName && (
+                  <span className="label-text-alt text-sm text-red-500">
+                    This field is required.
+                  </span>
+                )}
+              </label>
+            </div>
+            {/* client designation */}
+            <div className="form-control w-full ">
+              <p className="text-xs mb-2">Client Designation</p>
+              <input
+                {...register("clientDesignation", {
+                  required: true,
+                })}
+                type="text"
+                placeholder="Type here"
+                className="input input-bordered text-xs w-full  rounded"
+              />
+              <label className="label">
+                {errors.clientDesignation && (
+                  <span className="label-text-alt text-sm text-red-500">
+                    This field is required.
+                  </span>
+                )}
+              </label>
+            </div>
+            {/* client img */}
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="">Client Image</span>
+              </label>
+              <input
+                type="file"
+                name="clientImg"
+                className="input input-bordered text-xs rounded w-full "
+                {...register("clientImg", { required: false })}
+              />
+              {errors.clientImg && (
+                <label className="label">
+                  <span className="-alt text-sm text-red-500">
+                    This field is required
+                  </span>
+                </label>
+              )}
+            </div>
+          </div>
+
+          <p className="font-bold underline mb-2">Review Section</p>
+          <div className="form-control w-full ">
+            <p className="text-xs mb-2">Add a Heading/Title</p>
             <input
-              {...register("rating", {
+              {...register("reviewTitle", {
                 required: true,
-                min: 1,
-                max: 5,
               })}
-              type="number"
+              type="text"
               placeholder="Type here"
-              className="input input-bordered text-xs w-full max-w-xs rounded"
+              className="input input-bordered text-xs w-full  rounded"
             />
             <label className="label">
-              {errors.rating && (
+              {errors.reviewTitle && (
                 <span className="label-text-alt text-sm text-red-500">
-                  This field is required. Put a value between 1-5
+                  This field is required.
                 </span>
               )}
             </label>
           </div>
-          <p className="font-bold underline mb-2">Your Comment</p>
+          <p className="text-xs mb-2">Review</p>
           <textarea
-            {...register("comment", {
+            {...register("reviewDiscription", {
               required: true,
             })}
             className="textarea textarea-bordered h-24 text-xs rounded"
             placeholder="Type Here"
           ></textarea>
           <label className="label">
-            {errors.comment && (
+            {errors.reviewDiscription && (
               <span className="label-text-alt text-sm text-red-500">
                 This field is required
               </span>
@@ -107,9 +186,9 @@ const AddCustomReview = () => {
 
         <input
           type="submit"
-          className="btn btn-warning w-full max-w-xs rounded mt-10"
+          className="btn btn-wide btn-warning  rounded mt-10"
           name=""
-          value="Submit Review"
+          value="Post Review"
         />
       </form>
     </div>

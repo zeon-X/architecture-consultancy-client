@@ -97,7 +97,7 @@ const AddCategory = () => {
           <input
             type="submit"
             value="Add Category"
-            className="btn btn-success btn-wide rounded mt-8"
+            className="btn btn-warning w-full max-w-xs rounded mt-10"
           ></input>
         </div>
       </form>

@@ -10,16 +10,40 @@ const ManageReview = () => {
   const {
     isLoading,
     isError,
-    data: category,
+    data: review,
     error,
-  } = useQuery(["categorys", changes], async ({ changes }) => {
+  } = useQuery(["reviewsget", changes], async ({ changes }) => {
     console.log(changes);
-    return await axiosInstance.get("category/get");
+    return await axiosInstance.get("review/get");
   });
 
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
 
-  const handleDeleteCategory = (_id) => {
+  const handleReviewStatus = async (_id, status) => {
+    let updatedStatus = status === "pending" ? "accepted" : "pending";
+    await axiosInstance
+      .put(`review/update-status?_id=${_id}&status=${updatedStatus}`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.status === 200) {
+          Swal.fire(
+            "Status Updated!",
+            "Your review status has been updated",
+            "success"
+          ).then(() => {
+            increaseChanges(changes + 1);
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: res.response.data.message || res.response.data,
+          });
+        }
+      });
+  };
+
+  const handleDeleteReview = (_id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,7 +54,7 @@ const ManageReview = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.delete(`category/delete?_id=${_id}`).then((res) => {
+        axiosInstance.delete(`review/delete?_id=${_id}`).then((res) => {
           console.log(res.data);
           if (res.status === 200) {
             Swal.fire(
@@ -51,42 +75,66 @@ const ManageReview = () => {
       }
     });
   };
-
-  if (isLoading) return <Loading msg="Loading..."></Loading>;
+  // console.log(review);
+  if (isLoading) {
+    <Loading msg={"loading.."}></Loading>;
+  }
 
   return (
     <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full">
-      <p className="text-sm font-semibold ">Manage Category</p>
-      {/* purchase categorys */}
+      <p className="text-sm font-semibold ">Manage Review</p>
+      {/* purchase reviews */}
       <div className="overflow-auto   rounded mt-4">
         <table className="border-collaspe text-xs border border-gray-300 w-full ">
           <thead>
             <tr>
-              <th className="p-2 border border-gray-300 ">Catrgory Title</th>
-              <th className="p-2 border border-gray-300 ">Catrgory Code</th>
-              <th className="p-2 border border-gray-300 ">Category _id</th>
+              <th className="p-2 border border-gray-300 ">Client Image</th>
+              <th className="p-2 border border-gray-300 ">Client Name</th>
+              <th className="p-2 border border-gray-300 ">Client Des.</th>
+
+              <th className="p-2 border border-gray-300 ">Review Title</th>
+              <th className="p-2 border border-gray-300 ">Review Dis. </th>
+              <th className="p-2 border border-gray-300 ">Status</th>
               <th className="p-2 border border-gray-300 ">Update</th>
               <th className="p-2 border border-gray-300 ">Delete</th>
+              <th className="p-2 border border-gray-300 ">Details</th>
             </tr>
           </thead>
           <tbody>
-            {category?.data?.map((x, index) => {
+            {review?.data?.map((x, index) => {
               return (
                 <tr key={index}>
-                  {/* category discription */}
-
+                  {/* review discription */}
+                  <td align="center" className="p-1 border border-gray-300">
+                    <img className=" w-16 h-16" src={x?.clientImg} alt="" />
+                  </td>
                   <td className="p-2 border border-gray-300 ">
-                    {x?.categoryTitle}
+                    {x?.clientName}
                   </td>
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?.categoryCode}
+                    {x?.clientDesignation}
                   </td>
 
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?._id}
+                    {x?.reviewTitle}
+                  </td>
+                  <td align="center" className="p-2 border border-gray-300">
+                    {x?.reviewDiscription}
                   </td>
                   {/* BTNS FROM HERE */}
 
+                  {/* status */}
+                  <td
+                    align="center"
+                    className="p-2 border  border-gray-300 mx-auto content-center"
+                  >
+                    <input
+                      type="checkbox"
+                      className="toggle"
+                      checked={x?.status === "accepted" ? true : false}
+                      onClick={() => handleReviewStatus(x?._id, x?.status)}
+                    />
+                  </td>
                   {/* update */}
                   <td
                     align="center"
@@ -103,9 +151,18 @@ const ManageReview = () => {
                   >
                     <button
                       className="btn btn-xs bg-red-500 border-none "
-                      onClick={() => handleDeleteCategory(x?._id)}
+                      onClick={() => handleDeleteReview(x?._id)}
                     >
                       Delete
+                    </button>
+                  </td>
+                  {/* details */}
+                  <td
+                    align="center"
+                    className=" p-2 border  border-gray-300 mx-auto content-center"
+                  >
+                    <button className="btn btn-xs bg-success border-none text-white">
+                      Details
                     </button>
                   </td>
                 </tr>
