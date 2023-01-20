@@ -12,7 +12,6 @@ import RequireAuthAndAdmin from "./utilities/RequireAuth/RequireAuthAndAdmin";
 import ManageProjects from "./pages/DashboardPagesAdmin/ManageProjects";
 import MakeAdmin from "./pages/DashboardPagesAdmin/MakeAdmin";
 import AddAProject from "./pages/DashboardPagesAdmin/AddAProject";
-import MyWishlist from "./pages/DashBoardPagesUser/MyWishlist";
 import MyOrders from "./pages/DashBoardPagesUser/MyOrders";
 import AddReview from "./pages/DashBoardPagesUser/AddReview";
 import EditMyProfile from "./pages/DashboardPagesShared/EditMyProfile";
@@ -77,7 +76,7 @@ function App() {
             element={<EditMyProfile></EditMyProfile>}
           ></Route>
           {/* user */}
-          <Route path="my-wishlist" element={<MyWishlist></MyWishlist>}></Route>
+
           <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
           <Route path="my-reviews" element={<AddReview></AddReview>}></Route>
           {/* admin  */}

@@ -60,7 +60,7 @@ const DashboardDrawer = () => {
 
           {userInfo && userInfo?.role === "admin" && (
             <li>
-              <NavLink to="manage-orders">Manage All Orders</NavLink>
+              <NavLink to="manage-orders">Manage Orders</NavLink>
             </li>
           )}
           {userInfo && userInfo?.role === "admin" && (
@@ -90,7 +90,7 @@ const DashboardDrawer = () => {
           )}
           {userInfo && userInfo?.role === "admin" && (
             <li>
-              <NavLink to="manage-review">Manage Reviews</NavLink>
+              <NavLink to="manage-review">Manage All Reviews</NavLink>
             </li>
           )}
           {userInfo && userInfo?.role === "admin" && (
