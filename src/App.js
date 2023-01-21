@@ -59,6 +59,23 @@ function App() {
         ></Route>
 
         <Route
+          path="my-orders"
+          element={
+            <Drawer>
+              <MyOrders></MyOrders>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="my-reviews"
+          element={
+            <Drawer>
+              <AddReview></AddReview>
+            </Drawer>
+          }
+        ></Route>
+
+        <Route
           path="/dashboard"
           element={
             <Drawer>
@@ -77,8 +94,6 @@ function App() {
           ></Route>
           {/* user */}
 
-          <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
-          <Route path="my-reviews" element={<AddReview></AddReview>}></Route>
           {/* admin  */}
           <Route
             path="manage-orders"

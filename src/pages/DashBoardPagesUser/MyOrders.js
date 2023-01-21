@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import MyOrdersRow1 from "../../components/MyOrdersRow/MyOrdersRow1";
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
@@ -11,14 +12,13 @@ const MyOrders = () => {
   const {
     isLoading,
     isError,
-    data: purchase,
+    data: myorders,
     error,
   } = useQuery(["userorders", changes], async () => {
-    let fdata = await axiosInstance.get(`order/find?_id=${userInfo?._id}`);
+    // let fdata = await axiosInstance.get(`order/find?_id=${userInfo?._id}`);
+    let fdata = await axiosInstance.get(`order/get`);
     return fdata.data;
   });
-
-  const [q, setQ] = useState(0);
 
   // console.log(purchase);
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
@@ -29,36 +29,9 @@ const MyOrders = () => {
       <p className="text-sm font-semibold ">My Orders</p>
       {/* purchase products */}
       <div className="overflow-auto   rounded mt-4">
-        <table className="border-collaspe text-xs border border-gray-300 w-full ">
-          <thead>
-            <tr>
-              <th className="p-2 border border-gray-300 ">Image</th>
-              <th className="p-2 border border-gray-300 ">Product</th>
-              <th className="p-2 border border-gray-300 ">MCQ</th>
-              <th className="p-2 border border-gray-300 ">Available</th>
-
-              <th className="p-2 border border-gray-300 ">Price</th>
-              <th className="p-2 border border-gray-300 ">Quantity</th>
-              <th className="p-2 border border-gray-300 ">Total</th>
-
-              <th className="p-2 border border-gray-300 ">Payment</th>
-              <th className="p-2 border border-gray-300 ">Update</th>
-              <th className="p-2 border border-gray-300 ">Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {purchase.map((x, index) => {
-              return (
-                <MyOrdersRow
-                  key={index}
-                  props={x}
-                  changes={changes}
-                  increaseChanges={increaseChanges}
-                ></MyOrdersRow>
-              );
-            })}
-          </tbody>
-        </table>
+        {myorders?.map((x) => {
+          return <MyOrdersRow1 key={x?._id} x={x}></MyOrdersRow1>;
+        })}
       </div>
     </div>
   );
