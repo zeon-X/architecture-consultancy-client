@@ -86,7 +86,7 @@ function App() {
           }
         >
           {/* shared */}
-          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
           <Route path="my-account" element={<MyProfile></MyProfile>}></Route>
           <Route
             path="my-account-update"

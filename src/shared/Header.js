@@ -152,6 +152,9 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow border border-gray-100 bg-base-100 rounded-box w-52"
             >
+              <li onClick={() => navigate("/dashboard/manage-orders")}>
+                <a className="">Dashboard</a>
+              </li>
               <li onClick={() => navigate("/place-order")}>
                 <a className="">Place an Order</a>
               </li>

@@ -10,7 +10,7 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import Loading from "../../shared/Loading";
 
 const Register = () => {
-  const API = "319969b2b7f96e580b0f112231e21ca5";
+  const API = "04f0795ca819457ba8b6c8ec73023069";
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
   const [userData, setUserData] = useState({});

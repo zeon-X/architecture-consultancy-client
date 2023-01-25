@@ -6,7 +6,7 @@ import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { useQuery } from "react-query";
 
 const AddAProject = () => {
-  const API = "319969b2b7f96e580b0f112231e21ca5";
+  const API = "04f0795ca819457ba8b6c8ec73023069";
   const [loading, setLoading] = useState(false);
 
   // category fetching.

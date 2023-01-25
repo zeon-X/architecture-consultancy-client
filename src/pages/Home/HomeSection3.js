@@ -56,7 +56,11 @@ const HomeSection3 = () => {
       categoryCode: "",
     },
     {
-      categoryTitle: "Food Truck-Booth Design",
+      categoryTitle: "Food Truck",
+      categoryCode: "",
+    },
+    {
+      categoryTitle: "Booth Design",
       categoryCode: "",
     },
   ];
@@ -112,18 +116,18 @@ const HomeSection3 = () => {
       </div>
 
       {/* CATEGORIES */}
-      <div className="text-black text-sm gap-5 flex justify-center">
+      <div className="text-black text-sm gap-4 grid lg:grid-cols-8 md:grid-cols-5 sm:grid-cols-3 justify-center">
         {cat.map((x) => {
           return (
             <div>
-              <button>{x.categoryTitle}</button>
+              <button className="text-center w-full">{x.categoryTitle}</button>
             </div>
           );
         })}
       </div>
 
       {/* PROJECTS */}
-      <div className="grid grid-cols-3 gap-10 my-10 ">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 my-10 ">
         {projects.map((x) => {
           return (
             <div

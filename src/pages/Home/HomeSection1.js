@@ -4,8 +4,8 @@ import hero from "../../assets/hs1/about3-bg2.jpg";
 const HomeSection1 = () => {
   return (
     <section id="hs1" className="w-full py-16">
-      <div className="flex">
-        <div className="w-5/12">
+      <div className="flex lg:flex-row md:flex-row sm:flex-col gap-10">
+        <div className="lg:w-5/12 md:w-5/12 sm:w-full lg:order-1 md:order-1 sm:order-2">
           <div className="flex items-center ">
             <p className="text-sm w-3/12 tracking-widest uppercase">
               who we are
@@ -38,7 +38,7 @@ const HomeSection1 = () => {
             </svg>
           </button>
         </div>
-        <div className="w-7/12 flex justify-center">
+        <div className="lg:w-7/12 md:w-7/12 sm:w-full flex justify-center lg:order-2 md:order-2 sm:order-1">
           <img className="w-[400px] rounded-xl shadow-lg" src={hero} alt="" />
         </div>
       </div>

@@ -31,7 +31,7 @@ const Drawer = ({ children }) => {
           {/*  Navbar */}
 
           <Header></Header>
-          <div className="max-w-7xl mx-auto w-full">
+          <div className="max-w-7xl mx-auto w-full ">
             {/* Page content here ||||| max-w-7xl  */}
             {children}
             {/*  Footer  */}
@@ -47,51 +47,6 @@ const Drawer = ({ children }) => {
             <li>
               <NavLink to="/">HOME</NavLink>
             </li>
-            <li>
-              <NavLink to="/about">ABOUT US</NavLink>
-            </li>
-            <li>
-              <NavLink to="/shop">OUR PRODUCTS</NavLink>
-            </li>
-            <li>
-              <NavLink to="/blog">BLOG</NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact">MY PORTFOLIO</NavLink>
-            </li>
-
-            {!userInfo && !user && (
-              <li>
-                <a onClick={() => navigate("/login")}>Login</a>
-              </li>
-            )}
-            {!userInfo && !user && (
-              <li>
-                <a onClick={() => navigate("/register")}>Register</a>
-              </li>
-            )}
-            {user && userInfo && (
-              <li>
-                <a
-                  onClick={() => navigate("/dashboard")}
-                  className="justify-between"
-                >
-                  Dashboard
-                  <span className="badge">{user && userInfo?.role}</span>
-                </a>
-              </li>
-            )}
-
-            {user && userInfo && (
-              <li>
-                <a onClick={logout}>Logout</a>
-              </li>
-            )}
-            {user && !userInfo && (
-              <li>
-                <a onClick={logout}>Error Logout</a>
-              </li>
-            )}
           </ul>
         </div>
       </div>

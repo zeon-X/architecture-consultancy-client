@@ -34,11 +34,11 @@ const DashboardDrawer = () => {
         <ul className="menu p-4 w-80 bg-gray-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
 
-          {userInfo && (
+          {/* {userInfo && (
             <li>
               <NavLink to="my-account">My Account</NavLink>
             </li>
-          )}
+          )} */}
           {/* user links */}
           {/* {userInfo.role === "user" && (
               <li>
@@ -93,11 +93,11 @@ const DashboardDrawer = () => {
               <NavLink to="manage-review">Manage All Reviews</NavLink>
             </li>
           )}
-          {userInfo && userInfo?.role === "admin" && (
+          {/* {userInfo && userInfo?.role === "admin" && (
             <li>
               <NavLink to="manage-admin">Make Admin</NavLink>
             </li>
-          )}
+          )} */}
         </ul>
       </div>
     </div>

@@ -3,7 +3,7 @@ import React from "react";
 const HomeSection2 = () => {
   return (
     <section id="hs2" className="w-full py-16 flex flex-col">
-      <div className="flex justify-between items-center px-16">
+      <div className="flex justify-between items-center lg:px-16 md:px-10 sm:px-2">
         <p className="text-4xl font-bold text-black">What we do</p>
         <button className="flex items-center gap-6">
           <p className="text-black ">see more service</p>

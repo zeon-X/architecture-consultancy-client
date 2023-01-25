@@ -40,10 +40,10 @@ const HomeSection4 = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-4 gap-6 mt-16">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  gap-6 mt-16">
         {team.map((x) => {
           return (
-            <div>
+            <div className="flex flex-col justify-center lg:items-start md:items-start sm:items-center">
               <div
                 className="h-[320px] w-[260px] bg-cover bg-center rounded"
                 style={{
