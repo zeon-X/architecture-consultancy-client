@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 
 import ErrorPage from "../../shared/ErrorPage";
@@ -31,14 +31,6 @@ const HomeSection3 = () => {
       categoryTitle: "Landscaping",
       categoryCode: "",
     },
-    // {
-    //   categoryTitle: "Backyard Design",
-    //   categoryCode: "",
-    // },
-    // {
-    //   categoryTitle: "Front Yard Design",
-    //   categoryCode: "",
-    // },
     {
       categoryTitle: "Gardening",
       categoryCode: "",
@@ -65,38 +57,59 @@ const HomeSection3 = () => {
     },
   ];
 
-  const projects = [
-    {
-      title: "Apartment Design and Decor",
-      pic: "https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      location: "Dhaka, Bangladesh",
-    },
-    {
-      title: "Zeex Interior Design",
-      pic: "https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      location: "Dhaka, Bangladesh",
-    },
-    {
-      title: "Mega mall Exterior Design",
-      pic: "https://images.pexels.com/photos/13255334/pexels-photo-13255334.jpeg?auto=compress&cs=tinysrgb&w=600",
-      location: "Dhaka, Bangladesh",
-    },
-    {
-      title: "Dhaka building Design",
-      pic: "https://images.pexels.com/photos/13029436/pexels-photo-13029436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      location: "Dhaka, Bangladesh",
-    },
-    {
-      title: "Aarong Rajshahi",
-      pic: "http://blog.brac.net/wp-content/uploads/2011/04/aarong-launches-a-flagship-store.jpg",
-      location: "Rajshahi, Bangladesh",
-    },
-    {
-      title: "Poolscape Villa",
-      pic: "https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=600",
-      location: "Dhaka, Bangladesh",
-    },
-  ];
+  const [changes, increaseChanges] = useState(0);
+  const {
+    isLoading,
+    isError,
+    data: project,
+    error,
+  } = useQuery(["projects", changes], async ({ changes }) => {
+    console.log(changes);
+    return await axiosInstance.get("project/get-active-by-basic?limit=6");
+  });
+
+  const {
+    isLoading1,
+    isError1,
+    data: category,
+    error1,
+  } = useQuery(["categorys", changes], async ({ changes }) => {
+    console.log(changes);
+    return await axiosInstance.get("category/get");
+  });
+
+  // const projects = [
+  //   {
+  //     title: "Apartment Design and Decor",
+  //     pic: "https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  //     location: "Dhaka, Bangladesh",
+  //   },
+  //   {
+  //     title: "Zeex Interior Design",
+  //     pic: "https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  //     location: "Dhaka, Bangladesh",
+  //   },
+  //   {
+  //     title: "Mega mall Exterior Design",
+  //     pic: "https://images.pexels.com/photos/13255334/pexels-photo-13255334.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //     location: "Dhaka, Bangladesh",
+  //   },
+  //   {
+  //     title: "Dhaka building Design",
+  //     pic: "https://images.pexels.com/photos/13029436/pexels-photo-13029436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  //     location: "Dhaka, Bangladesh",
+  //   },
+  //   {
+  //     title: "Aarong Rajshahi",
+  //     pic: "http://blog.brac.net/wp-content/uploads/2011/04/aarong-launches-a-flagship-store.jpg",
+  //     location: "Rajshahi, Bangladesh",
+  //   },
+  //   {
+  //     title: "Poolscape Villa",
+  //     pic: "https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //     location: "Dhaka, Bangladesh",
+  //   },
+  // ];
 
   return (
     <section
@@ -116,11 +129,16 @@ const HomeSection3 = () => {
       </div>
 
       {/* CATEGORIES */}
-      <div className="text-black text-sm gap-4 grid lg:grid-cols-8 md:grid-cols-5 sm:grid-cols-3 justify-center">
-        {cat.map((x) => {
+      <div className="text-black text-sm gap-4 grid lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 justify-center">
+        <div>
+          <button className="text-center w-full  btn btn-xs">All</button>
+        </div>
+        {category?.data?.map((x) => {
           return (
             <div>
-              <button className="text-center w-full">{x.categoryTitle}</button>
+              <button className="text-center w-full btn btn-xs">
+                {x.categoryTitle}
+              </button>
             </div>
           );
         })}
@@ -128,15 +146,15 @@ const HomeSection3 = () => {
 
       {/* PROJECTS */}
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 my-10 ">
-        {projects.map((x) => {
+        {project?.data?.map((x) => {
           return (
             <div
               className="project-card bg-white relative h-[340px] w-[340px] bg-cover bg-center "
-              style={{ backgroundImage: `url(${x.pic})` }}
+              style={{ backgroundImage: `url(${x?.img})` }}
             >
               <div className="w-full h-full project-img  border-white transition-all ease-in-out "></div>
               <div className="project-view-btn gap-2 flex items-center">
-                <p className="text-xs font-semibold">{x.title}</p>
+                <p className="text-xs font-semibold">{x?.title}</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
