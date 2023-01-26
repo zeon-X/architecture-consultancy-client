@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
-import "./Home.css";
-
-const HomeSection3 = () => {
-  const navigate = useNavigate();
+const ViewAllProjects = () => {
   const [categoryChange, setCategoryChange] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchProjects = async () => {
     let api = "";
     if (!categoryChange || categoryChange === "") {
-      api = `project/get-active-by-basic?limit=6`;
+      api = `project/get-active-by-basic`;
     } else {
-      api = `project/find-by-cat-basic?_catId=${categoryChange}&limit=6`;
+      api = `project/find-by-cat-basic?_catId=${categoryChange}`;
     }
 
-    // console.log(api);
     return await axiosInstance.get(api);
   };
 
@@ -31,7 +26,7 @@ const HomeSection3 = () => {
     isError,
     data: project,
     error,
-  } = useQuery(["projectsSearch", categoryChange], fetchProjects);
+  } = useQuery(["viewallprojectsbycat", categoryChange], fetchProjects);
 
   // categories fetching
   const {
@@ -39,7 +34,7 @@ const HomeSection3 = () => {
     isError1,
     data: category,
     error1,
-  } = useQuery(["categorys"], async ({}) => {
+  } = useQuery(["categories"], async ({}) => {
     return await axiosInstance.get("category/get");
   });
 
@@ -54,13 +49,14 @@ const HomeSection3 = () => {
   }, [isLoading]);
 
   return (
-    <section
-      id="hs3"
-      className="lg:px-20 sm:px-8 py-16 w-full flex flex-col justify-center items-center"
+    <div
+      id=""
+      className="lg:px-20 sm:px-8 py-10 w-full flex flex-col justify-center items-center"
     >
+      {/* intro */}
       <div className="">
         <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
-          Check our latest works
+          Our latest works
         </p>
       </div>
 
@@ -130,15 +126,8 @@ const HomeSection3 = () => {
           );
         })}
       </div>
-
-      <button
-        onClick={() => navigate("/view-all-works")}
-        className="text-gray-400 tracking-widest text-sm hover:text-black"
-      >
-        view all works
-      </button>
-    </section>
+    </div>
   );
 };
 
-export default HomeSection3;
+export default ViewAllProjects;

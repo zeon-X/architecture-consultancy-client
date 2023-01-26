@@ -12,8 +12,7 @@ const ManageProjects = () => {
     isError,
     data: project,
     error,
-  } = useQuery(["projects", changes], async ({ changes }) => {
-    console.log(changes);
+  } = useQuery(["projectsadmin", changes], async ({ changes }) => {
     return await axiosInstance.get("project/get");
   });
 

@@ -20,6 +20,7 @@ import AddCategory from "./pages/DashboardPagesAdmin/AddCategory";
 import ManageCategory from "./pages/DashboardPagesAdmin/ManageCategory";
 import AddCustomReview from "./pages/DashboardPagesAdmin/AddCustomReview";
 import ManageReview from "./pages/DashboardPagesAdmin/ManageReview";
+import ViewAllProjects from "./pages/ViewAllProject/ViewAllProject";
 
 function App() {
   return (
@@ -38,6 +39,14 @@ function App() {
           element={
             <Drawer>
               <Home></Home>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="/view-all-works"
+          element={
+            <Drawer>
+              <ViewAllProjects></ViewAllProjects>
             </Drawer>
           }
         ></Route>

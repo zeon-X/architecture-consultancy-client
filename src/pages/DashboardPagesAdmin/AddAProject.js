@@ -150,7 +150,7 @@ const AddAProject = () => {
               name="title"
               className="input input-bordered text-xs rounded w-full "
               {...register("title", {
-                required: false,
+                required: true,
                 message: "This field is required",
               })}
             />
@@ -169,7 +169,7 @@ const AddAProject = () => {
             </label>
             <select
               {...register("category", {
-                required: false,
+                required: true,
                 message: "This field is required",
               })}
               className="select select-bordered"
@@ -206,7 +206,7 @@ const AddAProject = () => {
               name="client"
               className="input input-bordered text-xs rounded w-full "
               {...register("client", {
-                required: false,
+                required: true,
                 message: "This field is required",
               })}
             />
@@ -228,7 +228,7 @@ const AddAProject = () => {
               name="projectYear"
               className="input input-bordered text-xs rounded w-full "
               {...register("projectYear", {
-                required: false,
+                required: true,
                 message: "This field is required",
               })}
             />
@@ -250,7 +250,7 @@ const AddAProject = () => {
               name="location"
               className="input input-bordered text-xs rounded w-full "
               {...register("location", {
-                required: false,
+                required: true,
                 message: "This field is required",
               })}
             />
@@ -272,7 +272,7 @@ const AddAProject = () => {
               name="designer"
               className="input input-bordered text-xs rounded w-full "
               {...register("designer", {
-                required: false,
+                required: true,
                 message: "This field is required",
               })}
             />
@@ -371,7 +371,7 @@ const AddAProject = () => {
               type="file"
               name="img"
               className="input input-bordered text-xs rounded w-full "
-              {...register("img", { required: false })}
+              {...register("img", { required: true })}
             />
             {errors.img && (
               <label className="label">
@@ -393,7 +393,7 @@ const AddAProject = () => {
               type="file"
               name="galleryBefore"
               className="input input-bordered text-xs rounded w-full "
-              {...register("galleryBefore")}
+              {...register("galleryBefore", { required: false })}
             />
           </div>
           {/* after image */}
@@ -406,7 +406,7 @@ const AddAProject = () => {
               type="file"
               name="galleryAfter"
               className="input input-bordered text-xs rounded w-full "
-              {...register("galleryAfter")}
+              {...register("galleryAfter", { required: false })}
             />
           </div>
         </div>

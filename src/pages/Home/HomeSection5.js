@@ -10,7 +10,7 @@ const HomeSection5 = () => {
     data: review,
     error,
   } = useQuery(["reviewsgethome", changes], async ({ changes }) => {
-    console.log(changes);
+    // console.log(changes);
     return await axiosInstance.get("review/get");
   });
 
