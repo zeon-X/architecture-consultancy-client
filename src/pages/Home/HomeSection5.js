@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
+// REVIEW
 const HomeSection5 = () => {
   const [changes, increaseChanges] = useState(0);
   const {
@@ -11,39 +12,11 @@ const HomeSection5 = () => {
     error,
   } = useQuery(["reviewsgethome", changes], async ({ changes }) => {
     // console.log(changes);
-    return await axiosInstance.get("review/get");
+    return await axiosInstance.get("review/get?limit=6");
   });
 
-  // console.log(review);
-  // const review = [
-  //   {
-  //     reviewTitle: "very professional",
-  //     review:
-  //       "Mauris aliquet nisi vel lacus placerat ultricies. Curabitur accumsan felis sapien, sit amet volutpat",
-  //     img: "https://images.unsplash.com/photo-1592334873219-42ca023e48ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3w3NjA4Mjc3NHx8ZW58MHx8fHw%3D&w=1000&q=80",
-  //     name: "Devid Backhum",
-  //     designation: "CEO, Heavy Steals",
-  //   },
-  //   {
-  //     reviewTitle: "very professional",
-  //     review:
-  //       "Mauris aliquet nisi vel lacus placerat ultricies. Curabitur accumsan felis sapien, sit amet volutpat",
-  //     img: "https://images.unsplash.com/photo-1592334873219-42ca023e48ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3w3NjA4Mjc3NHx8ZW58MHx8fHw%3D&w=1000&q=80",
-  //     name: "Devid Backhum",
-  //     designation: "CEO, Heavy Steals",
-  //   },
-  //   {
-  //     reviewTitle: "very professional",
-  //     review:
-  //       "Mauris aliquet nisi vel lacus placerat ultricies. Curabitur accumsan felis sapien, sit amet volutpat",
-  //     img: "https://images.unsplash.com/photo-1592334873219-42ca023e48ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3w3NjA4Mjc3NHx8ZW58MHx8fHw%3D&w=1000&q=80",
-  //     name: "Devid Backhum",
-  //     designation: "CEO, Heavy Steals",
-  //   },
-  // ];
-
   return (
-    <section id="hs5" className="py-16 w-full ">
+    <section id="hs5" className="pt-36 pb-24 w-full ">
       <div className="">
         <p className="text-sm text-black tracking-widest uppercase text-center">
           THEY REMEMBER US
@@ -53,7 +26,7 @@ const HomeSection5 = () => {
         </p>
       </div>
 
-      <div className="h-full grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3 justify-center items-center mt-16">
+      <div className="h-full grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 justify-center items-center mt-16">
         {review?.data?.map((x) => {
           return (
             <div className="review-card p-10 h-full relative ">

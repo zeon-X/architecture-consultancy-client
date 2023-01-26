@@ -69,25 +69,25 @@ const Header = () => {
           <ul className="menu menu-horizontal justify-center items-center">
             {/* <!-- center portion here --> */}
             <li>
-              <a href="#hs0">Home</a>
+              <a href="/#hs0">Home</a>
             </li>
             <li>
-              <a href="#hs1">What We Do</a>
+              <a href="/#hs2">What We Do</a>
             </li>
             <li>
-              <a href="#hs2">Service</a>
+              <a href="/#hs1">Service</a>
             </li>
             <li>
-              <a href="#hs3">Our Latest Works</a>
+              <a href="/#hs3">Our Latest Works</a>
             </li>
             <li>
-              <a href="#hs4">Pricing</a>
+              <a href="/#hs6">Pricing</a>
             </li>
             <li>
-              <a href="#hs5">Contact Us</a>
+              <a href="">Contact Us</a>
             </li>
             <li>
-              <a href="#hs6">What's Client's Say</a>
+              <a href="/#hs5">What's Client's Say</a>
             </li>
           </ul>
         </div>

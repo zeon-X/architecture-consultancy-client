@@ -32,7 +32,7 @@ const HomeSection4 = () => {
   return (
     <section id="hs4" className="w-full mb-16">
       <div className="">
-        <p className="text-sm text-gray-400 tracking-widest uppercase text-center">
+        <p className="text-sm text-black tracking-widest uppercase text-center">
           our team
         </p>
         <p className="text-4xl font-semibold text-gray-800 mt-3 mb-8 text-center">
@@ -40,10 +40,10 @@ const HomeSection4 = () => {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  gap-6 mt-16">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-6 mt-16">
         {team.map((x) => {
           return (
-            <div className="flex flex-col justify-center lg:items-start md:items-start sm:items-center">
+            <div className="flex flex-col justify-center lg:items-start md:items-center sm:items-center">
               <div
                 className="h-[320px] w-[260px] bg-cover bg-center rounded"
                 style={{

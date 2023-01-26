@@ -14,6 +14,7 @@ const HomeSection3 = () => {
   const [categoryChange, setCategoryChange] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // fetch project by category function
   const fetchProjects = async () => {
     let api = "";
     if (!categoryChange || categoryChange === "") {
@@ -26,6 +27,7 @@ const HomeSection3 = () => {
     return await axiosInstance.get(api);
   };
 
+  // fetch projetcs by cat api calling and state management
   const {
     isLoading,
     isError,
@@ -56,9 +58,9 @@ const HomeSection3 = () => {
   return (
     <section
       id="hs3"
-      className="lg:px-20 sm:px-8 py-16 w-full flex flex-col justify-center items-center"
+      className=" py-16 w-full flex flex-col justify-center items-center"
     >
-      <div className="">
+      <div className="sm:px-8">
         <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
           Check our latest works
         </p>
@@ -105,7 +107,7 @@ const HomeSection3 = () => {
         {project?.data?.map((x) => {
           return (
             <div
-              className="project-card bg-white relative h-[340px] w-[340px] bg-cover bg-center "
+              className="project-card bg-white relative h-[380px] w-[380px] bg-cover bg-center "
               style={{ backgroundImage: `url(${x?.img})` }}
             >
               <div className="w-full h-full project-img  border-white transition-all ease-in-out "></div>
@@ -133,7 +135,7 @@ const HomeSection3 = () => {
 
       <button
         onClick={() => navigate("/view-all-works")}
-        className="text-gray-400 tracking-widest text-sm hover:text-black"
+        className="text-gray-400 tracking-widest text-sm hover:text-black underline"
       >
         view all works
       </button>
