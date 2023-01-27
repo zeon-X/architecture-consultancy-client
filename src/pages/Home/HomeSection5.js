@@ -10,13 +10,13 @@ const HomeSection5 = () => {
     isError,
     data: review,
     error,
-  } = useQuery(["reviewsgethome", changes], async ({ changes }) => {
+  } = useQuery(["reviewsgethomeactive", changes], async ({ changes }) => {
     // console.log(changes);
-    return await axiosInstance.get("review/get?limit=6");
+    return await axiosInstance.get("review/get-active?limit=6");
   });
 
   return (
-    <section id="hs5" className="pt-36 pb-24 w-full ">
+    <section id="hs5" className="pt-36 pb-24 w-full">
       <div className="">
         <p className="text-sm text-black tracking-widest uppercase text-center">
           THEY REMEMBER US
@@ -35,7 +35,7 @@ const HomeSection5 = () => {
                 {x.reviewTitle}
               </p>
               {/* review details  */}
-              <p className="text-xs text-gray-400 mt-3 pb-20">
+              <p className="text-sm text-gray-400 mt-3 pb-20">
                 {x.reviewDiscription}
               </p>
               <div className="absolute bottom-10 w-9/12">

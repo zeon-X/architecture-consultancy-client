@@ -93,7 +93,7 @@ const EditMyProfile = () => {
                 `You've updated your profile!`,
                 "success"
               ).then(() => {
-                navigate("/dashboard/my-account");
+                navigate("/dashboard-admin/my-account");
               });
             } else {
               Swal.fire({

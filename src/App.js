@@ -21,10 +21,18 @@ import ManageCategory from "./pages/DashboardPagesAdmin/ManageCategory";
 import AddCustomReview from "./pages/DashboardPagesAdmin/AddCustomReview";
 import ManageReview from "./pages/DashboardPagesAdmin/ManageReview";
 import ViewAllProjects from "./pages/ViewAllProject/ViewAllProject";
+import LoginModal from "./pages/Modals/LoginModal";
+import RegisterModal from "./pages/Modals/RegisterModal";
 
 function App() {
   return (
     <div className="relative">
+      {/*  ------ MODALS HERE START ----  */}
+      <LoginModal></LoginModal>
+      <RegisterModal></RegisterModal>
+      {/*  ------ MODALS HERE END ------  */}
+
+      {/* ------ PAGES START --------- */}
       <Routes>
         <Route
           path="*"
@@ -50,126 +58,81 @@ function App() {
             </Drawer>
           }
         ></Route>
-        <Route
-          path="/login"
-          element={
-            <Drawer>
-              <Login></Login>
-            </Drawer>
-          }
-        ></Route>
-        <Route
-          path="/register"
-          element={
-            <Drawer>
-              <Register></Register>
-            </Drawer>
-          }
-        ></Route>
+        {/* ------ PAGES END --------- */}
 
+        {/* -------- USER DB START --------- */}
         <Route
-          path="my-orders"
+          path="/my-orders"
           element={
             <Drawer>
-              <MyOrders></MyOrders>
+              <RequireAuth>
+                <MyOrders></MyOrders>
+              </RequireAuth>
             </Drawer>
           }
         ></Route>
         <Route
-          path="my-reviews"
+          path="/my-reviews"
           element={
             <Drawer>
-              <AddReview></AddReview>
+              <RequireAuth>
+                <AddReview></AddReview>
+              </RequireAuth>
             </Drawer>
           }
         ></Route>
+        {/* -------- USER DB END --------- */}
 
+        {/* -------- ADMIN DB WITH PANEL START--------- */}
         <Route
-          path="/dashboard"
+          path="/dashboard-admin"
           element={
             <Drawer>
-              {/* <RequireAuth> */}
-              <DashboardDrawer></DashboardDrawer>
-              {/* </RequireAuth> */}
+              <RequireAuthAndAdmin>
+                <DashboardDrawer></DashboardDrawer>
+              </RequireAuthAndAdmin>
             </Drawer>
           }
         >
-          {/* shared */}
           <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
-          <Route path="my-account" element={<MyProfile></MyProfile>}></Route>
+          {/* <Route path="my-account" element={<MyProfile></MyProfile>}></Route>
           <Route
             path="my-account-update"
             element={<EditMyProfile></EditMyProfile>}
-          ></Route>
-          {/* user */}
+          ></Route> */}
 
-          {/* admin  */}
           <Route
             path="manage-orders"
-            element={
-              // <RequireAuthAndAdmin>
-              <ManageAllOrders></ManageAllOrders>
-              // </RequireAuthAndAdmin>
-            }
+            element={<ManageAllOrders></ManageAllOrders>}
           ></Route>
           <Route
             path="manage-add-category"
-            element={
-              // <RequireAuthAndAdmin>
-              <AddCategory></AddCategory>
-              // </RequireAuthAndAdmin>
-            }
+            element={<AddCategory></AddCategory>}
           ></Route>
           <Route
             path="manage-category"
-            element={
-              // <RequireAuthAndAdmin>
-              <ManageCategory></ManageCategory>
-              // </RequireAuthAndAdmin>
-            }
+            element={<ManageCategory></ManageCategory>}
           ></Route>
           <Route
             path="manage-add-project"
-            element={
-              // <RequireAuthAndAdmin>
-              <AddAProject></AddAProject>
-              // </RequireAuthAndAdmin>
-            }
+            element={<AddAProject></AddAProject>}
           ></Route>
           <Route
             path="manage-projects"
-            element={
-              // <RequireAuthAndAdmin>
-              <ManageProjects></ManageProjects>
-              // </RequireAuthAndAdmin>
-            }
+            element={<ManageProjects></ManageProjects>}
           ></Route>
           <Route
             path="manage-add-custom-review"
-            element={
-              // <RequireAuthAndAdmin>
-              <AddCustomReview></AddCustomReview>
-              // </RequireAuthAndAdmin>
-            }
+            element={<AddCustomReview></AddCustomReview>}
           ></Route>
           <Route
             path="manage-review"
-            element={
-              // <RequireAuthAndAdmin>
-              <ManageReview></ManageReview>
-              // </RequireAuthAndAdmin>
-            }
+            element={<ManageReview></ManageReview>}
           ></Route>
-          <Route
-            path="manage-admin"
-            element={
-              // <RequireAuthAndAdmin>
-              <MakeAdmin></MakeAdmin>
-              // </RequireAuthAndAdmin>
-            }
-          ></Route>
+          {/* <Route path="manage-admin" element={<MakeAdmin></MakeAdmin>}></Route> */}
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Route>
+        {/* -------- ADMIN DB WITH PANEL END --------- */}
       </Routes>
     </div>
   );

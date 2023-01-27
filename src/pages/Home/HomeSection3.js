@@ -58,7 +58,7 @@ const HomeSection3 = () => {
   return (
     <section
       id="hs3"
-      className=" py-16 w-full flex flex-col justify-center items-center"
+      className="px-4 py-16 w-full flex flex-col justify-center items-center"
     >
       <div className="sm:px-8">
         <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
@@ -107,7 +107,7 @@ const HomeSection3 = () => {
         {project?.data?.map((x) => {
           return (
             <div
-              className="project-card bg-white relative h-[380px] w-[380px] bg-cover bg-center "
+              className="project-card bg-white relative h-[365px] w-[365px] bg-cover bg-center "
               style={{ backgroundImage: `url(${x?.img})` }}
             >
               <div className="w-full h-full project-img  border-white transition-all ease-in-out "></div>

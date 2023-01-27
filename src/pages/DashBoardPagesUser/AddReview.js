@@ -35,7 +35,7 @@ const AddReview = () => {
       if (res.status === 201) {
         Swal.fire("Congratulations!", `You've added a Review!`, "success").then(
           () => {
-            navigate("/dashboard/my-account");
+            navigate("/dashboard-admin/my-account");
           }
         );
       } else {

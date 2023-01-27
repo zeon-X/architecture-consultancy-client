@@ -31,7 +31,8 @@ const Drawer = ({ children }) => {
           {/*  Navbar */}
 
           <Header></Header>
-          <div className="max-w-7xl mx-auto w-full ">
+
+          <div className=" mx-auto w-full ">
             {/* Page content here ||||| max-w-7xl  */}
             {children}
             {/*  Footer  */}

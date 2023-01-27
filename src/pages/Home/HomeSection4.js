@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
-import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const HomeSection4 = () => {
   const team = [
@@ -40,12 +39,12 @@ const HomeSection4 = () => {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-6 mt-16">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 justify-center items-center lg:gap-10 sm:gap-4 mt-16">
         {team.map((x) => {
           return (
             <div className="flex flex-col justify-center lg:items-start md:items-center sm:items-center">
               <div
-                className="h-[320px] w-[260px] bg-cover bg-center rounded"
+                className="h-[260px] w-[260px] bg-cover bg-center rounded"
                 style={{
                   backgroundImage: `url(${x.pic})`,
                 }}

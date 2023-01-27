@@ -15,14 +15,14 @@ const Header = () => {
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const [user, loading, error] = useAuthState(auth);
   const logout = () => {
-    LogoutFunc(auth);
-    userInfo = {};
     Swal.fire({
       icon: "success",
       title: "You account has been logged out",
       showConfirmButton: false,
       timer: 1000,
     });
+    LogoutFunc(auth);
+    userInfo = {};
   };
 
   return (
@@ -84,7 +84,7 @@ const Header = () => {
               <a href="/#hs6">Pricing</a>
             </li>
             <li>
-              <a href="">Contact Us</a>
+              <a href="/#hs0">Contact Us</a>
             </li>
             <li>
               <a href="/#hs5">What's Client's Say</a>
@@ -111,26 +111,6 @@ const Header = () => {
             </svg>
           </button>
 
-          {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-4 h-4"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
-              clipRule="evenodd"
-            />
-            <path
-              fillRule="evenodd"
-              d="M6 10a.75.75 0 01.75-.75h9.546l-1.048-.943a.75.75 0 111.004-1.114l2.5 2.25a.75.75 0 010 1.114l-2.5 2.25a.75.75 0 11-1.004-1.114l1.048-.943H6.75A.75.75 0 016 10z"
-              clipRule="evenodd"
-            />
-          </svg> */}
-
-          {/* <div className="border-l h-[30px] border-gray-800"></div> */}
-
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <svg
@@ -152,25 +132,49 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow border border-gray-100 bg-base-100 rounded-box w-52"
             >
-              <li onClick={() => navigate("/dashboard/manage-orders")}>
-                <a className="">Dashboard</a>
-              </li>
-              <li onClick={() => navigate("/place-order")}>
-                <a className="">Place an Order</a>
-              </li>
-              <li onClick={() => navigate("/login")}>
-                <a className="">Login</a>
-              </li>
-              <li onClick={() => navigate("/register")}>
-                <a>Register</a>
-              </li>
-              <li onClick={() => navigate("/my-orders")}>
-                <a>My Orders</a>
-              </li>
+              {user && userInfo?.role === "user" && (
+                <>
+                  <li onClick={() => navigate("/place-order")}>
+                    <a className="">Place an Order</a>
+                  </li>
+                  <li onClick={() => navigate("/my-orders")}>
+                    <a>My Orders</a>
+                  </li>
+                </>
+              )}
 
-              <li onClick={() => {}}>
-                <a>Logout</a>
-              </li>
+              {user && userInfo?.role === "admin" && (
+                <>
+                  <li
+                    onClick={() => navigate("/dashboard-admin/manage-orders")}
+                  >
+                    <a className="">Dashboard</a>
+                  </li>
+                </>
+              )}
+
+              {user && userInfo && (
+                <>
+                  <li onClick={logout}>
+                    <a>Logout</a>
+                  </li>
+                </>
+              )}
+
+              {(!user || !userInfo) && (
+                <>
+                  <li>
+                    <label htmlFor="login-modal" className="">
+                      Login
+                    </label>
+                  </li>
+                  <li>
+                    <label htmlFor="register-modal" className="">
+                      Register
+                    </label>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

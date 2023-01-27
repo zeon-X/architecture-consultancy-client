@@ -7,7 +7,7 @@ const HomeSection2 = () => {
       className="w-full pt-36 pb-16 flex flex-col justify-center items-center"
     >
       {/* heading */}
-      <div className="w-full flex justify-between items-center lg:px-16 md:px-10 sm:px-2">
+      <div className="w-full flex lg:flex-row md:flex-row sm:flex-col justify-between lg:items-center md:items-center sm:items-start lg:px-16 md:px-10 sm:px-2">
         <p className="text-4xl font-bold text-black">What we do</p>
         <button className="flex items-center gap-6">
           <p className="text-black ">see more service</p>
@@ -28,7 +28,7 @@ const HomeSection2 = () => {
         </button>
       </div>
 
-      {/* categories */}
+      {/* main categories article */}
       <div className="w-full flex h-[580px] mt-10 text-white">
         <div
           style={{ backgroundImage: `url(https://i.ibb.co/T2DNyxw/p.jpg)` }}

@@ -41,7 +41,7 @@ const MyProfile = () => {
     return <Loading msg="Loading..."></Loading>;
 
   const handleEditProfile = () => {
-    navigate("/dashboard/my-account-update");
+    navigate("/dashboard-admin/my-account-update");
   };
 
   return (

@@ -145,19 +145,31 @@ const HomeSection6 = () => {
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6">
         {pricing?.map((x) => {
           return (
-            <div className="flex flex-col gap-6 shadow px-6 py-10 rounded-lg">
+            <div
+              className={
+                "flex flex-col gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2"
+              }
+            >
+              {/* 
+                x?.title === "Standard"
+                  ? "flex flex-col gap-6 shadow-lg px-6 py-10 rounded-lg border-2 border-gray-400 mb-2"
+                  : "flex flex-col gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2"
+              */}
               {/* basic */}
               <p className="text-xl font-semibold">{x?.title}</p>
-              <p className=" text-gray-500">{x?.detail}</p>
+              <p className=" text-gray-500 text-sm">{x?.detail}</p>
               <p className="text-xl font-semibold">
                 ${x?.price} USD /<span className="text-sm">Mo</span>
               </p>
 
               {/* btn */}
-              <button className="btn px-10">Get Now</button>
-
+              <div>
+                <button className="btn bg-green-600 border-none text-white w-full">
+                  Get Now
+                </button>
+              </div>
               {/* options */}
-              <div className="flex flex-col gap-4 mt-6">
+              <div className="flex flex-col gap-4 mt-6 text-sm">
                 {x?.specification?.map((xx) => {
                   return (
                     <div className="flex gap-2">

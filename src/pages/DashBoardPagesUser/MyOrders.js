@@ -25,7 +25,7 @@ const MyOrders = () => {
   if (isLoading) return <Loading msg="Loading..."></Loading>;
 
   return (
-    <div className=" py-6 lg:px-10 md:px-10 sm:px-2  w-full">
+    <div className="max-w-7xl mx-auto py-6 lg:px-10 md:px-10 sm:px-2  w-full">
       <p className="text-sm font-semibold ">My Orders</p>
       {/* purchase products */}
       <div className="overflow-auto   rounded mt-4">
