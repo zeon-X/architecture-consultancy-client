@@ -20,7 +20,7 @@ const Home = () => {
       <div className="max-w-7xl py-16 px-4 flex flex-col justify-center items-center">
         <HomeSection4></HomeSection4>
         <HomeSection5></HomeSection5>
-        <HomeSection6></HomeSection6>
+        {/* <HomeSection6></HomeSection6> */}
       </div>
     </div>
   );

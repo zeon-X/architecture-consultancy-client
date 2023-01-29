@@ -97,7 +97,7 @@ const ViewAllProjects = () => {
       </div>
 
       {/* PROJECTS */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 my-10 ">
+      <div className="flex flex-wrap justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
         {project?.data?.map((x) => {
           return (
             <div

@@ -30,7 +30,7 @@ const Header = () => {
       {/* Navbar Main + sticky */}
       <div className="bg-white text-black z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-200 py-5 lg:px-20 sm:px-2">
         {/* TOGGLE BTN MOBILE SM DEVICE */}
-        <div className="flex-none lg:hidden">
+        {/* <div className="flex-none lg:hidden">
           <label htmlFor="normalmenusm" className="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const Header = () => {
               ></path>
             </svg>
           </label>
-        </div>
+        </div> */}
         {/* START */}
         <div className="navbar-start flex lg:justify-start md:justify-end sm:justify-end items-center px-2 mx-2">
           {/* starting left portion here */}
@@ -72,22 +72,24 @@ const Header = () => {
               <a href="/#hs0">Home</a>
             </li>
             <li>
-              <a href="/#hs2">What We Do</a>
-            </li>
-            <li>
               <a href="/#hs1">Service</a>
             </li>
             <li>
+              <a href="/#hs2">What We Do</a>
+            </li>
+
+            <li>
               <a href="/#hs3">Our Latest Works</a>
             </li>
-            <li>
-              <a href="/#hs6">Pricing</a>
-            </li>
-            <li>
-              <a href="/#hs0">Contact Us</a>
-            </li>
+
             <li>
               <a href="/#hs5">What's Client's Say</a>
+            </li>
+            <li>
+              <a href="/#contact-us">Contact Us</a>
+            </li>
+            <li>
+              <a href="/pricing/#pricing-top">Pricing</a>
             </li>
           </ul>
         </div>

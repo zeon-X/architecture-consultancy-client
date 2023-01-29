@@ -2,7 +2,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { auth } from "../../firebase.init";
-import Loading from "../../shared/Loading";
 
 const RequireAuth = ({ children }) => {
   const location = useLocation();

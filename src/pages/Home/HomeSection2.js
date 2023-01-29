@@ -28,8 +28,9 @@ const HomeSection2 = () => {
         </button>
       </div>
 
-      {/* main categories article */}
-      <div className="w-full flex h-[580px] mt-10 text-white">
+      {/* main categories article DSKTOP */}
+      <div className="w-full lg:flex md:flex sm:hidden h-[580px] mt-10 text-white ">
+        {/* planning */}
         <div
           style={{ backgroundImage: `url(https://i.ibb.co/T2DNyxw/p.jpg)` }}
           className="relative w-3/12 bg-center bg-cover bg-move transition-all ease-in-out"
@@ -38,6 +39,7 @@ const HomeSection2 = () => {
             Planning
           </p>
         </div>
+        {/* interior */}
         <div
           style={{
             backgroundImage: `url(https://images.pexels.com/photos/10936675/pexels-photo-10936675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
@@ -48,7 +50,9 @@ const HomeSection2 = () => {
             Interior
           </p>
         </div>
+
         <div className="w-6/12 flex flex-col justify-evenly">
+          {/* exterior */}
           <div
             style={{ backgroundImage: `url(https://i.ibb.co/Px8DvhP/e.jpg)` }}
             className="relative h-[290px] bg-center bg-cover bg-move-tb transition-all ease-in-out"
@@ -58,6 +62,7 @@ const HomeSection2 = () => {
             </p>
           </div>
           <div className="flex h-[290px] ">
+            {/* decor */}
             <div
               style={{ backgroundImage: `url(https://i.ibb.co/D7T3jLZ/d.jpg)` }}
               className="relative w-6/12 bg-center bg-cover bg-move transition-all ease-in-out"
@@ -66,6 +71,7 @@ const HomeSection2 = () => {
                 Decrotion
               </p>
             </div>
+            {/* construction */}
             <div
               style={{ backgroundImage: `url(https://i.ibb.co/BV9rvsQ/c.jpg)` }}
               className="relative w-6/12 bg-center bg-cover bg-move transition-all ease-in-out"
@@ -75,6 +81,57 @@ const HomeSection2 = () => {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* main categories article MOBILE */}
+      <div className="w-full lg:hidden md:hidden sm:flex flex-wrap mx-auto gap-3 mt-10 text-white ">
+        {/* planning */}
+        <div
+          style={{ backgroundImage: `url(https://i.ibb.co/T2DNyxw/p.jpg)` }}
+          className="relative w-full h-[420px] bg-center bg-cover bg-move transition-all ease-in-out"
+        >
+          <p className="absolute bottom-10 left-10 font-bold text-2xl">
+            Planning
+          </p>
+        </div>
+        {/* interior */}
+        <div
+          style={{
+            backgroundImage: `url(https://images.pexels.com/photos/10936675/pexels-photo-10936675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
+          }}
+          className="relative w-full h-[420px]  bg-center bg-cover bg-move transition-all ease-in-out"
+        >
+          <p className="absolute bottom-10 left-10 font-bold text-2xl">
+            Interior
+          </p>
+        </div>
+        {/* exterior */}
+        <div
+          style={{ backgroundImage: `url(https://i.ibb.co/Px8DvhP/e.jpg)` }}
+          className="relative w-full h-[420px]  bg-center bg-cover bg-move-tb transition-all ease-in-out"
+        >
+          <p className="absolute bottom-10 left-10 font-bold text-2xl">
+            Exterior
+          </p>
+        </div>
+        {/* decor */}
+        <div
+          style={{ backgroundImage: `url(https://i.ibb.co/D7T3jLZ/d.jpg)` }}
+          className="relative w-full h-[420px]  bg-center bg-cover bg-move transition-all ease-in-out"
+        >
+          <p className="absolute bottom-10 left-10 font-bold text-2xl">
+            Decrotion
+          </p>
+        </div>
+        {/* construction */}
+        <div
+          style={{ backgroundImage: `url(https://i.ibb.co/BV9rvsQ/c.jpg)` }}
+          className="relative w-full h-[420px]  bg-center bg-cover bg-move transition-all ease-in-out"
+        >
+          <p className="absolute bottom-10 left-10 font-bold text-2xl">
+            Construction
+          </p>
         </div>
       </div>
     </section>

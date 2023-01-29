@@ -22,6 +22,7 @@ import ViewAllProjects from "./pages/ViewAllProject/ViewAllProject";
 import LoginModal from "./pages/Modals/LoginModal";
 import RegisterModal from "./pages/Modals/RegisterModal";
 import UpdateCategoryModal from "./pages/Modals/UpdateCategoryModal";
+import HomeSection6 from "./pages/Home/HomeSection6";
 
 function App() {
   return (
@@ -55,6 +56,14 @@ function App() {
           element={
             <Drawer>
               <ViewAllProjects></ViewAllProjects>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="/pricing"
+          element={
+            <Drawer>
+              <HomeSection6></HomeSection6>
             </Drawer>
           }
         ></Route>

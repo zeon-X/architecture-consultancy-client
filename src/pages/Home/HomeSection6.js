@@ -1,139 +1,9 @@
 import React from "react";
+import pricing from "../../JSON/PricingJSON";
 
 const HomeSection6 = () => {
-  const pricing = [
-    {
-      title: "Free",
-      detail:
-        "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-      price: 0,
-      specification: [
-        {
-          heading: "One project",
-          value: 1,
-        },
-        {
-          heading: "Your dashboard",
-          value: 1,
-        },
-        {
-          heading: "Components Included",
-          value: 1,
-        },
-        {
-          heading: "Advanced controls",
-          value: 0,
-        },
-        {
-          heading: "Chat supports",
-          value: 0,
-        },
-        {
-          heading: "Unlimited Users",
-          value: 0,
-        },
-      ],
-    },
-    {
-      title: "Standard",
-      detail:
-        "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-      price: 650,
-      specification: [
-        {
-          heading: "One project",
-          value: 1,
-        },
-        {
-          heading: "Your dashboard",
-          value: 1,
-        },
-        {
-          heading: "Components Included",
-          value: 1,
-        },
-        {
-          heading: "Advanced controls",
-          value: 1,
-        },
-        {
-          heading: "Chat supports",
-          value: 0,
-        },
-        {
-          heading: "Unlimited Users",
-          value: 0,
-        },
-      ],
-    },
-    {
-      title: "Plus",
-      detail:
-        "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-      price: 1250,
-      specification: [
-        {
-          heading: "One project",
-          value: 1,
-        },
-        {
-          heading: "Your dashboard",
-          value: 1,
-        },
-        {
-          heading: "Components Included",
-          value: 1,
-        },
-        {
-          heading: "Advanced controls",
-          value: 1,
-        },
-        {
-          heading: "Chat supports",
-          value: 1,
-        },
-        {
-          heading: "Unlimited Users",
-          value: 0,
-        },
-      ],
-    },
-    {
-      title: "Enterprise",
-      detail:
-        "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-      price: 2500,
-      specification: [
-        {
-          heading: "One project",
-          value: 1,
-        },
-        {
-          heading: "Your dashboard",
-          value: 1,
-        },
-        {
-          heading: "Components Included",
-          value: 1,
-        },
-        {
-          heading: "Advanced controls",
-          value: 1,
-        },
-        {
-          heading: "Chat supports",
-          value: 1,
-        },
-        {
-          heading: "Unlimited Users",
-          value: 1,
-        },
-      ],
-    },
-  ];
-
   return (
-    <section id="hs6" className="py-16 w-full ">
+    <section id="pricing-top" className="max-w-7xl mx-auto py-16 px-4 w-full">
       <div className="">
         <p className="text-sm text-black tracking-widest uppercase text-center">
           Pricing Plans
@@ -142,12 +12,12 @@ const HomeSection6 = () => {
           Make teamwork more productive.
         </p>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6">
+      <div className="flex flex-wrap justify-center items-center gap-6">
         {pricing?.map((x) => {
           return (
             <div
               className={
-                "flex flex-col gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2"
+                "flex flex-col gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2 w-3/12"
               }
             >
               {/* 
@@ -155,6 +25,7 @@ const HomeSection6 = () => {
                   ? "flex flex-col gap-6 shadow-lg px-6 py-10 rounded-lg border-2 border-gray-400 mb-2"
                   : "flex flex-col gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2"
               */}
+
               {/* basic */}
               <p className="text-xl font-semibold">{x?.title}</p>
               <p className=" text-gray-500 text-sm">{x?.detail}</p>

@@ -1,0 +1,110 @@
+const heroProjects = {
+  data: [
+    {
+      _id: "63d19728b0146ffdd6458cf7",
+      title: "Ging Tea House: Blending tea with heritage",
+      img: "https://jeneyablog.files.wordpress.com/2017/12/ging-tea-house.jpg",
+      pic: "https://images.unsplash.com/photo-1637737118663-f1a53ee1d5a7",
+      galleryBefore: [
+        "https://i.ibb.co/gMY927X/1635344679-6.jpg",
+        "https://i.ibb.co/R2w5wdh/1635344440-3.jpg",
+        "https://i.ibb.co/PWSg5s1/1635344379-10.jpg",
+        "https://i.ibb.co/hMZ8FQM/1635344202-1.jpg",
+      ],
+      galleryAfter: [
+        "https://i.ibb.co/g76SXX3/darjeeling-hotel-summer-palace-darjeeling-bazar-darjeeling-hotel-reservations-for-darjeeling-b979ap8.webp",
+        "https://i.ibb.co/26ccQ0n/darjeeling-hotels-summer.jpg",
+      ],
+      aboutLeft:
+        "Turn left from the railway station in Darjeeling and you are removed from the bustle of the main street in minutes, at least for a while. Past clusters of ramshackle houses, old general stores and rustic shops selling momos, you arrive at the crowded Chowk Bazaar. After a little while of navigating this chaotic stretch, crossing the sprawling facade of the famed North Point school, you are treated to sights of the valley’s emerald slopes. Soon, as the car swerves onto a dirt track and as the woody smell of tea bushes permeates through the air, you arrive at a majestic bungalow fronted by a lush lawn in an open compound.",
+      aboutRight:
+        "This is Ging Tea House, a planter’s bungalow in the middle of the historic Ging Tea Estate. In the local Lepcha language, ging means ‘stretched out slope’ and the plantation, set up by the Darjeeling Tea Company in 1864, does justice to the name. British planters managed the gardens till 1965, after which Darjeeling Plantation India Ltd took over. In 2004, B.D. Tea Estates Private Ltd, a member of the Chamong Group, came into ownership. The family-owned company decided to include a full tea-estate experience for guests travelling to stay at Ging Tea House.",
+      category: {
+        _id: "63d19096b0146ffdd6458cc0",
+        categoryTitle: "Landscaping",
+        categoryCode: "L101",
+        createdAt: "2023-01-25T20:27:02.272Z",
+        updatedAt: "2023-01-25T20:27:02.272Z",
+        __v: 0,
+      },
+      status: "active",
+      client: "Architectural corner bd",
+      projectYear: "October 25, 2021",
+      location: "Darjeeling, India",
+      designer: "Md Imran Hossain",
+      reviewId: "",
+      createdAt: "2023-01-25T20:55:04.781Z",
+      updatedAt: "2023-01-26T20:51:02.071Z",
+      __v: 0,
+    },
+    {
+      _id: "63d194a2b0146ffdd6458ce8",
+      title: "Vivanta Sikkim Pakyong",
+      img: "https://www.vivantahotels.com/content/dam/vivanta/hotels/vivanta-pakyoung/gallery/Facade.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+      pic: "https://images.unsplash.com/photo-1617478969558-86e58a4ae94d",
+      galleryBefore: ["https://i.ibb.co/C5phkCr/vivanta-sikkim-pakyong.jpg"],
+      galleryAfter: ["https://i.ibb.co/2N5DMWh/328754989.jpg"],
+      aboutLeft:
+        "Vivanta Sikkim, Pakyong is set amidst dense greenery and surrounded by lofty Himalayan peaks. Situated off the beaten track, it is a comfortable distance away from Gangtok - 21kms, at about an hour's drive - while only a short ride down from Sikkim's only greenfield airport (7.5kms). Built along the natural contours of a mountain slope, the semi-open style embraces the great outdoors where the rocks and trees occurring on site, seamlessly blend and flow with the structure, as do two gurgling brooks that envelop the property on either side, flowing perennially. 50 rooms and suites give you stunning views of the mountain peaks and the valley all around. Cascading courtyards and corridors along the periphery, create uninterrupted vistas, while a quiet Zen Garden centrally located, allows for a mindful mingling with the elements. Lush landscaped gardens and lawns along many levels mimic terraced paddy fields of the adjoining countryside,",
+      aboutRight:
+        "while Sikkim's only heated swimming pool allows guests to soak in the snow-capped peaks all around. A vibrant restaurant MYNT serves delectable cuisine, including local specialties, while the trendy Bar WINK serves up eclectic cocktails as well as specially stirred up local delights. Guests are welcome to explore the numerous trails around, including one right within the property leading to an undisturbed Shiva Shrine. Explorations can continue at quaint markets with local crafts and simple, delicious cuisine to sample. Day trips to the Sikkim's age-old Buddhist monasteries and scenic locales can be made comfortably, returning back to our quiet, relaxed vibe each evening. There's no better place to savour Sikkim's best-kept secret. Vivanta Sikkim, Pakyong Come unravel unspoilt Himalayan charms",
+      category: {
+        _id: "63d19096b0146ffdd6458cc0",
+        categoryTitle: "Landscaping",
+        categoryCode: "L101",
+        createdAt: "2023-01-25T20:27:02.272Z",
+        updatedAt: "2023-01-25T20:27:02.272Z",
+        __v: 0,
+      },
+      status: "active",
+      client: "Architectural corner bd",
+      projectYear: "October 25, 2021",
+      location: "Sikkim, India",
+      designer: "Md Imran Hossain",
+      reviewId: "",
+      createdAt: "2023-01-25T20:44:18.060Z",
+      updatedAt: "2023-01-25T20:44:18.060Z",
+      __v: 0,
+    },
+    {
+      _id: "63d19182b0146ffdd6458cc9",
+      title: "Water Smart Landscape Program",
+      img: "https://i.ibb.co/mvHPHhb/rock-retaining-wall-front-yard-landscape-las-vegas.jpg",
+      pic: "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+      galleryBefore: [
+        "https://i.ibb.co/FV7mVQR/water-feature-rock-landscape-design.jpg",
+        "https://i.ibb.co/p0nrdQz/Winding-Walkways-1024x683.jpg",
+        "https://i.ibb.co/tp0ZdNV/rock-front-yard-las-vegas.jpg",
+      ],
+      galleryAfter: [
+        "https://i.ibb.co/Tm7mWRH/micro-pebble-garden-rock-landscaping.jpg",
+        "https://i.ibb.co/CQF0Q3z/stone-barriers-landscape-flastone.jpg",
+      ],
+      aboutLeft:
+        "A rock wall adds dimension to your front yard landscape designs. Retaining walls will last several years with little maintenance and can be used for many lawn sizes. The stones used to build rock retaining walls come in different shapes and sizes. From shaped blocks to natural stones, the various options can alter the size of the project. Reach out if you need help planning a shape and style that will suit your front yard.",
+      aboutRight:
+        "Placing a few larger stones among small stones, flagstones, and pavers have become increasingly popular in modern homes. This landscaping is more eco-sustainable than planting trees and grass in the entrance, especially in low-rainfall areas.",
+      category: {
+        _id: "63d19096b0146ffdd6458cc0",
+        categoryTitle: "Landscaping",
+        categoryCode: "L101",
+        createdAt: "2023-01-25T20:27:02.272Z",
+        updatedAt: "2023-01-25T20:27:02.272Z",
+        __v: 0,
+      },
+      status: "active",
+      client: "Architectural corner bd",
+      projectYear: "October 25, 2021",
+      location: "Dhaka, Bangladesh",
+      designer: "Md Imran Hossain",
+      reviewId: "",
+      createdAt: "2023-01-25T20:30:58.082Z",
+      updatedAt: "2023-01-25T20:30:58.082Z",
+      __v: 0,
+    },
+  ],
+  status: 200,
+  statusText: "OK",
+};
+
+export default heroProjects;

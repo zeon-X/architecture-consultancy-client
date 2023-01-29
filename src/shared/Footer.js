@@ -20,7 +20,10 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className="lg:px-20 lg:py-16 sm:p-10 bg-[#000000da] text-base-content grid grid-cols-1 justify-center items-center">
+    <footer
+      id="contact-us"
+      className="lg:px-20 lg:py-16 sm:p-10 bg-[#000000da] text-base-content grid grid-cols-1 justify-center items-center"
+    >
       <div className="flex lg:flex-row sm:flex-col gap-6 justify-between items-start w-full h-full max-w-7xl mx-auto text-white">
         {/* site name */}
         <div className="flex items-start justify-start h-full">

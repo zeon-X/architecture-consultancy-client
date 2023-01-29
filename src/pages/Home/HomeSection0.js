@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import heroProjects from "../../JSON/HeroJSON";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const HomeSection0 = () => {
   const [heroState, setHeroState] = useState(0);
   // fetch projetcs
 
-  const {
-    isLoading,
-    isError,
-    data: project,
-    error,
-  } = useQuery(["heroprojectdata"], async () => {
-    return await axiosInstance.get(`project/get-active?limit=3`);
-  });
+  // const {
+  //   isLoading,
+  //   isError,
+  //   data: project,
+  //   error,
+  // } = useQuery(["heroprojectdata"], async () => {
+  //   return await axiosInstance.get(`project/get-active?limit=3`);
+  // });
+
+  // console.log(project);
 
   const handleBgChange = (index) => {
     setHeroState(index);
@@ -22,8 +25,10 @@ const HomeSection0 = () => {
     <section className="w-full mb-16">
       {/* MAIN DIV */}
       <div
-        style={{ backgroundImage: `url(${project?.data[heroState]?.img})` }}
-        className="lg:h-[720px] md:h-[540px] sm:h-[720px] bg-center bg-cover transition-all ease-in-out bg-hero"
+        style={{
+          backgroundImage: `url(${heroProjects?.data[heroState]?.img})`,
+        }}
+        className="lg:h-[780px] md:h-[540px] sm:h-[720px] bg-center bg-cover transition-all ease-in-out bg-hero"
       >
         {/* INSIDE BG DIV */}
         <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex lg:flex-row md:flex-row sm:flex-col gap-6 justify-center items-center  text-white">
@@ -37,13 +42,13 @@ const HomeSection0 = () => {
             </div>
             {/* Button */}
             <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
-              {project?.data?.map((x, index) => {
+              {heroProjects?.data?.map((x, index) => {
                 return (
                   <div className="flex justify-center items-center">
                     <button
                       className={
                         index === heroState
-                          ? "text-xl font-bold"
+                          ? "text-xl font-bold text-white"
                           : "text-xl  text-gray-300"
                       }
                       onClick={() => handleBgChange(index)}
@@ -71,8 +76,8 @@ const HomeSection0 = () => {
                 />
               </button>
               <p>
-                {project?.data[heroState]?.title} -{" "}
-                {project?.data[heroState]?.location}
+                {heroProjects?.data[heroState]?.title} -{" "}
+                {heroProjects?.data[heroState]?.location}
               </p>
             </div>
           </div>
