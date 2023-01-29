@@ -4,8 +4,10 @@ import Swal from "sweetalert2";
 import ErrorPage from "../../shared/ErrorPage";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import UpdateReviewModal from "../Modals/UpdateReviewModal";
 const ManageReview = () => {
   const [changes, increaseChanges] = useState(0);
+  const [updateData, setUpdateData] = useState({});
   const {
     isLoading,
     isError,
@@ -143,9 +145,15 @@ const ManageReview = () => {
                     align="center"
                     className="p-2 border  border-gray-300 mx-auto content-center"
                   >
-                    <button className="btn btn-xs bg-warning border-none text-white">
+                    <label
+                      htmlFor="update-review-modal"
+                      className="btn btn-xs bg-warning border-none text-white"
+                      onClick={() => {
+                        setUpdateData(x);
+                      }}
+                    >
                       Update
-                    </button>
+                    </label>
                   </td>
                   {/* delete */}
                   <td
@@ -211,6 +219,12 @@ const ManageReview = () => {
           </tbody>
         </table>
       </div>
+      {/* Update Modal Here */}
+      <UpdateReviewModal
+        props={updateData}
+        increaseChanges={increaseChanges}
+        changes={changes}
+      ></UpdateReviewModal>
     </div>
   );
 };
