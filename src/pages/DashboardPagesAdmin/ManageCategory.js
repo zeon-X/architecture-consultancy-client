@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 import ErrorPage from "../../shared/ErrorPage";
-import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import UpdateCategoryModal from "../Modals/UpdateCategoryModal";
 
 const ManageCategory = () => {
   const [changes, increaseChanges] = useState(0);
+  const [updateData, setUpdateData] = useState({});
   const {
     isLoading,
     isError,
     data: category,
     error,
   } = useQuery(["categorys", changes], async ({ changes }) => {
-    console.log(changes);
-    return await axiosInstance.get("category/get");
+    // console.log(changes);
+    let data = await axiosInstance.get("category/get");
+    Swal.close();
+    return data;
   });
 
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
@@ -52,7 +55,7 @@ const ManageCategory = () => {
     });
   };
 
-  if (isLoading) return <Loading msg="Loading..."></Loading>;
+  if (isLoading) Swal.showLoading();
 
   return (
     <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full">
@@ -87,14 +90,20 @@ const ManageCategory = () => {
                   </td>
                   {/* BTNS FROM HERE */}
 
-                  {/* update */}
+                  {/* UPDATE */}
                   <td
                     align="center"
                     className="p-2 border  border-gray-300 mx-auto content-center"
                   >
-                    <button className="btn btn-xs bg-warning border-none text-white">
+                    <label
+                      htmlFor="update-category-modal"
+                      className="btn btn-xs bg-warning border-none text-white"
+                      onClick={() => {
+                        setUpdateData(x);
+                      }}
+                    >
                       Update
-                    </button>
+                    </label>
                   </td>
                   {/* delete */}
                   <td
@@ -114,6 +123,8 @@ const ManageCategory = () => {
           </tbody>
         </table>
       </div>
+      {/* Update Modal Here */}
+      <UpdateCategoryModal props={updateData}></UpdateCategoryModal>
     </div>
   );
 };

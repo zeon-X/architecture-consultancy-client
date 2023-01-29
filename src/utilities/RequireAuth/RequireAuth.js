@@ -1,5 +1,6 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 import { auth } from "../../firebase.init";
 import Loading from "../../shared/Loading";
 
@@ -9,11 +10,12 @@ const RequireAuth = ({ children }) => {
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
   if (loading) {
-    return <Loading></Loading>;
+    return Swal.showLoading();
   }
   if (!user || !userInfo) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
+  Swal.close();
   return children;
 };
 

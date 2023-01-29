@@ -2,8 +2,6 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Drawer from "./components/Drawer";
 import Home from "./pages/Home/Home";
-import Login from "./pages/LoginRegister/Login";
-import Register from "./pages/LoginRegister/Register";
 import RequireAuth from "./utilities/RequireAuth/RequireAuth";
 import DashboardDrawer from "./components/DashboardDrawer";
 import MyProfile from "./pages/DashboardPagesShared/MyProfile";
@@ -23,6 +21,7 @@ import ManageReview from "./pages/DashboardPagesAdmin/ManageReview";
 import ViewAllProjects from "./pages/ViewAllProject/ViewAllProject";
 import LoginModal from "./pages/Modals/LoginModal";
 import RegisterModal from "./pages/Modals/RegisterModal";
+import UpdateCategoryModal from "./pages/Modals/UpdateCategoryModal";
 
 function App() {
   return (
@@ -30,6 +29,7 @@ function App() {
       {/*  ------ MODALS HERE START ----  */}
       <LoginModal></LoginModal>
       <RegisterModal></RegisterModal>
+      {/* <UpdateCategoryModal></UpdateCategoryModal> */}
       {/*  ------ MODALS HERE END ------  */}
 
       {/* ------ PAGES START --------- */}

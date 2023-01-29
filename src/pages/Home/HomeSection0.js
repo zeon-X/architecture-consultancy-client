@@ -12,7 +12,7 @@ const HomeSection0 = () => {
     data: project,
     error,
   } = useQuery(["heroprojectdata"], async () => {
-    return await axiosInstance.get(`project/get?limit=3`);
+    return await axiosInstance.get(`project/get-active?limit=3`);
   });
 
   const handleBgChange = (index) => {

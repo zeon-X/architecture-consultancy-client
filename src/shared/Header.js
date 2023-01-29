@@ -145,10 +145,49 @@ const Header = () => {
 
               {user && userInfo?.role === "admin" && (
                 <>
+                  <li className="" onClick={() => navigate("/dashboard-admin")}>
+                    <a className="bg-gray-100">Admin Dashboard</a>
+                  </li>
                   <li
                     onClick={() => navigate("/dashboard-admin/manage-orders")}
                   >
-                    <a className="">Dashboard</a>
+                    <a className="">Manage Orders</a>
+                  </li>
+                  <li
+                    onClick={() =>
+                      navigate("/dashboard-admin/manage-add-category")
+                    }
+                  >
+                    <a className="">Add Category</a>
+                  </li>
+                  <li
+                    onClick={() => navigate("/dashboard-admin/manage-category")}
+                  >
+                    <a className="">Manage Category</a>
+                  </li>
+                  <li
+                    onClick={() =>
+                      navigate("/dashboard-admin/manage-add-project")
+                    }
+                  >
+                    <a className="">Add Project</a>
+                  </li>
+                  <li
+                    onClick={() => navigate("/dashboard-admin/manage-projects")}
+                  >
+                    <a className="">Manage Project</a>
+                  </li>
+                  <li
+                    onClick={() =>
+                      navigate("/dashboard-admin/manage-add-custom-review")
+                    }
+                  >
+                    <a className="">Add Custom Review</a>
+                  </li>
+                  <li
+                    onClick={() => navigate("/dashboard-admin/manage-review")}
+                  >
+                    <a className="">Manage Review</a>
                   </li>
                 </>
               )}

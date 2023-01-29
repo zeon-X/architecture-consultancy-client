@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 import ErrorPage from "../../shared/ErrorPage";
-import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 const ManageReview = () => {
@@ -14,7 +13,9 @@ const ManageReview = () => {
     error,
   } = useQuery(["reviewsget", changes], async ({ changes }) => {
     console.log(changes);
-    return await axiosInstance.get("review/get");
+    let data = await axiosInstance.get("review/get");
+    Swal.close();
+    return data;
   });
 
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
@@ -77,7 +78,7 @@ const ManageReview = () => {
   };
   // console.log(review);
   if (isLoading) {
-    <Loading msg={"loading.."}></Loading>;
+    Swal.showLoading();
   }
 
   return (

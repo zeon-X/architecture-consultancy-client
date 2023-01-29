@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 import ErrorPage from "../../shared/ErrorPage";
-import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import UpdateProjectModal from "../Modals/UpdateProjectModal";
 
 const ManageProjects = () => {
   const [changes, increaseChanges] = useState(0);
+
+  const [updateData, setUpdateData] = useState({});
   const {
     isLoading,
     isError,
     data: project,
     error,
   } = useQuery(["projectsadmin", changes], async ({ changes }) => {
-    return await axiosInstance.get("project/get");
+    let data = await axiosInstance.get("project/get");
+    Swal.close();
+    return data;
   });
 
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
@@ -76,7 +80,7 @@ const ManageProjects = () => {
   };
   // console.log(project);
   if (isLoading) {
-    <Loading msg={"loading.."}></Loading>;
+    Swal.showLoading();
   }
 
   return (
@@ -142,9 +146,15 @@ const ManageProjects = () => {
                     align="center"
                     className="p-2 border  border-gray-300 mx-auto content-center"
                   >
-                    <button className="btn btn-xs bg-warning border-none text-white">
+                    <label
+                      htmlFor="update-project-modal"
+                      className="btn btn-xs bg-warning border-none text-white"
+                      onClick={() => {
+                        setUpdateData(x);
+                      }}
+                    >
                       Update
-                    </button>
+                    </label>
                   </td>
                   {/* delete */}
                   <td
@@ -173,6 +183,12 @@ const ManageProjects = () => {
           </tbody>
         </table>
       </div>
+      {/* Update Modal Here */}
+      <UpdateProjectModal
+        props={updateData}
+        increaseChanges={increaseChanges}
+        changes={changes}
+      ></UpdateProjectModal>
     </div>
   );
 };

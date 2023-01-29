@@ -38,7 +38,7 @@ const RequireAuthAndAdmin = ({ children }) => {
   };
 
   if (loading) {
-    return <Loading></Loading>;
+    return Swal.showLoading();
   }
   if (!user || !userInfo) {
     return <Navigate to="/login" state={{ from: location }} />;
@@ -48,6 +48,7 @@ const RequireAuthAndAdmin = ({ children }) => {
     logout();
     return <Navigate to="/login" state={{ from: location }} />;
   }
+  Swal.close();
   return children;
 };
 

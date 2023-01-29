@@ -14,7 +14,8 @@ const ManageAllOrders = () => {
     error,
   } = useQuery(["adminorders", changes], async () => {
     let fdata = await axiosInstance.get(`order/get`);
-    console.log(fdata.data);
+    // console.log(fdata.data);
+    Swal.close();
     return fdata.data;
   });
 
@@ -86,7 +87,7 @@ const ManageAllOrders = () => {
 
   // console.log(allorders);
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
-  if (isLoading) return <Loading msg="Loading..."></Loading>;
+  if (isLoading) Swal.showLoading();
 
   return (
     <div className=" py-6 lg:px-10 md:px-10 sm:px-2  w-full">

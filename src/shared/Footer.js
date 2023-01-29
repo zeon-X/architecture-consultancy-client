@@ -67,9 +67,9 @@ const Footer = () => {
 
           {/* social */}
           <div className="grid grid-cols-4 gap-3 mt-6">
-            {social?.map((x) => {
+            {social?.map((x, index) => {
               return (
-                <a target="_blank" href={x?.link}>
+                <a key={index} target="_blank" href={x?.link}>
                   <img className="w-6 h-6" src={x?.img} alt="" />
                 </a>
               );
