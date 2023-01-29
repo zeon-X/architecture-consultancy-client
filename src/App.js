@@ -23,6 +23,8 @@ import LoginModal from "./pages/Modals/LoginModal";
 import RegisterModal from "./pages/Modals/RegisterModal";
 import UpdateCategoryModal from "./pages/Modals/UpdateCategoryModal";
 import HomeSection6 from "./pages/Home/HomeSection6";
+import AddABlog from "./pages/DashboardPagesAdmin/AddABlog";
+import ManageBlogs from "./pages/DashboardPagesAdmin/ManageBlogs";
 
 function App() {
   return (
@@ -137,6 +139,11 @@ function App() {
           <Route
             path="manage-review"
             element={<ManageReview></ManageReview>}
+          ></Route>
+          <Route path="manage-add-blog" element={<AddABlog></AddABlog>}></Route>
+          <Route
+            path="manage-blog"
+            element={<ManageBlogs></ManageBlogs>}
           ></Route>
           {/* <Route path="manage-admin" element={<MakeAdmin></MakeAdmin>}></Route> */}
           <Route path="*" element={<NotFound></NotFound>}></Route>

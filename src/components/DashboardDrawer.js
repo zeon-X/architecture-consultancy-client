@@ -58,6 +58,12 @@ const DashboardDrawer = () => {
           <li>
             <NavLink to="manage-review">Manage All Reviews</NavLink>
           </li>
+          <li>
+            <NavLink to="manage-add-blog">Add a Blog</NavLink>
+          </li>
+          <li>
+            <NavLink to="manage-blog">Manage All Blog</NavLink>
+          </li>
         </ul>
       </div>
     </div>

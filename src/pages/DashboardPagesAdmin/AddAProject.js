@@ -359,10 +359,10 @@ const AddAProject = () => {
         <p className="mt-16 font-semibold underline uppercase">
           Cover Images, Gallary Images
         </p>
-        {/* IMAGES  */}
+        {/*---- IMAGES-----------  */}
 
         <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-5">
-          {/* single image */}
+          {/* --------single image ----------*/}
           <div className="form-control w-full ">
             <label className="label">
               <span className="">Image</span>
