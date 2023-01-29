@@ -25,6 +25,8 @@ import UpdateCategoryModal from "./pages/Modals/UpdateCategoryModal";
 import HomeSection6 from "./pages/Home/HomeSection6";
 import AddABlog from "./pages/DashboardPagesAdmin/AddABlog";
 import ManageBlogs from "./pages/DashboardPagesAdmin/ManageBlogs";
+import Blog from "./pages/Blog/Blog";
+import BlogDetails from "./pages/Blog/BlogDetails";
 
 function App() {
   return (
@@ -66,6 +68,22 @@ function App() {
           element={
             <Drawer>
               <HomeSection6></HomeSection6>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="/blogs"
+          element={
+            <Drawer>
+              <Blog></Blog>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="/blog-details/:_id"
+          element={
+            <Drawer>
+              <BlogDetails></BlogDetails>
             </Drawer>
           }
         ></Route>

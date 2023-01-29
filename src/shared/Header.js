@@ -90,6 +90,12 @@ const Header = () => {
             </li>
             <li>
               <a href="/pricing/#pricing-top">Pricing</a>
+              {/* <NavLink to="/pricing/#pricing-top">
+                <li>Pricing</li>
+              </NavLink> */}
+            </li>
+            <li>
+              <a href="/blogs">Blog</a>
             </li>
           </ul>
         </div>
@@ -190,6 +196,14 @@ const Header = () => {
                     onClick={() => navigate("/dashboard-admin/manage-review")}
                   >
                     <a className="">Manage Review</a>
+                  </li>
+                  <li
+                    onClick={() => navigate("/dashboard-admin/manage-add-blog")}
+                  >
+                    <a className="">Add Blog</a>
+                  </li>
+                  <li onClick={() => navigate("/dashboard-admin/manage-blog")}>
+                    <a className="">Manage Blog</a>
                   </li>
                 </>
               )}

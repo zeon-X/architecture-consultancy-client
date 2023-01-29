@@ -103,10 +103,10 @@ const AddABlog = () => {
       <form className="mt-4 text-xs" onSubmit={handleSubmit(onSubmit)}>
         {/* BLOG TITE */}
         <div className="grid lg:grid-cols-1 sm:grid-cols-1 gap-4">
-          {/* CATEGORY TITLE  */}
+          {/* Blog TITLE  */}
           <div className="form-control w-full ">
             <label className="label">
-              <span className="">Category Name</span>
+              <span className="">Blog Title</span>
             </label>
             <input
               type="text"
@@ -146,7 +146,7 @@ const AddABlog = () => {
           {/* paragraph */}
           <div className="form-control w-full ">
             <label className="label">
-              <span className="">About Left</span>
+              <span className="">Paragraph with the image</span>
             </label>
             <textarea
               onChange={handleParagraph}
