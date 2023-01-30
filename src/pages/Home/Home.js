@@ -5,7 +5,6 @@ import HomeSection3 from "./HomeSection3";
 import HomeSection4 from "./HomeSection4";
 import HomeSection5 from "./HomeSection5";
 import "./Home.css";
-import HomeSection6 from "./HomeSection6";
 import HomeSection0 from "./HomeSection0";
 
 const Home = () => {
@@ -20,7 +19,6 @@ const Home = () => {
       <div className="max-w-7xl py-16 px-4 flex flex-col justify-center items-center">
         <HomeSection4></HomeSection4>
         <HomeSection5></HomeSection5>
-        {/* <HomeSection6></HomeSection6> */}
       </div>
     </div>
   );

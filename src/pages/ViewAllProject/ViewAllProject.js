@@ -51,7 +51,7 @@ const ViewAllProjects = () => {
   return (
     <div
       id=""
-      className="lg:px-20 sm:px-8 py-10 w-full flex flex-col justify-center items-center"
+      className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center min-h-screen"
     >
       {/* intro */}
       <div className="">

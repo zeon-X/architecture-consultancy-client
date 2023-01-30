@@ -21,12 +21,13 @@ import ManageReview from "./pages/DashboardPagesAdmin/ManageReview";
 import ViewAllProjects from "./pages/ViewAllProject/ViewAllProject";
 import LoginModal from "./pages/Modals/LoginModal";
 import RegisterModal from "./pages/Modals/RegisterModal";
-import UpdateCategoryModal from "./pages/Modals/UpdateCategoryModal";
-import HomeSection6 from "./pages/Home/HomeSection6";
+import PricingPlan from "./pages/PricingPlan/PricingPlan";
 import AddABlog from "./pages/DashboardPagesAdmin/AddABlog";
 import ManageBlogs from "./pages/DashboardPagesAdmin/ManageBlogs";
 import Blog from "./pages/Blog/Blog";
 import BlogDetails from "./pages/Blog/BlogDetails";
+import ProjectDetails from "./pages/ViewAllProject/ProjectDetails";
+import PlaceOrder from "./pages/PricingPlan/PlaceOrder";
 
 function App() {
   return (
@@ -55,8 +56,9 @@ function App() {
             </Drawer>
           }
         ></Route>
+        {/*------------ PROJECT DETAILS------------- */}
         <Route
-          path="/view-all-works"
+          path="/all-projects"
           element={
             <Drawer>
               <ViewAllProjects></ViewAllProjects>
@@ -64,13 +66,14 @@ function App() {
           }
         ></Route>
         <Route
-          path="/pricing"
+          path="/project-details/:_id"
           element={
             <Drawer>
-              <HomeSection6></HomeSection6>
+              <ProjectDetails></ProjectDetails>
             </Drawer>
           }
         ></Route>
+        {/* -------------- BLOG ----------------*/}
         <Route
           path="/blogs"
           element={
@@ -87,9 +90,28 @@ function App() {
             </Drawer>
           }
         ></Route>
-        {/* ------ PAGES END --------- */}
+        {/*----------------- PRICING AND ORDER------------------ */}
+        <Route
+          path="/pricing"
+          element={
+            <Drawer>
+              <PricingPlan></PricingPlan>
+            </Drawer>
+          }
+        ></Route>
+        {/*-- USER DB START --*/}
+        {/* ------ ORDER --------- */}
+        <Route
+          path="/order/:type"
+          element={
+            <Drawer>
+              <RequireAuth>
+                <PlaceOrder></PlaceOrder>
+              </RequireAuth>
+            </Drawer>
+          }
+        ></Route>
 
-        {/* -------- USER DB START --------- */}
         <Route
           path="/my-orders"
           element={
@@ -100,6 +122,7 @@ function App() {
             </Drawer>
           }
         ></Route>
+        {/* REVIEW */}
         <Route
           path="/my-reviews"
           element={
@@ -111,7 +134,6 @@ function App() {
           }
         ></Route>
         {/* -------- USER DB END --------- */}
-
         {/* -------- ADMIN DB WITH PANEL START--------- */}
         <Route
           path="/dashboard-admin"

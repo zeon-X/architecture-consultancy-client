@@ -28,27 +28,32 @@ const Blog = () => {
     }
   }, [isLoading]);
   return (
-    <div className="lg:px-20 sm:px-8 py-10 w-full  mx-auto flex flex-col justify-center items-center">
+    <div className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center min-h-screen">
       {/* intro */}
-      <div className="mb-24">
-        <p className="text-5xl font-bold text-gray-800 mt-6 mb-8 text-center">
-          Here we share our ideas.
+      <div className="">
+        <p className="text-sm text-black tracking-widest uppercase text-center">
+          our blogs
+        </p>
+        <p className="text-4xl font-semibold text-gray-800 mt-3 mb-8 text-center">
+          Here we share our ideas
         </p>
       </div>
 
       {/* BLOGS THUMB */}
       {blog?.data?.map((x, index) => {
         return (
-          <div key={index} className="w-full lg:my-0 sm:my-6">
-            {index % 2 === 0 && (
-              <div className="flex lg:flex-row sm:flex-col h-[600px] gap-6 ">
+          <div key={index} className="w-full my-10">
+            {index % 2 === 1 && (
+              <div className="flex lg:flex-row sm:flex-col lg:h-[360px] sm:h-[480px] gap-10 ">
                 {/* WRITING PART */}
-                <div className="lg:w-4/12 sm:w-full flex flex-col justify-center items-center  h-[600px] lg:order-1 sm:order-2">
-                  <div className="lg:w-8/12 sm:w-full">
+                <div className="lg:w-5/12 sm:w-full flex flex-col justify-center items-center  lg:h-[360px] sm:h-[480px] lg:order-1 sm:order-2">
+                  <div className="w-full flex flex-col justify-center lg:items-end sm:items-start ">
                     <p>Updated At: {x?.updatedAt.split("T")[0]}</p>
-                    <p className="text-4xl font-bold mt-6">{x?.blogTitle}</p>
-                    <p className="my-6 text-lg text-gray-400">
-                      {x?.blogPara[0]?.paragraph.slice(0, 180)}..
+                    <p className="text-3xl font-semibold mt-6 lg:text-right sm:text-left">
+                      {x?.blogTitle?.slice(0, 20)}
+                    </p>
+                    <p className="my-6  text-gray-400  lg:text-right sm:text-left">
+                      {x?.blogPara[0]?.paragraph?.slice(0, 120)}..
                     </p>
                     <button
                       onClick={() => {
@@ -77,24 +82,30 @@ const Blog = () => {
                 {/* IMAGE PART */}
                 <div
                   style={{ backgroundImage: `url(${x?.blogPara[0]?.img})` }}
-                  className="lg:w-8/12 sm:w-full  h-[600px] lg:rounded-bl-[25%] sm:rounded-lg  bg-no-repeat bg-cover bg-center lg:order-2 sm:order-1"
-                ></div>
+                  className="lg:w-7/12 sm:w-full  lg:h-[360px] sm:h-[480px]  bg-no-repeat bg-cover bg-center lg:order-2 sm:order-1"
+                >
+                  <div className="border-b border-black w-[100px] ml-[-35px] mt-[78px] lg:block sm:hidden"></div>
+                </div>
               </div>
             )}
-            {index % 2 === 1 && (
-              <div className="flex lg:flex-row sm:flex-col h-[600px] gap-6">
+            {index % 2 === 0 && (
+              <div className="flex lg:flex-row sm:flex-col lg:h-[360px] sm:h-[480px] gap-10">
                 {/* IMAGE PART */}
                 <div
                   style={{ backgroundImage: `url(${x?.blogPara[0]?.img})` }}
-                  className="lg:w-8/12 sm:w-full  h-[600px] lg:rounded-br-[25%] sm:rounded-lg  bg-no-repeat bg-cover bg-center"
-                ></div>
+                  className="lg:w-7/12 sm:w-full  lg:h-[360px] sm:h-[480px] flex justify-end items-start  bg-no-repeat bg-cover bg-center"
+                >
+                  <div className="border-b border-black w-[100px] mr-[-35px] mt-[78px] lg:block sm:hidden"></div>
+                </div>
                 {/* WRITING PART */}
-                <div className="lg:w-4/12 sm:w-full flex flex-col justify-center items-center  h-[600px]">
-                  <div className="lg:w-8/12 sm:w-full">
+                <div className="lg:w-5/12 sm:w-full flex flex-col justify-center items-center  lg:h-[360px] sm:h-[480px]">
+                  <div className="w-full">
                     <p>Updated At: {x?.updatedAt.split("T")[0]}</p>
-                    <p className="text-4xl font-bold mt-6">{x?.blogTitle}</p>
-                    <p className="my-6 text-lg text-gray-400">
-                      {x?.blogPara[0]?.paragraph.slice(0, 180)}..
+                    <p className="text-3xl font-semibold mt-6">
+                      {x?.blogTitle?.slice(0, 20)}
+                    </p>
+                    <p className="my-6  text-gray-400">
+                      {x?.blogPara[0]?.paragraph.slice(0, 120)}..
                     </p>
                     <button
                       onClick={() => {

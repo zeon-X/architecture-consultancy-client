@@ -134,7 +134,7 @@ const HomeSection3 = () => {
       </div>
 
       <button
-        onClick={() => navigate("/view-all-works")}
+        onClick={() => navigate("/all-projects")}
         className="text-gray-400 tracking-widest text-sm hover:text-black underline"
       >
         view all works

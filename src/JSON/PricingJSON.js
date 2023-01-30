@@ -1,128 +1,152 @@
 const pricing = [
   {
-    title: "Free",
+    title: "Landscape Design",
     detail:
       "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-    price: 0,
+    dynamicLink: "landscape-design",
     specification: [
       {
-        heading: "One project",
+        heading: "3D modeling",
         value: 1,
       },
       {
-        heading: "Your dashboard",
+        heading: "Include environment",
         value: 1,
       },
       {
-        heading: "Components Included",
+        heading: "Include furniture and people",
         value: 1,
       },
       {
-        heading: "Advanced controls",
-        value: 0,
+        heading: "Texturing & Lighting",
+        value: 1,
       },
       {
-        heading: "Chat supports",
-        value: 0,
+        heading: "High-Quality Realistic rendered image",
+        value: 1,
       },
       {
-        heading: "Unlimited Users",
-        value: 0,
+        heading: "Include source file",
+        value: 1,
       },
     ],
   },
   {
-    title: "Standard",
+    title: "Exterior Design",
     detail:
       "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-    price: 650,
+    dynamicLink: "exterior-design",
     specification: [
       {
-        heading: "One project",
+        heading: "3D modeling",
         value: 1,
       },
       {
-        heading: "Your dashboard",
+        heading: "Include environment",
         value: 1,
       },
       {
-        heading: "Components Included",
+        heading: "Include furniture and people",
         value: 1,
       },
       {
-        heading: "Advanced controls",
+        heading: "Texturing & Lighting",
         value: 1,
       },
       {
-        heading: "Chat supports",
-        value: 0,
+        heading: "High-Quality Realistic rendered image",
+        value: 1,
       },
       {
-        heading: "Unlimited Users",
-        value: 0,
+        heading: "Include source file",
+        value: 1,
       },
     ],
   },
   {
-    title: "Plus",
+    title: "Interior Design",
     detail:
       "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-    price: 1250,
+    dynamicLink: "interior-design",
     specification: [
       {
-        heading: "One project",
+        heading: "3D modeling",
         value: 1,
       },
       {
-        heading: "Your dashboard",
+        heading: "Include environment",
         value: 1,
       },
       {
-        heading: "Components Included",
+        heading: "Include furniture and people",
         value: 1,
       },
       {
-        heading: "Advanced controls",
+        heading: "Texturing & Lighting",
         value: 1,
       },
       {
-        heading: "Chat supports",
+        heading: "High-Quality Realistic rendered image",
         value: 1,
       },
       {
-        heading: "Unlimited Users",
-        value: 0,
+        heading: "Include source file",
+        value: 1,
       },
     ],
   },
   {
-    title: "Enterprise",
+    title: "Food truck, Container shop, Stall, booth Design-3D modeling",
     detail:
       "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
-    price: 2500,
+    dynamicLink: "3dmodel-design",
     specification: [
       {
-        heading: "One project",
+        heading: "Include environment",
         value: 1,
       },
       {
-        heading: "Your dashboard",
+        heading: "Include furniture and people",
         value: 1,
       },
       {
-        heading: "Components Included",
+        heading: "Texturing & Lighting",
         value: 1,
       },
       {
-        heading: "Advanced controls",
+        heading: "High-Quality Realistic rendered image",
         value: 1,
       },
       {
-        heading: "Chat supports",
+        heading: "Include source file",
+        value: 1,
+      },
+    ],
+  },
+  {
+    title: "Others",
+    detail:
+      "Lorem ipsum dolor sit amet, consect adipiscing elit. Ut elit tellus",
+    dynamicLink: "others",
+    specification: [
+      {
+        heading: "Include environment",
         value: 1,
       },
       {
-        heading: "Unlimited Users",
+        heading: "Include furniture and people",
+        value: 1,
+      },
+      {
+        heading: "Texturing & Lighting",
+        value: 1,
+      },
+      {
+        heading: "High-Quality Realistic rendered image",
+        value: 1,
+      },
+      {
+        heading: "Include source file",
         value: 1,
       },
     ],
