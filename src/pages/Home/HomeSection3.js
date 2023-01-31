@@ -82,9 +82,9 @@ const HomeSection3 = () => {
             All
           </button>
         </div>
-        {category?.data?.map((x) => {
+        {category?.data?.map((x, index) => {
           return (
-            <div>
+            <div key={index}>
               <button
                 onClick={() => {
                   setCategoryChange(x?._id);

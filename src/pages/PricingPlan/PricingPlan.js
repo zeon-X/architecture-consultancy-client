@@ -27,9 +27,10 @@ const PricingPlan = () => {
         </button>
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 justify-center  gap-4">
-        {pricing?.map((x) => {
+        {pricing?.map((x, index) => {
           return (
             <div
+              key={index}
               className={
                 "flex flex-col justify-between gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2 "
               }
@@ -38,9 +39,9 @@ const PricingPlan = () => {
               <p className=" text-gray-500 text-sm">{x?.detail}</p>
               <div>
                 <div className="flex flex-col gap-3 mt-4 text-sm">
-                  {x?.specification?.map((xx) => {
+                  {x?.specification?.map((xx, index) => {
                     return (
-                      <div className="flex gap-2">
+                      <div key={index} className="flex gap-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"

@@ -103,9 +103,9 @@ const BlogDetails = () => {
       </div>
 
       {/* BLOG DETAILS */}
-      {blogDetails?.data?.blogPara?.map((x) => {
+      {blogDetails?.data?.blogPara?.map((x, index) => {
         return (
-          <div>
+          <div key={index}>
             <img className="w-full rounded-xl" src={x?.img} alt="" />
             <p className="my-16 text-lg text-gray-500">{x?.paragraph}</p>
           </div>

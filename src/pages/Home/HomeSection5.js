@@ -27,9 +27,9 @@ const HomeSection5 = () => {
       </div>
 
       <div className="h-full grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 justify-center items-center mt-16">
-        {review?.data?.map((x) => {
+        {review?.data?.map((x, index) => {
           return (
-            <div className="review-card p-10 h-full relative ">
+            <div key={index} className="review-card p-10 h-full relative ">
               {/* rebiew heading  */}
               <p className="font-semibold uppercase tracking-wide">
                 {x.reviewTitle}

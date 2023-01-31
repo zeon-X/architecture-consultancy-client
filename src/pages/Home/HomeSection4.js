@@ -36,9 +36,12 @@ const HomeSection4 = () => {
       </div>
 
       <div className="flex flex-wrap justify-center items-center lg:gap-10 sm:gap-4 mt-16">
-        {team.map((x) => {
+        {team.map((x, index) => {
           return (
-            <div className="flex flex-col justify-center lg:items-start md:items-center sm:items-center">
+            <div
+              key={index}
+              className="flex flex-col justify-center lg:items-start md:items-center sm:items-center"
+            >
               <div
                 className="h-[260px] w-[260px] bg-cover bg-center rounded"
                 style={{

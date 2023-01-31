@@ -76,9 +76,9 @@ const ViewAllProjects = () => {
             All
           </button>
         </div>
-        {category?.data?.map((x) => {
+        {category?.data?.map((x, index) => {
           return (
-            <div>
+            <div key={index}>
               <button
                 onClick={() => {
                   setCategoryChange(x?._id);
@@ -98,9 +98,10 @@ const ViewAllProjects = () => {
 
       {/* PROJECTS */}
       <div className="flex flex-wrap justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
-        {project?.data?.map((x) => {
+        {project?.data?.map((x, index) => {
           return (
             <div
+              key={index}
               className="project-card bg-white relative h-[340px] w-[340px] bg-cover bg-center "
               style={{ backgroundImage: `url(${x?.img})` }}
             >

@@ -436,8 +436,15 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                     To update the image upload all photos including new and old
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    {props?.galleryBefore?.map((x) => {
-                      return <img className="w-44 rounded-lg" src={x} alt="" />;
+                    {props?.galleryBefore?.map((x, index) => {
+                      return (
+                        <img
+                          key={index}
+                          className="w-44 rounded-lg"
+                          src={x}
+                          alt=""
+                        />
+                      );
                     })}
                   </div>
                 </div>
@@ -466,8 +473,15 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                     To update the image upload all photos including new and old
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    {props?.galleryAfter?.map((x) => {
-                      return <img className="w-44 rounded-lg" src={x} alt="" />;
+                    {props?.galleryAfter?.map((x, index) => {
+                      return (
+                        <img
+                          key={index}
+                          className="w-44 rounded-lg"
+                          src={x}
+                          alt=""
+                        />
+                      );
                     })}
                   </div>
                 </div>
