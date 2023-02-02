@@ -42,114 +42,133 @@ const PlaceOrder = () => {
 
   //---------------SUBMIL FUNCTION
   const onSubmit = async (data) => {
-    data.serviceCategory = type;
-    data.userId = userData?._id;
-    console.log(data);
-
-    // let image = "";
-    let fileData = new FormData();
-    fileData.append("file", data.existingPlaceImages[0]);
-    console.log(fileData.data);
-
-    await axiosInstance.post("/file/upload", fileData).then((res) => {
-      console.log(res);
-    });
-
+    Swal.showLoading();
     // setLoading(true);
 
-    // // IMAGE UPLOADS  ----- SINGLE
-    // let image = "";
-    // let imgData = new FormData();
-    // if (data.img[0]) {
-    //   imgData.append("image", data.img[0]);
-    //   await axios
-    //     .post(`https://api.imgbb.com/1/upload?key=${API}`, imgData)
-    //     .then((res) => {
-    //       if (res.data.status === 200) {
-    //         image = res.data.data.display_url;
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // }
+    data.serviceCategory = type;
+    data.userId = userInfo?._id;
 
-    // // IMAGE UPLOADS -------- BEFORE
-    // let len = data.galleryBefore.length;
-    // let imageArrayBefore = [];
-    // for (let i = 0; i < len; ++i) {
-    //   let formData1 = new FormData();
-    //   formData1.append("image", data.galleryBefore[i]);
-    //   await axios
-    //     .post(`https://api.imgbb.com/1/upload?key=${API}`, formData1)
-    //     .then((res) => {
-    //       // console.log(res.data.data.img);
-    //       if (res.data.status === 200) {
-    //         imageArrayBefore.push(res.data.data.display_url);
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // }
-    // // IMAGE UPLOADS -------- BEFORE
-    // len = data.galleryAfter.length;
-    // let imageArrayAfter = [];
-    // for (let i = 0; i < len; ++i) {
-    //   let formData2 = new FormData();
-    //   formData2.append("image", data.galleryAfter[i]);
-    //   await axios
-    //     .post(`https://api.imgbb.com/1/upload?key=${API}`, formData2)
-    //     .then((res) => {
-    //       // console.log(res.data.data.img);
-    //       if (res.data.status === 200) {
-    //         imageArrayAfter.push(res.data.data.display_url);
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // }
+    // planing UPLOADS -------- BEFORE
+    let len = data.planing.length;
+    let planingArr = [];
+    for (let i = 0; i < len; ++i) {
+      let formData2 = new FormData();
+      formData2.append("file", data.planing[i]);
+      await axiosInstance
+        .post("/file/upload", formData2)
+        .then((res) => {
+          //console.log(res);
+          if (res.status === 200) {
+            planingArr.push(res?.data?.url);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
-    // // ASSEMBLING ALL DATA
-    // if (image !== "") data.img = image;
-    // else data.img = "";
-    // if (imageArrayBefore.length !== 0) data.galleryBefore = imageArrayBefore;
-    // else data.galleryBefore = [];
-    // if (imageArrayAfter.length !== 0) data.galleryAfter = imageArrayAfter;
-    // else data.galleryAfter = [];
+    // existingPlaceImages UPLOADS -------- BEFORE
+    len = data.existingPlaceImages.length;
+    let existingPlaceImagesArr = [];
+    for (let i = 0; i < len; ++i) {
+      let formData2 = new FormData();
+      formData2.append("file", data.existingPlaceImages[i]);
+      await axiosInstance
+        .post("/file/upload", formData2)
+        .then((res) => {
+          //console.log(res);
+          if (res.status === 200) {
+            existingPlaceImagesArr.push(res?.data?.url);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
-    // console.log(data);
+    // console.log(existingPlaceImagesArr);
+
+    // inspirationImages UPLOADS -------- BEFORE
+    len = data.inspirationImages.length;
+    let inspirationImagesArr = [];
+    for (let i = 0; i < len; ++i) {
+      let formData2 = new FormData();
+      formData2.append("file", data.inspirationImages[i]);
+      await axiosInstance
+        .post("/file/upload", formData2)
+        .then((res) => {
+          //console.log(res);
+          if (res.status === 200) {
+            inspirationImagesArr.push(res?.data?.url);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    // otherFiles UPLOADS -------- BEFORE
+    len = data.otherFiles.length;
+    let otherFilesArr = [];
+    for (let i = 0; i < len; ++i) {
+      let formData2 = new FormData();
+      formData2.append("file", data.otherFiles[i]);
+      await axiosInstance
+        .post("/file/upload", formData2)
+        .then((res) => {
+          //console.log(res);
+          if (res.status === 200) {
+            otherFilesArr.push(res?.data?.url);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    // ASSEMBLING ALL DATA
+    if (planingArr.length !== 0) data.planing = planingArr;
+    else data.planing = [];
+
+    if (existingPlaceImagesArr.length !== 0)
+      data.existingPlaceImages = existingPlaceImagesArr;
+    else data.existingPlaceImages = [];
+
+    if (inspirationImagesArr.length !== 0)
+      data.inspirationImages = inspirationImagesArr;
+    else data.inspirationImages = [];
+
+    if (otherFilesArr.length !== 0) data.otherFiles = otherFilesArr;
+    else data.otherFiles = [];
+
+    console.log(data);
 
     //SENDING DATA TO MONGO-DB DATABASE
-    // await axiosInstance.post("project/create", data).then((res) => {
-    //   setLoading(false);
-    //   if (res.status === 201) {
-    //     Swal.fire(
-    //       "Saved!",
-    //       `You have successfully added the Item.`,
-    //       "success"
-    //     ).then(() => {
-    //       resetField("title");
-    //       resetField("aboutLeft");
-    //       resetField("aboutRight");
-    //       resetField("category");
-    //       resetField("client");
-    //       resetField("projectYear");
-    //       resetField("location");
-    //       resetField("designer");
-    //       resetField("reviewId");
-    //       resetField("img");
-    //       resetField("galleryBefore");
-    //       resetField("galleryAfter");
-    //     });
-    //   } else {
-    //     Swal.fire("Error!", `Something went wrong`, "error");
-    //   }
-    //   console.log(res.data);
-    // });
-
-    // setLoading(false);
+    await axiosInstance.post("order/create", data).then((res) => {
+      if (res.status === 201) {
+        Swal.fire(
+          "Saved!",
+          `You have successfully completed Ordered.`,
+          "success"
+        ).then(() => {
+          resetField("clientBudget");
+          resetField("aboutLeft");
+          resetField("clientMessage");
+          resetField("clientOtherComLink");
+          resetField("clientWhatsappNum");
+          resetField("clientAddress");
+          resetField("planing");
+          resetField("houseAddress");
+          resetField("existingPlaceImages");
+          resetField("inspirationImages");
+          resetField("otherFiles");
+          resetField("projectDiscription");
+        });
+      } else {
+        Swal.fire("Error!", `Something went wrong`, "error");
+      }
+      console.log(res.data);
+    });
   };
 
   return (
@@ -178,27 +197,31 @@ const PlaceOrder = () => {
               {/* SITE PLAN */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Site Planing</span>
+                  <span className="">
+                    Site Planing<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="planing"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("planing", { required: false })}
+                  {...register("planing", { required: true })}
                 />
               </div>
               {/* HOUSE ADDRESS */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">House Address</span>
+                  <span className="">
+                    House Address<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   type="text"
                   name="houseAddress"
                   className="input input-bordered text-xs rounded w-full "
                   {...register("houseAddress", {
-                    required: false,
+                    required: true,
                     message: "This field is required",
                   })}
                 />
@@ -213,27 +236,31 @@ const PlaceOrder = () => {
               {/* EXSISTING PLACE IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Existing Place Images</span>
+                  <span className="">
+                    Existing Place Images<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="existingPlaceImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("existingPlaceImages", { required: false })}
+                  {...register("existingPlaceImages", { required: true })}
                 />
               </div>
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Inspiration Images</span>
+                  <span className="">
+                    Inspiration Images<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: false })}
+                  {...register("inspirationImages", { required: true })}
                 />
               </div>
             </div>
@@ -244,41 +271,47 @@ const PlaceOrder = () => {
               {/* House PLAN */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">House Plan</span>
+                  <span className="">
+                    House Plan<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="planing"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("planing", { required: false })}
+                  {...register("planing", { required: true })}
                 />
               </div>
 
               {/* EXSISTING PLACE IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Existing House Images</span>
+                  <span className="">
+                    Existing House Images<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="existingPlaceImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("existingPlaceImages", { required: false })}
+                  {...register("existingPlaceImages", { required: true })}
                 />
               </div>
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Inspiration Images</span>
+                  <span className="">
+                    Inspiration Images<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: false })}
+                  {...register("inspirationImages", { required: true })}
                 />
               </div>
             </div>
@@ -289,28 +322,32 @@ const PlaceOrder = () => {
               {/*2D SITE PLAN */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">2D Plan</span>
+                  <span className="">
+                    2D Plan<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="planing"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("planing", { required: false })}
+                  {...register("planing", { required: true })}
                 />
               </div>
 
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Inspiration Images</span>
+                  <span className="">
+                    Inspiration Images<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: false })}
+                  {...register("inspirationImages", { required: true })}
                 />
               </div>
             </div>
@@ -321,14 +358,16 @@ const PlaceOrder = () => {
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Inspiration Images</span>
+                  <span className="">
+                    Inspiration Images<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: false })}
+                  {...register("inspirationImages", { required: true })}
                 />
               </div>
             </div>
@@ -339,34 +378,24 @@ const PlaceOrder = () => {
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">Inspiration Images</span>
+                  <span className="">
+                    Inspiration Images<span className="text-red-500">*</span>
+                  </span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: false })}
+                  {...register("inspirationImages", { required: true })}
                 />
               </div>
             </div>
           )}
 
           {/*-------- OTHER MANDATORY REQUIREMENTS------ */}
+
           <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 mt-6">
-            {/* OTHER FILES*/}
-            <div className="form-control w-full ">
-              <label className="label">
-                <span className="">Additional Files</span>
-              </label>
-              <input
-                multiple
-                type="file"
-                name="otherFiles"
-                className="input input-bordered text-xs rounded w-full "
-                {...register("otherFiles", { required: false })}
-              />
-            </div>
             {/* BUDGET */}
             <div className="form-control w-full ">
               <label className="label">
@@ -391,6 +420,19 @@ const PlaceOrder = () => {
                   </span>
                 </label>
               )}
+            </div>
+            {/* OTHER FILES*/}
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="">Additional Files</span>
+              </label>
+              <input
+                multiple
+                type="file"
+                name="otherFiles"
+                className="input input-bordered text-xs rounded w-full "
+                {...register("otherFiles", { required: false })}
+              />
             </div>
           </div>
           {/* PROJECT DETAILS */}
