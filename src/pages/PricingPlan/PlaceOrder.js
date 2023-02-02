@@ -42,7 +42,18 @@ const PlaceOrder = () => {
 
   //---------------SUBMIL FUNCTION
   const onSubmit = async (data) => {
+    data.serviceCategory = type;
+    data.userId = userData?._id;
     console.log(data);
+
+    // let image = "";
+    let fileData = new FormData();
+    fileData.append("file", data.existingPlaceImages[0]);
+    console.log(fileData.data);
+
+    await axiosInstance.post("/file/upload", fileData).then((res) => {
+      console.log(res);
+    });
 
     // setLoading(true);
 
