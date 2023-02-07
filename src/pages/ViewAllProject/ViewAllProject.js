@@ -70,7 +70,7 @@ const ViewAllProjects = () => {
             className={
               categoryChange === ""
                 ? "text-center text-sm text-black "
-                : "text-center text-sm  "
+                : "text-center text-sm text-gray-500 "
             }
           >
             All
@@ -86,7 +86,7 @@ const ViewAllProjects = () => {
                 className={
                   categoryChange === x?._id
                     ? "text-center text-sm text-black  "
-                    : "text-center text-sm "
+                    : "text-center text-sm text-gray-500"
                 }
               >
                 {x?.categoryTitle}
@@ -97,31 +97,25 @@ const ViewAllProjects = () => {
       </div>
 
       {/* PROJECTS */}
-      <div className="flex flex-wrap justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
         {project?.data?.map((x, index) => {
           return (
-            <div
-              key={index}
-              className="project-card bg-white relative h-[340px] w-[340px] bg-cover bg-center "
-              style={{ backgroundImage: `url(${x?.img})` }}
-            >
-              <div className="w-full h-full project-img  border-white transition-all ease-in-out "></div>
-              <div className="project-view-btn gap-2 flex items-center">
-                <p className="text-xs font-semibold">{x?.title.slice(0, 32)}</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="black"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                  />
-                </svg>
+            <div className="border border-gray-100 rounded-2xl">
+              <div
+                key={index}
+                className=" rounded-tl-2xl rounded-tr-2xl bg-white relative h-[180px] w-full bg-cover bg-center "
+                style={{ backgroundImage: `url(${x?.img})` }}
+              ></div>
+              <div className="my-4 p-4">
+                <p className=" text-sm font-semibold">
+                  {x?.title?.slice(0, 32)}
+                </p>
+                <p className="text-xs ">Location: {x?.location}</p>
+                <p className="text-xs my-4 text-gray-500">
+                  {x?.aboutLeft?.slice(0, 90)}..
+                </p>
+
+                <button className="">Learn more</button>
               </div>
             </div>
           );

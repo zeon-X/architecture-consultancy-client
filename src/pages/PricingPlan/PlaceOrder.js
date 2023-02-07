@@ -49,7 +49,7 @@ const PlaceOrder = () => {
     data.userId = userInfo?._id;
 
     // planing UPLOADS -------- BEFORE
-    let len = data.planing.length;
+    let len = data?.planing?.length;
     let planingArr = [];
     for (let i = 0; i < len; ++i) {
       let formData2 = new FormData();
@@ -68,7 +68,7 @@ const PlaceOrder = () => {
     }
 
     // existingPlaceImages UPLOADS -------- BEFORE
-    len = data.existingPlaceImages.length;
+    len = data?.existingPlaceImages?.length;
     let existingPlaceImagesArr = [];
     for (let i = 0; i < len; ++i) {
       let formData2 = new FormData();
@@ -89,7 +89,7 @@ const PlaceOrder = () => {
     // console.log(existingPlaceImagesArr);
 
     // inspirationImages UPLOADS -------- BEFORE
-    len = data.inspirationImages.length;
+    len = data?.inspirationImages?.length;
     let inspirationImagesArr = [];
     for (let i = 0; i < len; ++i) {
       let formData2 = new FormData();
@@ -108,7 +108,7 @@ const PlaceOrder = () => {
     }
 
     // otherFiles UPLOADS -------- BEFORE
-    len = data.otherFiles.length;
+    len = data?.otherFiles?.length;
     let otherFilesArr = [];
     for (let i = 0; i < len; ++i) {
       let formData2 = new FormData();
@@ -197,31 +197,27 @@ const PlaceOrder = () => {
               {/* SITE PLAN */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Site Planing<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Site Plan</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="planing"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("planing", { required: true })}
+                  {...register("planing", { required: false })}
                 />
               </div>
               {/* HOUSE ADDRESS */}
-              <div className="form-control w-full ">
+              {/* <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    House Address<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">House Address</span>
                 </label>
                 <input
                   type="text"
                   name="houseAddress"
                   className="input input-bordered text-xs rounded w-full "
                   {...register("houseAddress", {
-                    required: true,
+                    required: false,
                     message: "This field is required",
                   })}
                 />
@@ -232,35 +228,31 @@ const PlaceOrder = () => {
                     </span>
                   </label>
                 )}
-              </div>
+              </div> */}
               {/* EXSISTING PLACE IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Existing Place Images<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Existing Place Images</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="existingPlaceImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("existingPlaceImages", { required: true })}
+                  {...register("existingPlaceImages", { required: false })}
                 />
               </div>
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Inspiration Images<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Inspiration Images</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: true })}
+                  {...register("inspirationImages", { required: false })}
                 />
               </div>
             </div>
@@ -271,47 +263,41 @@ const PlaceOrder = () => {
               {/* House PLAN */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    House Plan<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">House Plan</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="planing"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("planing", { required: true })}
+                  {...register("planing", { required: false })}
                 />
               </div>
 
               {/* EXSISTING PLACE IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Existing House Images<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Existing House Images</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="existingPlaceImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("existingPlaceImages", { required: true })}
+                  {...register("existingPlaceImages", { required: false })}
                 />
               </div>
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Inspiration Images<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Inspiration Images</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: true })}
+                  {...register("inspirationImages", { required: false })}
                 />
               </div>
             </div>
@@ -322,32 +308,28 @@ const PlaceOrder = () => {
               {/*2D SITE PLAN */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    2D Plan<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">2D Plan</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="planing"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("planing", { required: true })}
+                  {...register("planing", { required: false })}
                 />
               </div>
 
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Inspiration Images<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Inspiration Images</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: true })}
+                  {...register("inspirationImages", { required: false })}
                 />
               </div>
             </div>
@@ -358,16 +340,14 @@ const PlaceOrder = () => {
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Inspiration Images<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Inspiration Images</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: true })}
+                  {...register("inspirationImages", { required: false })}
                 />
               </div>
             </div>
@@ -378,16 +358,14 @@ const PlaceOrder = () => {
               {/* INSPIRATION IMAGE */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="">
-                    Inspiration Images<span className="text-red-500">*</span>
-                  </span>
+                  <span className="">Inspiration Images</span>
                 </label>
                 <input
                   multiple
                   type="file"
                   name="inspirationImages"
                   className="input input-bordered text-xs rounded w-full "
-                  {...register("inspirationImages", { required: true })}
+                  {...register("inspirationImages", { required: false })}
                 />
               </div>
             </div>
@@ -494,7 +472,8 @@ const PlaceOrder = () => {
             <div className="form-control w-full ">
               <label className="label">
                 <span className="">
-                  WhatsApp Number<span className="text-red-500">*</span>
+                  What'sApp Number (with Country code)
+                  <span className="text-red-500">*</span>
                 </span>
               </label>
               <input
@@ -506,7 +485,7 @@ const PlaceOrder = () => {
                   message: "This field is required",
                 })}
               />
-              {errors.clientWhatsappNums && (
+              {errors.clientWhatsappNum && (
                 <label className="label">
                   <span className="-alt text-sm text-red-500">
                     This field is required

@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import heroProjects from "../../JSON/HeroJSON";
+// import project from "../../JSON/HeroJSON";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const HomeSection0 = () => {
   const [heroState, setHeroState] = useState(0);
   // fetch projetcs
 
-  // const {
-  //   isLoading,
-  //   isError,
-  //   data: project,
-  //   error,
-  // } = useQuery(["heroprojectdata"], async () => {
-  //   return await axiosInstance.get(`project/get-active?limit=3`);
-  // });
+  const {
+    isLoading,
+    isError,
+    data: project,
+    error,
+  } = useQuery(["heroprojectdata"], async () => {
+    let data = await axiosInstance.get(`project/get-hero-projects?limit=3`);
+    let tem = data;
+    return tem;
+  });
 
-  // console.log(project);
+  console.log(project);
 
   const handleBgChange = (index) => {
     setHeroState(index);
@@ -26,7 +28,7 @@ const HomeSection0 = () => {
       {/* MAIN DIV */}
       <div
         style={{
-          backgroundImage: `url(${heroProjects?.data[heroState]?.img})`,
+          backgroundImage: `url(${project?.data[heroState]?.img})`,
         }}
         className="lg:h-[780px] md:h-[540px] sm:h-[720px] bg-center bg-cover transition-all ease-in-out bg-hero"
       >
@@ -42,7 +44,7 @@ const HomeSection0 = () => {
             </div>
             {/* Button */}
             <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
-              {heroProjects?.data?.map((x, index) => {
+              {project?.data?.map((x, index) => {
                 return (
                   <div className="flex justify-center items-center">
                     <button
@@ -76,8 +78,8 @@ const HomeSection0 = () => {
                 />
               </button>
               <p>
-                {heroProjects?.data[heroState]?.title} -{" "}
-                {heroProjects?.data[heroState]?.location}
+                {project?.data[heroState]?.title} -{" "}
+                {project?.data[heroState]?.location}
               </p>
             </div>
           </div>

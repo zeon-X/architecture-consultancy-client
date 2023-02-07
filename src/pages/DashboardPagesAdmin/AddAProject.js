@@ -36,15 +36,18 @@ const AddAProject = () => {
     setLoading(true);
 
     // IMAGE UPLOADS  ----- SINGLE
+
+    let len = data?.img?.length;
     let image = "";
-    let imgData = new FormData();
-    if (data.img[0]) {
-      imgData.append("image", data.img[0]);
-      await axios
-        .post(`https://api.imgbb.com/1/upload?key=${API}`, imgData)
+    for (let i = 0; i < len; ++i) {
+      let formData1 = new FormData();
+      formData1.append("file", data?.img[i]);
+      await axiosInstance
+        .post("/file/upload", formData1)
         .then((res) => {
-          if (res.data.status === 200) {
-            image = res.data.data.display_url;
+          //console.log(res);
+          if (res.status === 200) {
+            image = res?.data?.url;
           }
         })
         .catch((error) => {
@@ -53,35 +56,35 @@ const AddAProject = () => {
     }
 
     // IMAGE UPLOADS -------- BEFORE
-    let len = data.galleryBefore.length;
+    len = data?.galleryBefore?.length;
     let imageArrayBefore = [];
     for (let i = 0; i < len; ++i) {
       let formData1 = new FormData();
-      formData1.append("image", data.galleryBefore[i]);
-      await axios
-        .post(`https://api.imgbb.com/1/upload?key=${API}`, formData1)
+      formData1.append("file", data?.galleryBefore[i]);
+      await axiosInstance
+        .post("/file/upload", formData1)
         .then((res) => {
-          // console.log(res.data.data.img);
-          if (res.data.status === 200) {
-            imageArrayBefore.push(res.data.data.display_url);
+          //console.log(res);
+          if (res.status === 200) {
+            imageArrayBefore.push(res?.data?.url);
           }
         })
         .catch((error) => {
           console.log(error);
         });
     }
-    // IMAGE UPLOADS -------- BEFORE
-    len = data.galleryAfter.length;
+    // IMAGE UPLOADS -------- after
+    len = data?.galleryAfter?.length;
     let imageArrayAfter = [];
     for (let i = 0; i < len; ++i) {
-      let formData2 = new FormData();
-      formData2.append("image", data.galleryAfter[i]);
-      await axios
-        .post(`https://api.imgbb.com/1/upload?key=${API}`, formData2)
+      let formData1 = new FormData();
+      formData1.append("file", data.galleryAfter[i]);
+      await axiosInstance
+        .post("/file/upload", formData1)
         .then((res) => {
-          // console.log(res.data.data.img);
-          if (res.data.status === 200) {
-            imageArrayAfter.push(res.data.data.display_url);
+          //console.log(res);
+          if (res.status === 200) {
+            imageArrayAfter.push(res?.data?.url);
           }
         })
         .catch((error) => {

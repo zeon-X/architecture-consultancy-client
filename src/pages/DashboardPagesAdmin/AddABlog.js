@@ -28,14 +28,16 @@ const AddABlog = () => {
   // ON CHANGE IMAGE IT WILL ADD THE IMAGE
   const handleImageChange = async (event) => {
     let imagedata = new FormData();
-    imagedata.append("image", event.target.files[0]);
+    imagedata.append("file", event.target.files[0]);
     // console.log(event.target.files[0]);
     setLoading(true);
-    await axios
-      .post(`https://api.imgbb.com/1/upload?key=${API}`, imagedata)
+
+    await axiosInstance
+      .post("/file/upload", imagedata)
       .then((res) => {
-        if (res.data.status === 200) {
-          setNewImg(res?.data?.data?.display_url);
+        //console.log(res);
+        if (res.status === 200) {
+          setNewImg(res?.data?.url);
           Swal.fire(
             "Saved!",
             `You have successfully added the Image.`,
@@ -43,14 +45,12 @@ const AddABlog = () => {
           ).then(() => {
             event.target.value = null;
           });
-          //   console.log(res?.data?.data?.display_url);
-          // console.log(res?.data);
         }
       })
       .catch((error) => {
-        console.log("error occured\n");
         console.log(error);
       });
+
     setLoading(false);
   };
 

@@ -60,7 +60,7 @@ const BlogDetails = () => {
     return data;
   });
 
-  console.log(commentsData);
+  // console.log(commentsData);
 
   //SUBMIL COMMENT FUNCTION
   const onSubmit = async (data) => {
@@ -96,7 +96,7 @@ const BlogDetails = () => {
         <p className="text-4xl font-bold lg:w-9/12 sm:w-full">
           {blogDetails?.data?.blogTitle}
         </p>
-        <p className="lg:w-3/12 sm:w-full">
+        <p className="lg:w-3/12 sm:w-full text-sm">
           Update At: {blogDetails?.data?.updatedAt.split("T")[0]} Time:{" "}
           {blogDetails?.data?.updatedAt.split("T")[1].split(".")[0]}
         </p>
