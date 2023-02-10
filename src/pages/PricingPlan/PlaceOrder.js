@@ -378,16 +378,16 @@ const PlaceOrder = () => {
             <div className="form-control w-full ">
               <label className="label">
                 <span className="">
-                  Budget for the Project (USD)
+                  Budget for Project (USD)
                   <span className="text-red-500">*</span>
                 </span>
               </label>
               <input
-                type="text"
+                type="number"
                 name="clientBudget"
                 className="input input-bordered text-xs rounded w-full "
                 {...register("clientBudget", {
-                  required: true,
+                  required: "ture",
                   message: "This field is required",
                 })}
               />

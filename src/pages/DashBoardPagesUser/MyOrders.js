@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import Swal from "sweetalert2";
 import MyOrdersRow1 from "../../components/MyOrdersRow/MyOrdersRow1";
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
@@ -15,22 +16,32 @@ const MyOrders = () => {
     data: myorders,
     error,
   } = useQuery(["userorders", changes], async () => {
-    // let fdata = await axiosInstance.get(`order/find?_id=${userInfo?._id}`);
-    let fdata = await axiosInstance.get(`order/get`);
+    let fdata = await axiosInstance.get(
+      `order/find-by-user?_id=${userInfo?._id}`
+    );
+    // let fdata = await axiosInstance.get(`order/get`);
+    Swal.close();
     return fdata.data;
   });
 
   // console.log(purchase);
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
-  if (isLoading) return <Loading msg="Loading..."></Loading>;
+  if (isLoading) return Swal.showLoading();
 
   return (
-    <div className="max-w-7xl mx-auto py-6 lg:px-10 md:px-10 sm:px-2  w-full">
-      <p className="text-sm font-semibold ">My Orders</p>
+    <div className="max-w-7xl min-h-screen mx-auto py-6 lg:px-10 md:px-10 sm:px-2  w-full">
+      <p className="text-lg font-semibold">All Orders</p>
       {/* purchase products */}
-      <div className="overflow-auto   rounded mt-4">
-        {myorders?.map((x) => {
-          return <MyOrdersRow1 key={x?._id} x={x}></MyOrdersRow1>;
+      <div className="overflow-auto flex flex-col-reverse mt-2 ">
+        {myorders?.map((x, index) => {
+          return (
+            <MyOrdersRow1
+              key={index}
+              x={x}
+              increaseChanges={increaseChanges}
+              changes={changes}
+            ></MyOrdersRow1>
+          );
         })}
       </div>
     </div>

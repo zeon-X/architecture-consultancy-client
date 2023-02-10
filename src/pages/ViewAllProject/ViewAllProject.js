@@ -59,7 +59,6 @@ const ViewAllProjects = () => {
           Our latest works
         </p>
       </div>
-
       {/* CATEGORIES */}
       <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
         <div>
@@ -95,8 +94,7 @@ const ViewAllProjects = () => {
           );
         })}
       </div>
-
-      {/* PROJECTS */}
+      {/* PROJECTS
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
         {project?.data?.map((x, index) => {
           return (
@@ -104,6 +102,31 @@ const ViewAllProjects = () => {
               <div
                 key={index}
                 className=" rounded-tl-2xl rounded-tr-2xl bg-white relative h-[180px] w-full bg-cover bg-center "
+                style={{ backgroundImage: `url(${x?.img})` }}
+              ></div>
+              <div className="my-4 p-4">
+                <p className=" text-sm font-semibold">
+                  {x?.title?.slice(0, 32)}
+                </p>
+                <p className="text-xs ">Location: {x?.location}</p>
+                <p className="text-xs my-4 text-gray-500">
+                  {x?.aboutLeft?.slice(0, 90)}..
+                </p>
+
+                <button className="">Learn more</button>
+              </div>
+            </div>
+          );
+        })}
+      </div> */}
+      {/* PROJECTS */}
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
+        {project?.data?.map((x, index) => {
+          return (
+            <div className="border border-gray-100 shadow-lg w-full">
+              <div
+                key={index}
+                className="  bg-white relative h-[220px] w-full bg-cover bg-center "
                 style={{ backgroundImage: `url(${x?.img})` }}
               ></div>
               <div className="my-4 p-4">

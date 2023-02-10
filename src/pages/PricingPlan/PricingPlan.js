@@ -22,7 +22,10 @@ const PricingPlan = () => {
             You may ask for consulation which is free of cost!
           </p>
         </div>
-        <button className="btn btn-wide bg-green-600 border-none text-white">
+        <button
+          onClick={() => navigate("/order/free-consultation")}
+          className="btn btn-wide bg-green-600 border-none text-white"
+        >
           Get Now
         </button>
       </div>

@@ -9,8 +9,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./Loading";
 
 const Header = () => {
-  const location = useLocation();
-  console.log(location?.pathname?.includes("dashboard"));
   const navigate = useNavigate();
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const [user, loading, error] = useAuthState(auth);
@@ -30,7 +28,7 @@ const Header = () => {
       {/* Navbar Main + sticky */}
       <div className="bg-white text-black z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-200 py-5 lg:px-20 sm:px-2">
         {/* TOGGLE BTN MOBILE SM DEVICE */}
-        {/* <div className="flex-none lg:hidden">
+        <div className="flex-none lg:hidden">
           <label htmlFor="normalmenusm" className="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +44,7 @@ const Header = () => {
               ></path>
             </svg>
           </label>
-        </div> */}
+        </div>
         {/* START */}
         <div className="navbar-start flex lg:justify-start md:justify-end sm:justify-end items-center px-2 mx-2">
           {/* starting left portion here */}
@@ -90,9 +88,6 @@ const Header = () => {
             </li>
             <li>
               <a href="/pricing/#pricing-top">Pricing</a>
-              {/* <NavLink to="/pricing/#pricing-top">
-                <li>Pricing</li>
-              </NavLink> */}
             </li>
             <li>
               <a href="/blogs">Blog</a>
@@ -119,7 +114,7 @@ const Header = () => {
             </svg>
           </button>
 
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end lg:block sm:hidden md:hidden">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +137,7 @@ const Header = () => {
             >
               {user && userInfo?.role === "user" && (
                 <>
-                  <li onClick={() => navigate("/place-order")}>
+                  <li onClick={() => navigate("/pricing/#pricing-top")}>
                     <a className="">Place an Order</a>
                   </li>
                   <li onClick={() => navigate("/my-orders")}>
@@ -153,7 +148,10 @@ const Header = () => {
 
               {user && userInfo?.role === "admin" && (
                 <>
-                  <li className="" onClick={() => navigate("/dashboard-admin")}>
+                  <li
+                    className=""
+                    onClick={() => navigate("/dashboard-admin/manage-orders")}
+                  >
                     <a className="bg-gray-100">Admin Dashboard</a>
                   </li>
                   <li

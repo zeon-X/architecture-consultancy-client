@@ -28,6 +28,9 @@ import Blog from "./pages/Blog/Blog";
 import BlogDetails from "./pages/Blog/BlogDetails";
 import ProjectDetails from "./pages/ViewAllProject/ProjectDetails";
 import PlaceOrder from "./pages/PricingPlan/PlaceOrder";
+import LoginPage from "./pages/LoginRegister/LoginPage";
+import RegisterPage from "./pages/LoginRegister/RegisterPage";
+import ManageOrderDetails from "./pages/DashboardPagesAdmin/ManageOrderDetails";
 
 function App() {
   return (
@@ -35,8 +38,6 @@ function App() {
       {/*  ------ MODALS HERE START ----  */}
       <LoginModal></LoginModal>
       <RegisterModal></RegisterModal>
-      {/* <UpdateCategoryModal></UpdateCategoryModal> */}
-      {/*  ------ MODALS HERE END ------  */}
 
       {/* ------ PAGES START --------- */}
       <Routes>
@@ -45,6 +46,22 @@ function App() {
           element={
             <Drawer>
               <NotFound></NotFound>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="/login"
+          element={
+            <Drawer>
+              <LoginPage></LoginPage>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="/register"
+          element={
+            <Drawer>
+              <RegisterPage></RegisterPage>
             </Drawer>
           }
         ></Route>
@@ -138,24 +155,31 @@ function App() {
         <Route
           path="/dashboard-admin"
           element={
-            <Drawer>
-              <RequireAuthAndAdmin>
-                <DashboardDrawer></DashboardDrawer>
-              </RequireAuthAndAdmin>
-            </Drawer>
+            // <Drawer>
+            <RequireAuthAndAdmin>
+              <DashboardDrawer></DashboardDrawer>
+            </RequireAuthAndAdmin>
+            // </Drawer>
           }
         >
           <Route index element={<ManageAllOrders></ManageAllOrders>}></Route>
-          {/* <Route path="my-account" element={<MyProfile></MyProfile>}></Route>
+          {/* 
+          <Route path="my-account" element={<MyProfile></MyProfile>}></Route>
           <Route
             path="my-account-update"
             element={<EditMyProfile></EditMyProfile>}
-          ></Route> */}
+          ></Route> 
+          */}
 
           <Route
             path="manage-orders"
             element={<ManageAllOrders></ManageAllOrders>}
           ></Route>
+          <Route
+            path="manage-order-details/:_id"
+            element={<ManageOrderDetails></ManageOrderDetails>}
+          ></Route>
+
           <Route
             path="manage-add-category"
             element={<AddCategory></AddCategory>}
@@ -185,7 +209,6 @@ function App() {
             path="manage-blog"
             element={<ManageBlogs></ManageBlogs>}
           ></Route>
-          {/* <Route path="manage-admin" element={<MakeAdmin></MakeAdmin>}></Route> */}
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Route>
         {/* -------- ADMIN DB WITH PANEL END --------- */}

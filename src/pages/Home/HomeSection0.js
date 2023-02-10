@@ -18,7 +18,7 @@ const HomeSection0 = () => {
     return tem;
   });
 
-  console.log(project);
+  // console.log(project);
 
   const handleBgChange = (index) => {
     setHeroState(index);
@@ -30,19 +30,20 @@ const HomeSection0 = () => {
         style={{
           backgroundImage: `url(${project?.data[heroState]?.img})`,
         }}
-        className="lg:h-[780px] md:h-[540px] sm:h-[720px] bg-center bg-cover transition-all ease-in-out bg-hero"
+        className="lg:h-[720px] md:h-[540px] sm:h-[700px] bg-center bg-cover transition-all ease-in-out bg-hero"
       >
         {/* INSIDE BG DIV */}
-        <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex lg:flex-row md:flex-row sm:flex-col gap-6 justify-center items-center  text-white">
+        <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex    gap-6 justify-center items-center  text-white">
           {/* LEFT SIDE */}
-          <div className="lg:w-8/12 md:w-full sm:w-full h-full flex flex-col justify-center items-start">
-            <div className="lg:mb-24 md:mb-0 sm:mb-0">
+          <div className="w-8/12 h-full flex flex-col justify-center py-10 items-start">
+            {/* BIG TITLE */}
+            <div className="mb-24">
               <p className="font-bold text-6xl">The art of building</p>
               <button className=" bg-white border-none rounded-none mt-6 text-black text-sm px-16 py-4">
                 Discover now
               </button>
             </div>
-            {/* Button */}
+            {/* Buttons */}
             <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
               {project?.data?.map((x, index) => {
                 return (
@@ -68,11 +69,11 @@ const HomeSection0 = () => {
             </div>
           </div>
           {/* RIGHT SIDE */}
-          <div className="lg:w-4/12  md:w-full sm:w-full h-full flex flex-col justify-end items-center">
-            <div className="flex flex-col lg:items-end md:items-end sm:items-start mb-10">
+          <div className="w-4/12  h-full flex flex-col justify-end items-center">
+            <div className="flex flex-col items-start mb-10">
               <button className="mb-8 hover:cursor-pointer ">
                 <img
-                  className="w-[180px] h-[120px]"
+                  className="lg:w-[180px] lg:h-[120px] md:w-[90px] md:h-[60px] sm:w-[45px] sm:h-[30px]"
                   src={"https://i.ibb.co/PtckDVr/ar.png"}
                   alt=""
                 />

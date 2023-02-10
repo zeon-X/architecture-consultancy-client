@@ -4,11 +4,11 @@ const NotFound = () => {
   return (
     <div className="flex flex-col h-screen w-full justify-center items-center ">
       <img
-        className="w-24 h-24"
-        src="https://cdn-icons-png.flaticon.com/512/2998/2998221.png"
+        className="w-48 h-48"
+        src="https://cdn-icons-png.flaticon.com/512/5545/5545083.png"
         alt="error"
       />
-      <p className="text-sm mt-4 font-semibold">404 | Not Found</p>
+      <p className="my-6 text-lg text-purple-500">Page Not Found</p>
     </div>
   );
 };

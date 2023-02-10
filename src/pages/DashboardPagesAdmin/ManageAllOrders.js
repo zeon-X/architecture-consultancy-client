@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const ManageAllOrders = () => {
+  const navigate = useNavigate();
   const [changes, increaseChanges] = useState(0);
   const {
     isLoading,
@@ -18,41 +20,6 @@ const ManageAllOrders = () => {
     Swal.close();
     return fdata.data;
   });
-
-  const handleOrderStatus = (_id, status) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: `Update the status to ${status}`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "green",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosInstance
-          .put(`order/update-status?_id=${_id}&status=${status}`)
-          .then((res) => {
-            console.log(res.data);
-            if (res.status === 200) {
-              Swal.fire(
-                "Status Updated!",
-                `Your order status has been updated to ${res.data.status}`,
-                "success"
-              ).then(() => {
-                increaseChanges(changes + 1);
-              });
-            } else {
-              Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: res.response.data.message || res.response.data,
-              });
-            }
-          });
-      }
-    });
-  };
 
   const handleDeleteOrder = (_id) => {
     Swal.fire({
@@ -100,18 +67,18 @@ const ManageAllOrders = () => {
               <th className="p-2 border border-gray-300 ">Service Category</th>
 
               <th className="p-2 border border-gray-300 ">Client Name</th>
-              <th className="p-2 border border-gray-300 ">What'sapp Phone</th>
-              <th className="p-2 border border-gray-300 ">Address</th>
+              <th className="p-2 border border-gray-300 ">What'sapp</th>
+              {/* <th className="p-2 border border-gray-300 ">Address</th> */}
               <th className="p-2 border border-gray-300 ">Email</th>
 
               <th className="p-2 border border-gray-300 ">Budget</th>
-              <th className="p-2 border border-gray-300 ">Message</th>
+              {/* <th className="p-2 border border-gray-300 ">Message</th> */}
 
               <th className="p-2 border border-gray-300 ">Order Status</th>
 
-              <th className="p-2 border border-gray-300 ">
-                Status Updating Buttons
-              </th>
+              <th className="p-2 border border-gray-300 ">View Details</th>
+              <th className="p-2 border border-gray-300 ">Created Time</th>
+              <th className="p-2 border border-gray-300 ">Updated Time</th>
               <th className="p-2 border border-gray-300 ">Delete</th>
             </tr>
           </thead>
@@ -121,28 +88,32 @@ const ManageAllOrders = () => {
                 <tr key={index}>
                   {/* order info */}
 
-                  <td className="p-2 border border-gray-300 ">
-                    <p className="uppercase">{x?.serviceCategory}</p>
+                  <td align="center" className="p-2 border border-gray-300 ">
+                    <p className="uppercase">
+                      {x?.serviceCategory === "3dmodel-design"
+                        ? "Food truck, Container shop, booth Design"
+                        : x?.serviceCategory}
+                    </p>
                   </td>
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?.buyerName}
+                    {x?.clientName}
                   </td>
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?.whatsappPhone}
+                    {x?.clientWhatsappNum}
                   </td>
-                  <td align="center" className="p-2 border border-gray-300">
+                  {/* <td align="center" className="p-2 border border-gray-300">
                     {x?.address}
-                  </td>
+                  </td> */}
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?.email}
+                    {x?.clientEmail}
                   </td>
 
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?.budget}
+                    {x?.clientBudget}
                   </td>
-                  <td align="center" className="p-2 border border-gray-300">
+                  {/* <td align="center" className="p-2 border border-gray-300">
                     {x?.clientMessage}
-                  </td>
+                  </td> */}
                   <td align="center" className="p-2 border border-gray-300">
                     <p
                       className={
@@ -164,76 +135,28 @@ const ManageAllOrders = () => {
                   </td>
                   {/* BTNS FROM HERE */}
 
-                  <td className="border border-gray-300">
-                    <tr className="">
-                      {/* pending */}
-                      <td
-                        align="center"
-                        className="p-2  mx-auto content-center"
-                      >
-                        <button
-                          onClick={() => {
-                            handleOrderStatus(x?._id, "pending");
-                          }}
-                          className="btn btn-xs bg-gray-500 border-none text-white"
-                        >
-                          Pending
-                        </button>
-                      </td>
-                      {/* accepted */}
-                      <td
-                        align="center"
-                        className="p-2  mx-auto content-center"
-                      >
-                        <button
-                          onClick={() => {
-                            handleOrderStatus(x?._id, "accepted");
-                          }}
-                          className="btn btn-xs bg-blue-800 border-none text-white"
-                        >
-                          Accepted
-                        </button>
-                      </td>
-                      {/* processing */}
-                      <td align="center" className="p-2 mx-auto content-center">
-                        <button
-                          onClick={() => {
-                            handleOrderStatus(x?._id, "processing");
-                          }}
-                          className="btn btn-xs bg-warning border-none text-white"
-                        >
-                          Processing
-                        </button>
-                      </td>
-                      {/* Completed */}
-                      <td
-                        align="center"
-                        className="p-2  mx-auto content-center"
-                      >
-                        <button
-                          onClick={() => {
-                            handleOrderStatus(x?._id, "completed");
-                          }}
-                          className="btn btn-xs bg-success border-none text-white"
-                        >
-                          Completed
-                        </button>
-                      </td>
-                      {/* rejected */}
-                      <td
-                        align="center"
-                        className="p-2  mx-auto content-center"
-                      >
-                        <button
-                          onClick={() => {
-                            handleOrderStatus(x?._id, "rejected");
-                          }}
-                          className="btn btn-xs bg-red-900 border-none text-white"
-                        >
-                          Rejected
-                        </button>
-                      </td>
-                    </tr>
+                  {/* view detaiils */}
+                  <td
+                    align="center"
+                    className="p-2 border border-gray-300 mx-auto content-center text-white"
+                  >
+                    <button
+                      className="btn btn-xs bg-green-500 border-none text-white"
+                      onClick={() =>
+                        navigate(
+                          `/dashboard-admin/manage-order-details/${x?._id}`
+                        )
+                      }
+                    >
+                      Details
+                    </button>
+                  </td>
+
+                  <td align="center" className="p-2 border border-gray-300">
+                    {x?.createdAt?.split("T")[0]}
+                  </td>
+                  <td align="center" className="p-2 border border-gray-300">
+                    {x?.updatedAt?.split("T")[0]}
                   </td>
 
                   {/* delete */}

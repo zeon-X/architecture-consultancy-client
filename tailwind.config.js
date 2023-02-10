@@ -14,15 +14,6 @@ module.exports = {
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {
-      backgroundImage: {
-        hs2p: "url('https://i.ibb.co/T2DNyxw/p.jpg')",
-        hs2i: "url('https://i.ibb.co/qp879rY/i.jpg')",
-        hs2e: "url('https://i.ibb.co/Px8DvhP/e.jpg')",
-        hs2d: "url('https://i.ibb.co/D7T3jLZ/d.jpg')",
-        hs2c: "url('https://i.ibb.co/BV9rvsQ/c.jpg')",
-      },
-    },
   },
   daisyui: {
     themes: [
@@ -37,6 +28,7 @@ module.exports = {
           success: "#079500",
           warning: "#F1AC06",
           error: "#DE1B8D",
+          green: "#4FA74F",
         },
       },
     ],

@@ -19,7 +19,7 @@ const ManageBlogs = () => {
     return data;
   });
 
-  console.log(blog);
+  // console.log(blog);
 
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
 

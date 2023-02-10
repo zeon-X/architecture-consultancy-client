@@ -176,7 +176,10 @@ const ManageReview = () => {
                       Details
                     </button>
                   </td>
-                  <td>
+                  <td
+                    align="center"
+                    className=" p-2 border  border-gray-300 mx-auto content-center"
+                  >
                     <div>
                       <CopyToClipboard
                         text={x?._id}

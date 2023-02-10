@@ -13,14 +13,14 @@ const Drawer = ({ children }) => {
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const [user, loading, error] = useAuthState(auth);
   const logout = () => {
-    LogoutFunc(auth);
-    userInfo = {};
     Swal.fire({
       icon: "success",
       title: "You account has been logged out",
       showConfirmButton: false,
       timer: 1000,
     });
+    LogoutFunc(auth);
+    userInfo = {};
   };
   return (
     <div>
@@ -32,7 +32,7 @@ const Drawer = ({ children }) => {
 
           <Header></Header>
 
-          <div className=" mx-auto w-full ">
+          <div className=" mx-auto w-full  ">
             {/* Page content here ||||| max-w-7xl  */}
             {children}
             {/*  Footer  */}
@@ -45,9 +45,77 @@ const Drawer = ({ children }) => {
           <label htmlFor="normalmenusm" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100">
             {/* <!-- Sidebar content here --> */}
+
             <li>
-              <NavLink to="/">HOME</NavLink>
+              <NavLink to="/#hs0">Home</NavLink>
             </li>
+            <li>
+              <NavLink to="/#hs1">Service</NavLink>
+            </li>
+            <li>
+              <NavLink to="/#hs2">What We Do</NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/#hs3">Our Latest Works</NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/#hs5">What's Client's Say</NavLink>
+            </li>
+            <li>
+              <NavLink to="/#contact-us">Contact Us</NavLink>
+            </li>
+            <li>
+              <NavLink to="/pricing/#pricing-top">Pricing</NavLink>
+            </li>
+            <li>
+              <NavLink to="/blogs">Blog</NavLink>
+            </li>
+
+            {user && userInfo?.role === "user" && (
+              <>
+                <li>
+                  <NavLink to="/pricing/#pricing-top">Place an Order</NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/my-orders"}>My Orders</NavLink>
+                </li>
+              </>
+            )}
+
+            {user && userInfo?.role === "admin" && (
+              <>
+                <li>
+                  <NavLink to="/dashboard-admin/manage-orders">
+                    Admin Dashboard
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+            {user && userInfo && (
+              <>
+                <li onClick={logout}>
+                  <a>Logout</a>
+                </li>
+              </>
+            )}
+
+            {(!user || !userInfo) && (
+              <>
+                <li>
+                  <label htmlFor="login-modal" className="">
+                    Login
+                  </label>
+                </li>
+                <li>
+                  <label htmlFor="register-modal" className="">
+                    Register
+                  </label>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

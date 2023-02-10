@@ -44,7 +44,7 @@ const Blog = () => {
         return (
           <div key={index} className="w-full my-10">
             {index % 2 === 1 && (
-              <div className="flex lg:flex-row sm:flex-col lg:h-[360px] sm:h-[480px] gap-10 ">
+              <div className="flex lg:flex-row sm:flex-col lg:h-[360px] md:h-[680px] sm:h-[480px] gap-10 ">
                 {/* WRITING PART */}
                 <div className="lg:w-5/12 sm:w-full flex flex-col justify-center items-center  lg:h-[360px] sm:h-[480px] lg:order-1 sm:order-2">
                   <div className="w-full flex flex-col justify-center lg:items-end sm:items-start ">
@@ -82,7 +82,7 @@ const Blog = () => {
                 {/* IMAGE PART */}
                 <div
                   style={{ backgroundImage: `url(${x?.blogPara[0]?.img})` }}
-                  className="lg:w-7/12 sm:w-full  lg:h-[360px] sm:h-[480px]  bg-no-repeat bg-cover bg-center lg:order-2 sm:order-1"
+                  className="lg:w-7/12 sm:w-full md:w-full  lg:h-[360px] md:h-[680px] sm:h-[480px]  bg-no-repeat bg-cover bg-center lg:order-2 sm:order-1"
                 >
                   <div className="border-b border-black w-[100px] ml-[-35px] mt-[78px] lg:block sm:hidden"></div>
                 </div>
@@ -93,7 +93,7 @@ const Blog = () => {
                 {/* IMAGE PART */}
                 <div
                   style={{ backgroundImage: `url(${x?.blogPara[0]?.img})` }}
-                  className="lg:w-7/12 sm:w-full  lg:h-[360px] sm:h-[480px] flex justify-end items-start  bg-no-repeat bg-cover bg-center"
+                  className="lg:w-7/12 sm:w-full md:w-full  lg:h-[360px] md:h-[680px] sm:h-[480px] flex justify-end items-start  bg-no-repeat bg-cover bg-center"
                 >
                   <div className="border-b border-black w-[100px] mr-[-35px] mt-[78px] lg:block sm:hidden"></div>
                 </div>
