@@ -18,7 +18,7 @@ import AddCategory from "./pages/DashboardPagesAdmin/AddCategory";
 import ManageCategory from "./pages/DashboardPagesAdmin/ManageCategory";
 import AddCustomReview from "./pages/DashboardPagesAdmin/AddCustomReview";
 import ManageReview from "./pages/DashboardPagesAdmin/ManageReview";
-import ViewAllProjects from "./pages/ViewAllProject/ViewAllProject";
+import ViewAllProjects from "./pages/Project/ViewAllProject";
 import LoginModal from "./pages/Modals/LoginModal";
 import RegisterModal from "./pages/Modals/RegisterModal";
 import PricingPlan from "./pages/PricingPlan/PricingPlan";
@@ -26,11 +26,14 @@ import AddABlog from "./pages/DashboardPagesAdmin/AddABlog";
 import ManageBlogs from "./pages/DashboardPagesAdmin/ManageBlogs";
 import Blog from "./pages/Blog/Blog";
 import BlogDetails from "./pages/Blog/BlogDetails";
-import ProjectDetails from "./pages/ViewAllProject/ProjectDetails";
+import ProjectDetails from "./pages/Project/ProjectDetails";
 import PlaceOrder from "./pages/PricingPlan/PlaceOrder";
 import LoginPage from "./pages/LoginRegister/LoginPage";
 import RegisterPage from "./pages/LoginRegister/RegisterPage";
 import ManageOrderDetails from "./pages/DashboardPagesAdmin/ManageOrderDetails";
+import ManageHeroProjects from "./pages/DashboardPagesAdmin/ManageHeroProjects";
+import AddServiceCategory from "./pages/DashboardPagesAdmin/AddServiceCategory";
+import ManageServiceCategory from "./pages/DashboardPagesAdmin/ManageServiceCategory";
 
 function App() {
   return (
@@ -83,7 +86,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/project-details/:_id"
+          path="/project-details/:_id/:catId"
           element={
             <Drawer>
               <ProjectDetails></ProjectDetails>
@@ -172,6 +175,10 @@ function App() {
           */}
 
           <Route
+            path="manage-hero"
+            element={<ManageHeroProjects></ManageHeroProjects>}
+          ></Route>
+          <Route
             path="manage-orders"
             element={<ManageAllOrders></ManageAllOrders>}
           ></Route>
@@ -188,6 +195,7 @@ function App() {
             path="manage-category"
             element={<ManageCategory></ManageCategory>}
           ></Route>
+
           <Route
             path="manage-add-project"
             element={<AddAProject></AddAProject>}
@@ -196,6 +204,7 @@ function App() {
             path="manage-projects"
             element={<ManageProjects></ManageProjects>}
           ></Route>
+
           <Route
             path="manage-add-custom-review"
             element={<AddCustomReview></AddCustomReview>}
@@ -204,11 +213,22 @@ function App() {
             path="manage-review"
             element={<ManageReview></ManageReview>}
           ></Route>
+
           <Route path="manage-add-blog" element={<AddABlog></AddABlog>}></Route>
           <Route
             path="manage-blog"
             element={<ManageBlogs></ManageBlogs>}
           ></Route>
+
+          <Route
+            path="manage-add-servicecategory"
+            element={<AddServiceCategory></AddServiceCategory>}
+          ></Route>
+          <Route
+            path="manage-servicecategory"
+            element={<ManageServiceCategory></ManageServiceCategory>}
+          ></Route>
+
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Route>
         {/* -------- ADMIN DB WITH PANEL END --------- */}

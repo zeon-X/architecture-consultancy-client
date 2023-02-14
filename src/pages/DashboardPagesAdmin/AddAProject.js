@@ -136,7 +136,7 @@ const AddAProject = () => {
   if (loading === true) Swal.showLoading();
 
   return (
-    <div className="w-full py-6 lg:px-10 md:px-10 sm:px-2 ">
+    <div className="w-full py-6 lg:px-10 md:px-10 sm:px-2  max-w-7xl mx-auto">
       <p className="text-sm font-bold">Add a project</p>
 
       <form className="mt-4 text-xs" onSubmit={handleSubmit(onSubmit)}>

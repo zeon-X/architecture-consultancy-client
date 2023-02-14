@@ -29,7 +29,7 @@ const UpdateReviewModal = ({ props, increaseChanges, changes }) => {
     // IMAGE UPLOADS  ----- SINGLE
     let image = "";
     let imgData = new FormData();
-    console.log(data.clientImg);
+    // console.log(data.clientImg);
     if (data.clientImg[0]) {
       imgData.append("image", data.clientImg[0]);
       await axios

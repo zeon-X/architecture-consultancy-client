@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ErrorPage from "../../shared/ErrorPage";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import UpdateBlogModal from "../Modals/UpdateBlogModal";
 
 const ManageBlogs = () => {
   const [changes, increaseChanges] = useState(0);
-
+  const navigate = useNavigate();
   const [updateData, setUpdateData] = useState({});
   const {
     isLoading,
@@ -73,6 +75,7 @@ const ManageBlogs = () => {
               <th className="p-2 border border-gray-300 ">Updation Date</th>
               {/* <th className="p-2 border border-gray-300 ">Update</th> */}
               <th className="p-2 border border-gray-300 ">Delete</th>
+              <th className="p-2 border border-gray-300 ">Update</th>
               <th className="p-2 border border-gray-300 ">Details</th>
             </tr>
           </thead>
@@ -97,21 +100,6 @@ const ManageBlogs = () => {
 
                   {/* BTNS FROM HERE */}
 
-                  {/* update */}
-                  {/* <td
-                    align="center"
-                    className="p-2 border  border-gray-300 mx-auto content-center"
-                  >
-                    <label
-                      htmlFor="update-blog-modal"
-                      className="btn btn-xs bg-warning border-none text-white"
-                      onClick={() => {
-                        setUpdateData(x);
-                      }}
-                    >
-                      Update
-                    </label>
-                  </td> */}
                   {/* delete */}
                   <td
                     align="center"
@@ -124,12 +112,32 @@ const ManageBlogs = () => {
                       Delete
                     </button>
                   </td>
+                  {/* update */}
+                  <td
+                    align="center"
+                    className="p-2 border  border-gray-300 mx-auto content-center"
+                  >
+                    <label
+                      htmlFor="update-blog-modal"
+                      className="btn btn-xs bg-warning border-none text-white"
+                      onClick={() => {
+                        setUpdateData(x);
+                      }}
+                    >
+                      Update
+                    </label>
+                  </td>
                   {/* details */}
                   <td
                     align="center"
                     className=" p-2 border  border-gray-300 mx-auto content-center"
                   >
-                    <button className="btn btn-xs bg-success border-none text-white">
+                    <button
+                      onClick={() => {
+                        navigate(`/blog-details/${x?._id}`);
+                      }}
+                      className="btn btn-xs bg-success border-none text-white"
+                    >
                       Details
                     </button>
                   </td>
@@ -140,11 +148,11 @@ const ManageBlogs = () => {
         </table>
       </div>
       {/* Update Modal Here */}
-      {/* <UpdateBlogModal
+      <UpdateBlogModal
         props={updateData}
         increaseChanges={increaseChanges}
         changes={changes}
-      ></UpdateBlogModal> */}
+      ></UpdateBlogModal>
     </div>
   );
 };

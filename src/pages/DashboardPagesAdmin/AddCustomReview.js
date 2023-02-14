@@ -77,7 +77,7 @@ const AddCustomReview = () => {
   }
 
   return (
-    <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full">
+    <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full  max-w-7xl mx-auto">
       <p className="text-sm font-bold">Add a Review</p>
 
       <form

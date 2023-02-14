@@ -107,7 +107,10 @@ const BlogDetails = () => {
         return (
           <div key={index}>
             <img className="w-full rounded-xl" src={x?.img} alt="" />
-            <p className="my-16 text-lg text-gray-500">{x?.paragraph}</p>
+            <p
+              className="my-16 text-lg text-gray-500"
+              dangerouslySetInnerHTML={{ __html: x?.paragraph }}
+            ></p>
           </div>
         );
       })}

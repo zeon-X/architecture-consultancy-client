@@ -8,16 +8,15 @@ const HomeSection2 = () => {
     >
       {/* heading */}
       <div className="w-full flex lg:flex-row md:flex-row sm:flex-col justify-between lg:items-center md:items-center sm:items-start lg:px-16 md:px-10 sm:px-2">
-        <p className="text-4xl font-bold text-black">What we do</p>
-        <button className="flex items-center gap-6">
-          <p className="text-black ">see more service</p>
+        <p className="text-3xl font-bold text-black">What we do</p>
+        <button className="flex items-center gap-2 text-sm uppercase mt-4 hover:text-red-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="black"
-            className="w-6 h-6"
+            stroke="currentColor"
+            className="w-6 h-6 "
           >
             <path
               strokeLinecap="round"
@@ -25,11 +24,12 @@ const HomeSection2 = () => {
               d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
             />
           </svg>
+          See more service
         </button>
       </div>
 
       {/* main categories article DSKTOP */}
-      <div className="w-full lg:flex md:flex sm:hidden h-[580px] mt-10 text-white ">
+      <div className="w-full lg:flex md:hidden sm:hidden h-[580px] mt-6 text-white ">
         {/* planning */}
         <div
           style={{ backgroundImage: `url(https://i.ibb.co/T2DNyxw/p.jpg)` }}
@@ -85,7 +85,7 @@ const HomeSection2 = () => {
       </div>
 
       {/* main categories article MOBILE */}
-      <div className="w-full lg:hidden md:hidden sm:flex flex-wrap mx-auto gap-3 mt-10 text-white ">
+      <div className="w-full lg:hidden md:flex sm:flex flex-wrap mx-auto gap-3 mt-10 text-white ">
         {/* planning */}
         <div
           style={{ backgroundImage: `url(https://i.ibb.co/T2DNyxw/p.jpg)` }}

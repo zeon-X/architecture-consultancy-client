@@ -32,7 +32,7 @@ const Drawer = ({ children }) => {
 
           <Header></Header>
 
-          <div className=" mx-auto w-full  ">
+          <div className=" mx-auto w-full  bg-gray-100">
             {/* Page content here ||||| max-w-7xl  */}
             {children}
             {/*  Footer  */}
@@ -57,18 +57,9 @@ const Drawer = ({ children }) => {
             </li>
 
             <li>
-              <NavLink to="/#hs3">Our Latest Works</NavLink>
+              <NavLink to="/all-projects">Our Latest Works</NavLink>
             </li>
 
-            <li>
-              <NavLink to="/#hs5">What's Client's Say</NavLink>
-            </li>
-            <li>
-              <NavLink to="/#contact-us">Contact Us</NavLink>
-            </li>
-            <li>
-              <NavLink to="/pricing/#pricing-top">Pricing</NavLink>
-            </li>
             <li>
               <NavLink to="/blogs">Blog</NavLink>
             </li>
@@ -105,14 +96,16 @@ const Drawer = ({ children }) => {
             {(!user || !userInfo) && (
               <>
                 <li>
-                  <label htmlFor="login-modal" className="">
+                  {/* <label htmlFor="login-modal" className="">
                     Login
-                  </label>
+                  </label> */}
+                  <NavLink to="/login">Login</NavLink>
                 </li>
                 <li>
-                  <label htmlFor="register-modal" className="">
+                  {/* <label htmlFor="register-modal" className="">
                     Register
-                  </label>
+                  </label> */}
+                  <NavLink to="/register">Register</NavLink>
                 </li>
               </>
             )}

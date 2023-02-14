@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import ShowProjects from "./ShowProjects";
 
 const ViewAllProjects = () => {
   const [categoryChange, setCategoryChange] = useState("");
@@ -51,7 +52,7 @@ const ViewAllProjects = () => {
   return (
     <div
       id=""
-      className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center min-h-screen"
+      className="max-w-7xl mx-auto px-4 flex flex-col justify-center items-center min-h-screen"
     >
       {/* intro */}
       <div className="">
@@ -69,7 +70,7 @@ const ViewAllProjects = () => {
             className={
               categoryChange === ""
                 ? "text-center text-sm text-black "
-                : "text-center text-sm text-gray-500 "
+                : "text-center text-sm text-gray-500 hover:text-black"
             }
           >
             All
@@ -85,7 +86,7 @@ const ViewAllProjects = () => {
                 className={
                   categoryChange === x?._id
                     ? "text-center text-sm text-black  "
-                    : "text-center text-sm text-gray-500"
+                    : "text-center text-sm text-gray-500 hover:text-black"
                 }
               >
                 {x?.categoryTitle}
@@ -94,56 +95,8 @@ const ViewAllProjects = () => {
           );
         })}
       </div>
-      {/* PROJECTS
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
-        {project?.data?.map((x, index) => {
-          return (
-            <div className="border border-gray-100 rounded-2xl">
-              <div
-                key={index}
-                className=" rounded-tl-2xl rounded-tr-2xl bg-white relative h-[180px] w-full bg-cover bg-center "
-                style={{ backgroundImage: `url(${x?.img})` }}
-              ></div>
-              <div className="my-4 p-4">
-                <p className=" text-sm font-semibold">
-                  {x?.title?.slice(0, 32)}
-                </p>
-                <p className="text-xs ">Location: {x?.location}</p>
-                <p className="text-xs my-4 text-gray-500">
-                  {x?.aboutLeft?.slice(0, 90)}..
-                </p>
 
-                <button className="">Learn more</button>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
-      {/* PROJECTS */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
-        {project?.data?.map((x, index) => {
-          return (
-            <div className="border border-gray-100 shadow-lg w-full">
-              <div
-                key={index}
-                className="  bg-white relative h-[220px] w-full bg-cover bg-center "
-                style={{ backgroundImage: `url(${x?.img})` }}
-              ></div>
-              <div className="my-4 p-4">
-                <p className=" text-sm font-semibold">
-                  {x?.title?.slice(0, 32)}
-                </p>
-                <p className="text-xs ">Location: {x?.location}</p>
-                <p className="text-xs my-4 text-gray-500">
-                  {x?.aboutLeft?.slice(0, 90)}..
-                </p>
-
-                <button className="">Learn more</button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <ShowProjects project={project}></ShowProjects>
     </div>
   );
 };

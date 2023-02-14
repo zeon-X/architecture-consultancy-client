@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 // import project from "../../JSON/HeroJSON";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const HomeSection0 = () => {
+  const navigate = useNavigate();
   const [heroState, setHeroState] = useState(0);
   // fetch projetcs
 
@@ -18,11 +20,12 @@ const HomeSection0 = () => {
     return tem;
   });
 
-  // console.log(project);
+  console.log(project);
 
   const handleBgChange = (index) => {
     setHeroState(index);
   };
+
   return (
     <section className="w-full mb-16">
       {/* MAIN DIV */}
@@ -38,10 +41,20 @@ const HomeSection0 = () => {
           <div className="w-8/12 h-full flex flex-col justify-center py-10 items-start">
             {/* BIG TITLE */}
             <div className="mb-24">
-              <p className="font-bold text-6xl">The art of building</p>
-              <button className=" bg-white border-none rounded-none mt-6 text-black text-sm px-16 py-4">
-                Discover now
-              </button>
+              <p className="font-bold text-6xl">
+                {project?.data[heroState]?.title}
+              </p>
+              {/* <p className="">
+                {project?.data[heroState]?.aboutLeft.slice(0, 100)}
+              </p> */}
+              <div className="flex  gap-4">
+                <button className=" bg-white border border-white rounded-none mt-6 text-black text-sm px-16 py-4 hover:bg-gray-300 ">
+                  Discover now
+                </button>
+                <button className=" border border-white rounded-none mt-6 text-white text-sm px-16 py-4 font-semibold hover:bg-white hover:text-black ">
+                  Get a Quote
+                </button>
+              </div>
             </div>
             {/* Buttons */}
             <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
@@ -71,7 +84,14 @@ const HomeSection0 = () => {
           {/* RIGHT SIDE */}
           <div className="w-4/12  h-full flex flex-col justify-end items-center">
             <div className="flex flex-col items-start mb-10">
-              <button className="mb-8 hover:cursor-pointer ">
+              <button
+                onClick={() =>
+                  navigate(
+                    `/project-details/${project?.data[heroState]?._id}/${project?.data[heroState]?.category?._id}`
+                  )
+                }
+                className="mb-8 hover:cursor-pointer "
+              >
                 <img
                   className="lg:w-[180px] lg:h-[120px] md:w-[90px] md:h-[60px] sm:w-[45px] sm:h-[30px]"
                   src={"https://i.ibb.co/PtckDVr/ar.png"}

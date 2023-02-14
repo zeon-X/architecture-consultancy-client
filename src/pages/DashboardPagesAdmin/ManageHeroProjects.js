@@ -6,7 +6,7 @@ import ErrorPage from "../../shared/ErrorPage";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import UpdateProjectModal from "../Modals/UpdateProjectModal";
 
-const ManageProjects = () => {
+const ManageHeroProjects = () => {
   const [changes, increaseChanges] = useState(0);
   const navigate = useNavigate();
   const [updateData, setUpdateData] = useState({});
@@ -16,7 +16,7 @@ const ManageProjects = () => {
     data: project,
     error,
   } = useQuery(["projectsadmin", changes], async ({ changes }) => {
-    let data = await axiosInstance.get("project/get");
+    let data = await axiosInstance.get(`project/get-hero-projects?limit=3`);
     Swal.close();
     return data;
   });
@@ -86,7 +86,7 @@ const ManageProjects = () => {
 
   return (
     <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full">
-      <p className="text-sm font-semibold ">Manage Projects</p>
+      <p className="text-sm font-semibold ">Manage Hero Projects</p>
       {/* purchase projects */}
       <div className="overflow-auto   rounded mt-4">
         <table className="border-collaspe text-xs border border-gray-300 w-full ">
@@ -98,7 +98,7 @@ const ManageProjects = () => {
               <th className="p-2 border border-gray-300 ">Client</th>
               <th className="p-2 border border-gray-300 ">Location</th>
               <th className="p-2 border border-gray-300 ">Project Year</th>
-              <th className="p-2 border border-gray-300 ">Status</th>
+              {/* <th className="p-2 border border-gray-300 ">Status</th> */}
               <th className="p-2 border border-gray-300 ">Update</th>
               <th className="p-2 border border-gray-300 ">Delete</th>
               <th className="p-2 border border-gray-300 ">Details</th>
@@ -130,8 +130,8 @@ const ManageProjects = () => {
                   </td> */}
                   {/* BTNS FROM HERE */}
 
-                  {/* status */}
-                  <td
+                  {/* STATUS */}
+                  {/* <td
                     align="center"
                     className="p-2 border  border-gray-300 mx-auto content-center"
                   >
@@ -141,7 +141,7 @@ const ManageProjects = () => {
                       checked={x?.status === "active" ? true : false}
                       onClick={() => handleProjectStatus(x?._id, x?.status)}
                     />
-                  </td>
+                  </td> */}
                   {/* update */}
                   <td
                     align="center"
@@ -201,4 +201,4 @@ const ManageProjects = () => {
   );
 };
 
-export default ManageProjects;
+export default ManageHeroProjects;

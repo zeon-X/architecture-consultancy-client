@@ -2,12 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
+import {
+  FacebookIcon,
+  LinkedinIcon,
+  PinterestIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from "react-share";
 
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 import "./Home.css";
+import ShowProjects from "../Project/ShowProjects";
 
 const HomeSection3 = () => {
   const navigate = useNavigate();
@@ -58,7 +73,7 @@ const HomeSection3 = () => {
   return (
     <section
       id="hs3"
-      className="px-4 py-16 w-full flex flex-col justify-center items-center"
+      className="px-4 py-16 w-full flex flex-col justify-center items-center "
     >
       <div className="sm:px-8">
         <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
@@ -76,7 +91,7 @@ const HomeSection3 = () => {
             className={
               categoryChange === ""
                 ? "text-center text-sm text-black "
-                : "text-center text-sm  "
+                : "text-center text-sm  text-gray-400 hover:text-black"
             }
           >
             All
@@ -92,7 +107,7 @@ const HomeSection3 = () => {
                 className={
                   categoryChange === x?._id
                     ? "text-center text-sm text-black  "
-                    : "text-center text-sm "
+                    : "text-center text-sm text-gray-400 hover:text-black"
                 }
               >
                 {x?.categoryTitle}
@@ -102,66 +117,12 @@ const HomeSection3 = () => {
         })}
       </div>
 
-      {/* PROJECTS */}
-      {/* <div className="flex flex-wrap justify-center items-center gap-5 my-10 max-w-7xl mx-auto">
-        {project?.data?.map((x) => {
-          return (
-            <div
-              className="project-card bg-white relative h-[365px] w-[365px] bg-cover bg-center "
-              style={{ backgroundImage: `url(${x?.img})` }}
-            >
-              <div className="w-full h-full project-img  border-white transition-all ease-in-out "></div>
-              <div className="project-view-btn gap-2 flex items-center">
-                <p className="text-xs font-semibold">{x?.title.slice(0, 32)}</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="black"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                  />
-                </svg>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
-
-      {/* PROJECTS */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
-        {project?.data?.map((x, index) => {
-          return (
-            <div className="border border-gray-100 shadow-lg">
-              <div
-                key={index}
-                className="  bg-white relative h-[220px] w-full bg-cover bg-center "
-                style={{ backgroundImage: `url(${x?.img})` }}
-              ></div>
-              <div className="my-4 p-4">
-                <p className=" text-sm font-semibold">
-                  {x?.title?.slice(0, 32)}
-                </p>
-                <p className="text-xs ">Location: {x?.location}</p>
-                <p className="text-xs my-4 text-gray-500">
-                  {x?.aboutLeft?.slice(0, 90)}..
-                </p>
-
-                <button className="">Learn more</button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <ShowProjects project={project}></ShowProjects>
 
       <button
         onClick={() => navigate("/all-projects")}
-        className="text-gray-400 tracking-widest text-sm hover:text-black underline"
+        // className="font-semibold tracking-widest text-sm hover:text-red-500"
+        className="btn btn-xs text-white px-6 border-none"
       >
         view all works
       </button>

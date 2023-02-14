@@ -1,0 +1,22 @@
+ #sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding: 5px;
+    background-color: #cae8ca;
+    border: 2px solid #4CAF50;
+  }
+ 
+a{
+  color: #0000EE;
+}
+h1{
+  font-size: 32pt;
+  font-weight: bold;
+}
+h2{
+  font-size: 26pt;
+}
+h3{
+  font-size: 22pt;
+}

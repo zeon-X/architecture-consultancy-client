@@ -93,13 +93,15 @@ const DashboardDrawer = () => {
           {/* admin links */}
 
           <li>
+            <NavLink to="manage-hero">Manage Hero Projects</NavLink>
+          </li>
+          <li>
             <NavLink to="manage-orders">Manage Orders</NavLink>
           </li>
 
           <li>
             <NavLink to="manage-add-category">Add a Category</NavLink>
           </li>
-
           <li>
             <NavLink to="manage-category">Manage Category</NavLink>
           </li>
@@ -107,7 +109,6 @@ const DashboardDrawer = () => {
           <li>
             <NavLink to="manage-add-project">Add A Project</NavLink>
           </li>
-
           <li>
             <NavLink to="manage-projects">Manage Projects</NavLink>
           </li>
@@ -115,15 +116,26 @@ const DashboardDrawer = () => {
           <li>
             <NavLink to="manage-add-custom-review">Add Custom Review</NavLink>
           </li>
-
           <li>
             <NavLink to="manage-review">Manage All Reviews</NavLink>
           </li>
+
           <li>
             <NavLink to="manage-add-blog">Add a Blog</NavLink>
           </li>
           <li>
             <NavLink to="manage-blog">Manage All Blog</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="manage-add-servicecategory">
+              Add a Service Category
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="manage-servicecategory">
+              Manage Service Category
+            </NavLink>
           </li>
         </ul>
       </div>

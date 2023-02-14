@@ -46,35 +46,35 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
 
   //SUBMIL FUNCTION
   const onSubmit = async (data) => {
-    // console.log(data);
-
     Swal.showLoading();
 
     // IMAGE UPLOADS  ----- SINGLE
     let len = data?.img?.length;
     let image = "";
-    for (let i = 0; i < len; ++i) {
-      let formData1 = new FormData();
-      formData1.append("file", data?.img[i]);
-      await axiosInstance
-        .post("/file/upload", formData1)
-        .then((res) => {
-          //console.log(res);
-          if (res.status === 200) {
-            image = res?.data?.url;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (typeof data?.img !== typeof image) {
+      for (let i = 0; i < len; ++i) {
+        let formData1 = new FormData();
+        formData1.append("file", data?.img[i]);
+        await axiosInstance
+          .post("/file/upload", formData1)
+          .then((res) => {
+            //console.log(res);
+            if (res.status === 200) {
+              image = res?.data?.url;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     }
 
     // IMAGE UPLOADS -------- BEFORE
-    len = data?.galleryBefore?.length;
+    len = data?.galleryBeforeTem?.length;
     let imageArrayBefore = [];
     for (let i = 0; i < len; ++i) {
       let formData1 = new FormData();
-      formData1.append("file", data?.galleryBefore[i]);
+      formData1.append("file", data?.galleryBeforeTem[i]);
       await axiosInstance
         .post("/file/upload", formData1)
         .then((res) => {
@@ -87,12 +87,13 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
           console.log(error);
         });
     }
+
     // IMAGE UPLOADS -------- AFTER
-    len = data?.galleryAfter?.length;
+    len = data?.galleryAfterTem?.length;
     let imageArrayAfter = [];
     for (let i = 0; i < len; ++i) {
       let formData1 = new FormData();
-      formData1.append("file", data.galleryAfter[i]);
+      formData1.append("file", data.galleryAfterTem[i]);
       await axiosInstance
         .post("/file/upload", formData1)
         .then((res) => {
@@ -116,9 +117,12 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
 
     // console.log(data);
 
+    let { galleryAfterTem, galleryBeforeTem, ...rest } = data;
+    // console.log(rest);
+
     //SENDING DATA TO MONGO-DB DATABASE
     await axiosInstance
-      .put(`project/update?_id=${props?._id}`, data)
+      .put(`project/update?_id=${props?._id}`, rest)
       .then((res) => {
         if (res.status === 200) {
           Swal.fire(
@@ -127,18 +131,6 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
             "success"
           ).then(() => {
             increaseChanges(changes + 1);
-            resetField("title");
-            resetField("aboutLeft");
-            resetField("aboutRight");
-            resetField("category");
-            resetField("client");
-            resetField("projectYear");
-            resetField("location");
-            resetField("designer");
-            resetField("reviewId");
-            resetField("img");
-            resetField("galleryBefore");
-            resetField("galleryAfter");
           });
         } else {
           Swal.fire("Error!", `Something went wrong`, "error");
@@ -424,9 +416,9 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                   <input
                     multiple
                     type="file"
-                    name="galleryBefore"
+                    name="galleryBeforeTem"
                     className="input input-bordered text-xs rounded w-full "
-                    {...register("galleryBefore", { required: false })}
+                    {...register("galleryBeforeTem", { required: false })}
                   />
                 </div>
                 {/* previous uploaded img display */}
@@ -461,9 +453,9 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                   <input
                     multiple
                     type="file"
-                    name="galleryAfter"
+                    name="galleryAfterTem"
                     className="input input-bordered text-xs rounded w-full "
-                    {...register("galleryAfter", { required: false })}
+                    {...register("galleryAfterTem", { required: false })}
                   />
                 </div>
                 {/* previous uploaded img display */}

@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <div className="w-full main_header relative text-sm bg-white z-50 flex flex-col justify-center items-center">
       {/* Navbar Main + sticky */}
-      <div className="bg-white text-black z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-200 py-5 lg:px-20 sm:px-2">
+      <div className="bg-white text-black z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-200  lg:px-20 sm:px-2">
         {/* TOGGLE BTN MOBILE SM DEVICE */}
         <div className="flex-none lg:hidden">
           <label htmlFor="normalmenusm" className="btn btn-square btn-ghost">
@@ -56,7 +56,7 @@ const Header = () => {
           /> */}
 
           <p
-            className="hover:cursor-pointer font-semibold text-xl"
+            className="hover:cursor-pointer font-semibold lg:text-xl sm:text-[16px]"
             onClick={() => navigate("/")}
           >
             Imran's Creation
@@ -83,12 +83,10 @@ const Header = () => {
             <li>
               <a href="/#hs5">What's Client's Say</a>
             </li>
-            <li>
+            {/* <li>
               <a href="/#contact-us">Contact Us</a>
-            </li>
-            <li>
-              <a href="/pricing/#pricing-top">Pricing</a>
-            </li>
+            </li> */}
+
             <li>
               <a href="/blogs">Blog</a>
             </li>
@@ -98,21 +96,6 @@ const Header = () => {
         {/* END */}
         <div className="navbar-end flex justify-end gap-3 ">
           {/* ending right portion here */}
-
-          <button className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
 
           <div className="dropdown dropdown-end lg:block sm:hidden md:hidden">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -153,6 +136,9 @@ const Header = () => {
                     onClick={() => navigate("/dashboard-admin/manage-orders")}
                   >
                     <a className="bg-gray-100">Admin Dashboard</a>
+                  </li>
+                  <li onClick={() => navigate("/dashboard-admin/manage-hero")}>
+                    <a className="">Manage Hero Projects</a>
                   </li>
                   <li
                     onClick={() => navigate("/dashboard-admin/manage-orders")}
@@ -230,6 +216,13 @@ const Header = () => {
               )}
             </ul>
           </div>
+
+          <button
+            onClick={() => navigate("/pricing/#pricing-top")}
+            className=" py-4 px-3"
+          >
+            <p>Get a Quick Quote</p>
+          </button>
         </div>
       </div>
     </div>
