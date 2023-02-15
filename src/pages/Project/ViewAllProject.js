@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
-
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
@@ -49,54 +50,83 @@ const ViewAllProjects = () => {
     }
   }, [isLoading]);
 
+  const { ref, inView } = useInView();
+  const animation = useAnimation();
+  // const animatio1 = useAnimation();
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        x: 0,
+        opasity: 1,
+        visibility: "visible",
+      });
+    }
+  }, [inView]);
+
   return (
     <div
       id=""
-      className="max-w-7xl mx-auto px-4 flex flex-col justify-center items-center min-h-screen"
+      className="max-w-7xl mx-auto px-4 flex flex-col justify-center items-center min-h-screen my-10"
     >
-      {/* intro */}
-      <div className="">
-        <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
-          Our latest works
-        </p>
-      </div>
-      {/* CATEGORIES */}
-      <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
-        <div>
-          <button
-            onClick={() => {
-              setCategoryChange("");
-            }}
-            className={
-              categoryChange === ""
-                ? "text-center text-sm text-black "
-                : "text-center text-sm text-gray-500 hover:text-black"
-            }
-          >
-            All
-          </button>
+      <motion.div
+        ref={ref}
+        initial={{
+          x: -100,
+          visibility: "hidden",
+          opasity: 0,
+        }}
+        animate={animation}
+      >
+        <div className="sm:px-8">
+          <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
+            Check our latest works
+          </p>
         </div>
-        {category?.data?.map((x, index) => {
-          return (
-            <div key={index}>
-              <button
-                onClick={() => {
-                  setCategoryChange(x?._id);
-                }}
-                className={
-                  categoryChange === x?._id
-                    ? "text-center text-sm text-black  "
-                    : "text-center text-sm text-gray-500 hover:text-black"
-                }
-              >
-                {x?.categoryTitle}
-              </button>
-            </div>
-          );
-        })}
-      </div>
 
-      <ShowProjects project={project}></ShowProjects>
+        {/* CATEGORIES */}
+        <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
+          <div>
+            <button
+              onClick={() => {
+                setCategoryChange("");
+              }}
+              className={
+                categoryChange === ""
+                  ? "text-center text-sm text-black "
+                  : "text-center text-sm  text-gray-400 hover:text-black"
+              }
+            >
+              All
+            </button>
+          </div>
+          {category?.data?.map((x, index) => {
+            return (
+              <div key={index}>
+                <button
+                  onClick={() => {
+                    setCategoryChange(x?._id);
+                  }}
+                  className={
+                    categoryChange === x?._id
+                      ? "text-center text-sm text-black  "
+                      : "text-center text-sm text-gray-400 hover:text-black"
+                  }
+                >
+                  {x?.categoryTitle}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      <div className="min-h-screen mt-6">
+        <ShowProjects
+          ref={ref}
+          inView={inView}
+          project={project}
+        ></ShowProjects>
+      </div>
     </div>
   );
 };

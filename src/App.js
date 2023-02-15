@@ -34,6 +34,8 @@ import ManageOrderDetails from "./pages/DashboardPagesAdmin/ManageOrderDetails";
 import ManageHeroProjects from "./pages/DashboardPagesAdmin/ManageHeroProjects";
 import AddServiceCategory from "./pages/DashboardPagesAdmin/AddServiceCategory";
 import ManageServiceCategory from "./pages/DashboardPagesAdmin/ManageServiceCategory";
+import AddArticle from "./pages/DashboardPagesAdmin/AddArticle";
+import ManageArticle from "./pages/DashboardPagesAdmin/ManageArticle";
 
 function App() {
   return (
@@ -227,6 +229,15 @@ function App() {
           <Route
             path="manage-servicecategory"
             element={<ManageServiceCategory></ManageServiceCategory>}
+          ></Route>
+
+          <Route
+            path="manage-add-article"
+            element={<AddArticle></AddArticle>}
+          ></Route>
+          <Route
+            path="manage-artice"
+            element={<ManageArticle></ManageArticle>}
           ></Route>
 
           <Route path="*" element={<NotFound></NotFound>}></Route>

@@ -129,13 +129,17 @@ const DashboardDrawer = () => {
 
           <li>
             <NavLink to="manage-add-servicecategory">
-              Add a Service Category
+              Add Serv. Category
             </NavLink>
           </li>
           <li>
-            <NavLink to="manage-servicecategory">
-              Manage Service Category
-            </NavLink>
+            <NavLink to="manage-servicecategory">Manage Serv. Category</NavLink>
+          </li>
+          <li>
+            <NavLink to="manage-add-article">Add Article</NavLink>
+          </li>
+          <li>
+            <NavLink to="manage-article">Manage Article</NavLink>
           </li>
         </ul>
       </div>

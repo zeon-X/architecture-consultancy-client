@@ -1,22 +1,5 @@
 /* ||||||||||||||||| HOME SECTION 0 ||||||||||||||| */
-.bg-hero {
-    
 
-    -webkit-animation: myfirst 5s ; /* Chrome, Safari, Opera */
-    animation: myfirst 5s ;
-  }
-
-  /* Chrome, Safari, Opera */
-  @-webkit-keyframes myfirst {
-    from {opacity: 0.2;}
-    to {opacity: 1;}
-  }
-
-  /* Standard syntax */
-  @keyframes myfirst {
-    from {opacity: 0.2;}
-    to {opacity: 1;}
-  }
 /* |||||||||||||||||| HOME SECTION 2 ||||||||||||||| */
 .bg-move:hover{
     background-position-x: left;

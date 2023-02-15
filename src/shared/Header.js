@@ -7,6 +7,8 @@ import "./Header.css";
 import LogoutFunc from "../utilities/Functions/LogoutFunc";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./Loading";
+import axiosInstance from "../utilities/axiosInstance/axiosInstance";
+import { useQuery } from "react-query";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,10 +25,21 @@ const Header = () => {
     userInfo = {};
   };
 
+  const {
+    isLoading,
+    isError,
+    data: category,
+    error1,
+  } = useQuery(["servicecategorys"], async () => {
+    let data = await axiosInstance.get("service-category/get");
+
+    return data.data;
+  });
+
   return (
     <div className="w-full main_header relative text-sm bg-white z-50 flex flex-col justify-center items-center">
       {/* Navbar Main + sticky */}
-      <div className="bg-white text-black z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-200  lg:px-20 sm:px-2">
+      <div className="py-4  text-black z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-200  lg:px-20 sm:px-2">
         {/* TOGGLE BTN MOBILE SM DEVICE */}
         <div className="flex-none lg:hidden">
           <label htmlFor="normalmenusm" className="btn btn-square btn-ghost">
@@ -64,16 +77,38 @@ const Header = () => {
         </div>
         {/* CENTER */}
         <div className="navbar-center flex-none hidden lg:block mx-auto">
-          <ul className="menu menu-horizontal justify-center items-center">
+          <ul className="menu menu-horizontal justify-center items-center text-xs">
             {/* <!-- center portion here --> */}
             <li>
-              <a href="/#hs0">Home</a>
+              <a href="/">Home</a>
             </li>
+
             <li>
-              <a href="/#hs1">Service</a>
+              <a href="/#hs1">What We Are</a>
             </li>
-            <li>
-              <a href="/#hs2">What We Do</a>
+
+            <li tabindex="0">
+              <a href="/#hs2">
+                Service
+                <svg
+                  className="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                </svg>
+              </a>
+              <ul className="menu menu-compact bg-base-100 w-56 p-2 rounded-box shadow-2xl">
+                {category?.map((x) => {
+                  return (
+                    <li>
+                      <a>{x?.categoryTitle}</a>
+                    </li>
+                  );
+                })}
+              </ul>
             </li>
 
             <li>
@@ -219,7 +254,7 @@ const Header = () => {
 
           <button
             onClick={() => navigate("/pricing/#pricing-top")}
-            className=" py-4 px-3"
+            className="btn rounded-none shadow-xl"
           >
             <p>Get a Quick Quote</p>
           </button>

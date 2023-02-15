@@ -120,7 +120,7 @@ const AddServiceCategory = () => {
           {/* category code */}
           <div className="form-control w-full ">
             <label className="label">
-              <span className="">Category Code</span>
+              <span className="">Article Id</span>
             </label>
             <input
               type="text"

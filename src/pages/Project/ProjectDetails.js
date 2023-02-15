@@ -16,15 +16,14 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-
-import ErrorPage from "../../shared/ErrorPage";
-import Loading from "../../shared/Loading";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import ShowProjects from "./ShowProjects";
 
 const ProjectDetails = () => {
   const { _id, catId } = useParams();
-  console.log(_id);
+  // console.log(_id);
 
   const {
     isLoading,
@@ -34,13 +33,13 @@ const ProjectDetails = () => {
   } = useQuery(["vcppd", _id], async () => {
     let api = "";
     api = `project/find?_id=${_id}`;
-    Swal.showLoading();
+    // Swal.showLoading();
     let fdata = await axiosInstance.get(api);
-    Swal.close();
+    // Swal.close();
     return fdata?.data;
   });
 
-  console.log(projectDetails);
+  // console.log(projectDetails);
 
   const {
     isLoading1,
@@ -51,9 +50,22 @@ const ProjectDetails = () => {
     let api = "";
     api = `project/find-by-cat-basic?_catId=${catId}&limit=3`;
     let fdata = await axiosInstance.get(api);
-    console.log(fdata);
+    // console.log(fdata);
     return fdata;
   });
+
+  const { ref, inView } = useInView();
+  const animation = useAnimation();
+  // const animatio1 = useAnimation();
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        x: 0,
+        opasity: 1,
+        visibility: "visible",
+      });
+    }
+  }, [inView]);
 
   return (
     <div className="flex flex-col  items-center min-h-screen w-full">
@@ -63,15 +75,38 @@ const ProjectDetails = () => {
           backgroundImage: `url(${projectDetails?.img})`,
         }}
       >
-        <p
+        <motion.p
+          initial={{
+            x: "-100vw",
+            opasity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
           style={{ color: "rgba(255, 255, 255, 0.7)" }}
           className="lg:text-7xl sm:text-5xl  font-extrabold tracking-widest uppercase"
         >
           <i>"Projects"</i>
-        </p>
+        </motion.p>
       </div>
       <div className="max-w-7xl w-full mx-auto px-4 flex flex-col justify-center items-center ">
-        <div className="flex lg:flex-row md:flex-col sm:flex-col h-full justify-between gap-10 my-16 w-full">
+        <motion.div
+          initial={{
+            x: "-100vh",
+            opasity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: "spring",
+              bounce: 0.1,
+              duration: 1,
+            },
+          }}
+          className="flex lg:flex-row md:flex-col sm:flex-col h-full justify-between gap-10 my-16 w-full"
+        >
           {/* IMAGES */}
           <div className="lg:w-7/12 md:w-full sm:w-full h-full">
             {projectDetails?.galleryBefore.length !== 0 && (
@@ -245,13 +280,20 @@ const ProjectDetails = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {project?.length !== 0 && (
-        <div className="max-w-7xl mx-auto px-4 mt-16 flex flex-col justify-center items-center">
+        <div
+          ref={ref}
+          className="max-w-7xl mx-auto px-4 mt-16 flex flex-col justify-center items-center"
+        >
           <p className="text-3xl uppercase font-semibold ">related projects</p>
-          <ShowProjects project={project}></ShowProjects>
+          <ShowProjects
+            ref={ref}
+            inView={inView}
+            project={project}
+          ></ShowProjects>
         </div>
       )}
     </div>

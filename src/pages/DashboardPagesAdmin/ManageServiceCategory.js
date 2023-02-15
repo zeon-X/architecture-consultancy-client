@@ -70,9 +70,12 @@ const ManageServiceCategory = () => {
             <tr>
               <th className="p-2 border border-gray-300 ">Category Image</th>
               <th className="p-2 border border-gray-300 ">Category Title</th>
-              <th className="p-2 border border-gray-300 ">Category Code</th>
+              <th className="p-2 border border-gray-300 ">Article Id</th>
               <th className="p-2 border border-gray-300 ">Category Type</th>
               <th className="p-2 border border-gray-300 ">Parent Category</th>
+              <th className="p-2 border border-gray-300 ">
+                Category Discription
+              </th>
               <th className="p-2 border border-gray-300 ">Update</th>
               <th className="p-2 border border-gray-300 ">Delete</th>
             </tr>
@@ -101,6 +104,9 @@ const ManageServiceCategory = () => {
                     ) : (
                       <p className="btn btn-xs">{x?.parentTitle}</p>
                     )}
+                  </td>
+                  <td className="p-2 border border-gray-300 w-[300px]">
+                    <p className="">{x?.categoryDiscription}</p>
                   </td>
                   {/* BTNS FROM HERE */}
 
