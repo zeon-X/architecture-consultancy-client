@@ -2,23 +2,10 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
-import { useQuery } from "react-query";
+import axios from "axios";
 
 const AddArticle = () => {
   const [loading, setLoading] = useState(false);
-
-  const [changes, increaseChanges] = useState(0);
-  const {
-    isLoading,
-    isError,
-    data: serviceCategory,
-    error,
-  } = useQuery(["allparservicecat", changes], async ({ changes }) => {
-    // console.log(changes);
-    let data = await axiosInstance.get("service-category/get");
-
-    return data?.data;
-  });
 
   // REACT FORM HOOKS
   const {
@@ -28,71 +15,94 @@ const AddArticle = () => {
     formState: { errors },
   } = useForm();
 
-  //SUBMIL FUNCTION
-  const onSubmit = async (data) => {
+  // ADDING PARA FUNC
+  const [articlePara, setArticlePara] = useState([]);
+  const [newParagraph, setNewParagraph] = useState("");
+  const [newImg, setNewImg] = useState("");
+
+  //   ON CHANGE TITLE IT WILL UPDATE THE TITLE
+  const handleParagraph = (event) => {
+    setNewParagraph(event.target.value);
+  };
+  // ON CHANGE IMAGE IT WILL ADD THE IMAGE
+  const handleImageChange = async (event) => {
+    let imagedata = new FormData();
+    imagedata.append("file", event.target.files[0]);
+    // console.log(event.target.files[0]);
     setLoading(true);
 
-    let len = data?.articleImg?.length;
-    let image = "";
-    for (let i = 0; i < len; ++i) {
-      let formData1 = new FormData();
-      formData1.append("file", data?.articleImg[i]);
-      await axiosInstance
-        .post("/file/upload", formData1)
-        .then((res) => {
-          //console.log(res);
-          if (res.status === 200) {
-            image = res?.data?.url;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    await axiosInstance
+      .post("/file/upload", imagedata)
+      .then((res) => {
+        //console.log(res);
+        if (res.status === 200) {
+          setNewImg(res?.data?.url);
+          Swal.fire(
+            "Saved!",
+            `You have successfully added the Image.`,
+            "success"
+          ).then(() => {
+            event.target.value = null;
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    setLoading(false);
+  };
+
+  const handleOnClickAddPara = () => {
+    if (newParagraph !== "" && newImg !== "") {
+      let temArticleArr = articlePara;
+      temArticleArr.push({
+        img: newImg,
+        paragraph: newParagraph,
+      });
+      setNewImg("");
+      setNewParagraph("");
+      setArticlePara(temArticleArr);
     }
-    //ASYMBLING DATA
-    data.articleImg = image;
+  };
 
-    const temName = serviceCategory.find(
-      (x) => x._id === data.articleCategoryId
-    );
-    data.articleCategoryTitle = temName.categoryTitle;
+  //SUBMIL FUNCTION
+  const onSubmit = async (data) => {
+    Swal.showLoading();
 
+    //   ASSEMBLYING DATA
+    data.articlePara = articlePara;
     console.log(data);
 
     //SENDING DATA TO MONGO-DB DATABASE
-    // await axiosInstance.post("service-category/create", data).then((res) => {
-    //   setLoading(false);
-    //   if (res.status === 201) {
-    //     Swal.fire(
-    //       "Saved!",
-    //       `You have successfully added a Service Article.`,
-    //       "success"
-    //     ).then(() => {
-    //       resetField("articleTitle");
-    //       resetField("categoryCode");
-
-    //       resetField("articleImg");
-    //       resetField("articleDiscription");
-
-    //       resetField("articleCategoryId");
-    //       resetField("categoryType");
-    //     });
-    //   } else {
-    //     Swal.fire("Error!", `Something went wrong`, "error");
-    //   }
-    //   //   console.log(res.data);
-    // });
+    await axiosInstance.post("article/create", data).then((res) => {
+      setLoading(false);
+      if (res.status === 201) {
+        Swal.fire(
+          "Saved!",
+          `You have successfully added the Article.`,
+          "success"
+        ).then(() => {
+          resetField("articleTitle");
+          setArticlePara([]);
+        });
+      } else {
+        Swal.fire("Error!", `Something went wrong`, "error");
+      }
+      //   console.log(res.data);
+    });
   };
 
   if (loading === true) Swal.showLoading();
 
   return (
-    <div className="w-full py-6 lg:px-10 md:px-10 sm:px-2 max-w-7xl mx-auto">
-      <p className="text-sm font-bold">Add a Service Article</p>
+    <div className="w-full py-6 lg:px-10 md:px-10 sm:px-2  max-w-7xl mx-auto">
+      <p className="text-sm font-bold">Add a Article</p>
 
       <form className="mt-4 text-xs" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
-          {/* Articlename  */}
+        {/* BLOG TITE */}
+        <div className="grid lg:grid-cols-1 sm:grid-cols-1 gap-4">
+          {/* Article TITLE  */}
           <div className="form-control w-full ">
             <label className="label">
               <span className="">Article Title</span>
@@ -114,80 +124,77 @@ const AddArticle = () => {
               </label>
             )}
           </div>
+        </div>
 
-          {/* choose parent Article */}
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="">Category</span>
-            </label>
-            <select
-              {...register("articleCategoryId", {
-                required: false,
-                message: "This field is required",
-              })}
-              className="select select-bordered"
-            >
-              <option disabled selected>
-                Choose a category
-              </option>
-              {serviceCategory?.map((x) => {
-                return (
-                  <option
-                    key={x?._id}
-                    label={x?.categoryTitle}
-                    value={x?._id}
-                  ></option>
-                );
-              })}
-            </select>
-          </div>
+        <p className="font-semibold  mt-16 mb-3">Article Image and paragraph</p>
+        <div className="grid lg:grid-cols-1 sm:grid-cols-1 gap-5 border border-gray-300 rounded-lg mb-16 p-5">
+          {/* --------single image ----------*/}
 
-          {/* Articleimage */}
+          {/* img file select */}
           <div className="form-control w-full ">
             <label className="label">
               <span className="">Image</span>
             </label>
             <input
               type="file"
-              name="articleImg"
+              name="img"
+              onChange={handleImageChange}
               className="input input-bordered text-xs rounded w-full "
-              {...register("articleImg", { required: true })}
             />
-            {errors.articleImg && (
-              <label className="label">
-                <span className="text-sm text-red-500">
-                  This field is required
-                </span>
-              </label>
-            )}
           </div>
-        </div>
-        {/* discription */}
-        <div className="form-control w-full ">
-          <label className="label">
-            <span className="">Article Discription</span>
-          </label>
-          <textarea
-            type="text"
-            name="articleDiscription"
-            className="textarea textarea-bordered rounded text-xs h-24"
-            {...register("articleDiscription", {
-              required: true,
-            })}
-          />
-          {errors.articleDiscription && (
+          {/* paragraph */}
+          <div className="form-control w-full ">
             <label className="label">
-              <span className="text-sm text-red-500">
-                This field is required
-              </span>
+              <span className="">Paragraph with the image</span>
             </label>
-          )}
+            <textarea
+              onChange={handleParagraph}
+              value={newParagraph}
+              type="text"
+              name="aboutLeft"
+              className="textarea textarea-bordered rounded text-xs h-24"
+            />
+          </div>
+          {/* add btn */}
+          <p
+            onClick={handleOnClickAddPara}
+            className={
+              newImg !== "" && newParagraph !== ""
+                ? "btn btn-wide"
+                : "btn btn-wide btn-disabled"
+            }
+          >
+            Add Para
+          </p>
         </div>
 
+        {/* DISPLAY ADDED PARA */}
+        <div className="my-16 ">
+          <p className="font-semibold underline mb-8">
+            Added Article Para Here for review
+          </p>
+          <div className="">
+            {articlePara?.map((x, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-wrap gap-4 p-5 border border-gray-300 rounded-lg my-2"
+                >
+                  {/* added img */}
+                  <img className="rounded-lg w-4/12" src={x?.img} alt="" />
+                  {/* added paragraph */}
+                  <p className="w-7/12">{x?.paragraph}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* SUBMIT BTN */}
         <div className="w-full flex justify-center items-center">
           <input
             type="submit"
-            value="Add Service Article"
+            value="Add Article"
             className="btn btn-warning w-full max-w-xs rounded mt-10"
           ></input>
         </div>

@@ -36,6 +36,7 @@ import AddServiceCategory from "./pages/DashboardPagesAdmin/AddServiceCategory";
 import ManageServiceCategory from "./pages/DashboardPagesAdmin/ManageServiceCategory";
 import AddArticle from "./pages/DashboardPagesAdmin/AddArticle";
 import ManageArticle from "./pages/DashboardPagesAdmin/ManageArticle";
+import ArticleDetails from "./pages/Article/ArticleDetails";
 
 function App() {
   return (
@@ -109,6 +110,14 @@ function App() {
           element={
             <Drawer>
               <BlogDetails></BlogDetails>
+            </Drawer>
+          }
+        ></Route>
+        <Route
+          path="/article-details/:_id"
+          element={
+            <Drawer>
+              <ArticleDetails></ArticleDetails>
             </Drawer>
           }
         ></Route>
@@ -236,7 +245,7 @@ function App() {
             element={<AddArticle></AddArticle>}
           ></Route>
           <Route
-            path="manage-artice"
+            path="manage-article"
             element={<ManageArticle></ManageArticle>}
           ></Route>
 

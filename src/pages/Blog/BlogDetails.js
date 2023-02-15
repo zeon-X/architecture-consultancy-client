@@ -90,7 +90,7 @@ const BlogDetails = () => {
   };
 
   return (
-    <div className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
+    <div className="sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
       {/* BLOG HEADING */}
       <div className=" mb-16 flex lg:flex-row sm:flex-col justify-between lg:items-center sm:items-start w-full">
         <p className="text-4xl font-bold lg:w-9/12 sm:w-full">

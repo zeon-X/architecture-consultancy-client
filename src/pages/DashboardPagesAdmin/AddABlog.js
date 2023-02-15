@@ -6,7 +6,6 @@ import axios from "axios";
 
 const AddABlog = () => {
   const [loading, setLoading] = useState(false);
-  const API = "04f0795ca819457ba8b6c8ec73023069";
 
   // REACT FORM HOOKS
   const {
@@ -55,7 +54,7 @@ const AddABlog = () => {
   };
 
   const handleOnClickAddPara = () => {
-    if (newParagraph != "" && newImg != "") {
+    if (newParagraph !== "" && newImg !== "") {
       let temBlogArr = blogPara;
       temBlogArr.push({
         img: newImg,
@@ -160,7 +159,7 @@ const AddABlog = () => {
           <p
             onClick={handleOnClickAddPara}
             className={
-              newImg != "" && newParagraph != ""
+              newImg !== "" && newParagraph !== ""
                 ? "btn btn-wide"
                 : "btn btn-wide btn-disabled"
             }

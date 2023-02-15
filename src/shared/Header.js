@@ -104,7 +104,13 @@ const Header = () => {
                 {category?.map((x) => {
                   return (
                     <li>
-                      <a>{x?.categoryTitle}</a>
+                      <a
+                        onClick={() => {
+                          navigate(`/article-details/${x?.categoryCode}`);
+                        }}
+                      >
+                        {x?.categoryTitle}
+                      </a>
                     </li>
                   );
                 })}
