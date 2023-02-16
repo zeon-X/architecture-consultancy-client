@@ -55,14 +55,19 @@ const ProjectDetails = () => {
   });
 
   const { ref, inView } = useInView();
-  const animation = useAnimation();
-  // const animatio1 = useAnimation();
+  const animation1 = useAnimation();
   useEffect(() => {
     if (inView) {
-      animation.start({
+      animation1.start({
         x: 0,
         opasity: 1,
         visibility: "visible",
+        transition: {
+          type: "spring",
+          delay: 0.3,
+          duration: 0.75,
+          bounce: 0.1,
+        },
       });
     }
   }, [inView]);
@@ -283,19 +288,20 @@ const ProjectDetails = () => {
         </motion.div>
       </div>
 
-      {project?.length !== 0 && (
-        <div
-          ref={ref}
+      <div ref={ref}>
+        <motion.div
+          initial={{
+            x: "-100",
+            opasity: 0,
+            visibility: "hidden",
+          }}
+          animate={animation1}
           className="max-w-7xl mx-auto px-4 mt-16 flex flex-col justify-center items-center"
         >
           <p className="text-3xl uppercase font-semibold ">related projects</p>
-          <ShowProjects
-            ref={ref}
-            inView={inView}
-            project={project}
-          ></ShowProjects>
-        </div>
-      )}
+          <ShowProjects project={project}></ShowProjects>
+        </motion.div>
+      </div>
     </div>
   );
 };

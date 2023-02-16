@@ -51,7 +51,7 @@ const ArticleDetails = () => {
     isError1,
     data: project,
     error1,
-  } = useQuery(["catname"], async () => {
+  } = useQuery(["catnaasjdbme"], async () => {
     let api = "";
     api = `project/get-active?limit=3`;
     let fdata = await axiosInstance.get(api);
@@ -60,14 +60,19 @@ const ArticleDetails = () => {
   });
 
   const { ref, inView } = useInView();
-  const animation = useAnimation();
-  // const animatio1 = useAnimation();
+  const animation1 = useAnimation();
   useEffect(() => {
     if (inView) {
-      animation.start({
+      animation1.start({
         x: 0,
         opasity: 1,
         visibility: "visible",
+        transition: {
+          type: "spring",
+          delay: 0.3,
+          duration: 0.75,
+          bounce: 0.1,
+        },
       });
     }
   }, [inView]);
@@ -75,25 +80,61 @@ const ArticleDetails = () => {
   return (
     <div className="sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
       {/* ARTICLE HEADING */}
-      <div className=" mb-16 flex lg:flex-row sm:flex-col justify-between lg:items-center sm:items-start w-full">
-        <p className="text-4xl font-bold w-full">
-          {articleDetails?.data?.articleTitle}
-        </p>
 
-        {/* <p className=" text-sm">
-          Update At: {articleDetails?.data?.updatedAt.split("T")[0]} Time:{" "}
-          {articleDetails?.data?.updatedAt.split("T")[1].split(".")[0]}
-        </p> */}
-      </div>
+      <p className="text-4xl font-bold w-full mb-16 mt-6">
+        {articleDetails?.data?.articleTitle}
+      </p>
 
       {/* ARTICLE DETAILS */}
-      <div className="flex flex-col gap-6">
+      <motion.div
+        initial={{
+          x: -100,
+          opasity: 0,
+          visibility: "hidden",
+        }}
+        animate={{
+          x: 0,
+          opacity: 1,
+          visibility: "visible",
+          transition: {
+            type: "spring",
+            delay: 0.75,
+            duration: 0.75,
+            bounce: 0.1,
+          },
+        }}
+        className="flex flex-col gap-6 min-h-screen"
+      >
         {articleDetails?.data?.articlePara?.map((x, index) => {
           return (
             <div key={index}>
               {index % 2 === 0 ? (
                 <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-6">
-                  <img className="w-full rounded-xl" src={x?.img} alt="" />
+                  {x?.img !== "" && (
+                    <div className="w-full h-full">
+                      {x?.img?.includes("http") ? (
+                        <img
+                          className="w-full rounded-xl"
+                          src={x?.img}
+                          alt=""
+                        />
+                      ) : (
+                        <div className="w-full h-full flex justify-center items-center">
+                          <iframe
+                            className="w-full lg:h-full md:h-[480px] sm:h-[280px] rounded-xl"
+                            // width="560"
+                            // height="315"
+                            src={`https://www.youtube.com/embed/${x?.img}`}
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                          ></iframe>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <p
                     className="my-16 text-lg text-gray-500"
                     dangerouslySetInnerHTML={{ __html: x?.paragraph }}
@@ -115,82 +156,85 @@ const ArticleDetails = () => {
             </div>
           );
         })}
-      </div>
+      </motion.div>
 
-      {/* CREATED BY ADMIN */}
-      <div className="bg-gray-200 p-12 flex lg:flex-row sm:flex-col justify-between gap-6 w-full mt-20">
-        <div>
-          <p className="uppercase tracking-widest text-sm">created by</p>
-          <p className="text-lg text-gray-400 font-semibold tracking-widest mt-4">
-            admin
-          </p>
-        </div>
-        <div>
-          <p className="uppercase tracking-widest text-sm">share to</p>
-          {/* SHARE BTNS */}
-          <div className="flex gap-2 mt-4 text-lg text-gray-400">
-            <FacebookShareButton
-              url={window.location.href}
-              quote={articleDetails?.data?.articleTitle}
-              description={articleDetails?.data?.articlePara[0]?.paragraph}
-              className="Demo__some-network__share-button"
-            >
-              <FacebookIcon size={32} round />
-            </FacebookShareButton>
-
-            <LinkedinShareButton
-              url={window.location.href}
-              quote={articleDetails?.data?.articleTitle}
-              description={articleDetails?.data?.articlePara[0]?.paragraph}
-              className="Demo__some-network__share-button"
-            >
-              <LinkedinIcon size={32} round />
-            </LinkedinShareButton>
-
-            <PinterestShareButton
-              url={window.location.href}
-              quote={articleDetails?.data?.articleTitle}
-              description={articleDetails?.data?.articlePara[0]?.paragraph}
-              className="Demo__some-network__share-button"
-            >
-              <PinterestIcon size={32} round />
-            </PinterestShareButton>
-
-            <TwitterShareButton
-              url={window.location.href}
-              quote={articleDetails?.data?.articleTitle}
-              description={articleDetails?.data?.articlePara[0]?.paragraph}
-              className="Demo__some-network__share-button"
-            >
-              <TwitterIcon size={32} round />
-            </TwitterShareButton>
-
-            <WhatsappShareButton
-              url={window.location.href}
-              quote={articleDetails?.data?.articleTitle}
-              description={articleDetails?.data?.articlePara[0]?.paragraph}
-              className="Demo__some-network__share-button"
-            >
-              <WhatsappIcon size={32} round />
-            </WhatsappShareButton>
-          </div>
-        </div>
-      </div>
-
-      {/* PROJECTS */}
-      {project?.length !== 0 && (
-        <div
-          ref={ref}
-          className="max-w-7xl mx-auto px-4 mt-16 flex flex-col justify-center items-center"
+      <div ref={ref}>
+        <motion.div
+          initial={{
+            x: "-100",
+            opasity: 0,
+            visibility: "hidden",
+          }}
+          animate={animation1}
         >
-          <p className="text-3xl uppercase font-semibold ">related projects</p>
-          <ShowProjects
-            ref={ref}
-            inView={inView}
-            project={project}
-          ></ShowProjects>
-        </div>
-      )}
+          {/* CREATED BY ADMIN */}
+          <div className="bg-gray-200 p-12 flex lg:flex-row sm:flex-col justify-between gap-6 w-full mt-20">
+            <div>
+              <p className="uppercase tracking-widest text-sm">created by</p>
+              <p className="text-lg text-gray-400 font-semibold tracking-widest mt-4">
+                admin
+              </p>
+            </div>
+            <div>
+              <p className="uppercase tracking-widest text-sm">share to</p>
+              {/* SHARE BTNS */}
+              <div className="flex gap-2 mt-4 text-lg text-gray-400">
+                <FacebookShareButton
+                  url={window.location.href}
+                  quote={articleDetails?.data?.articleTitle}
+                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  className="Demo__some-network__share-button"
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
+
+                <LinkedinShareButton
+                  url={window.location.href}
+                  quote={articleDetails?.data?.articleTitle}
+                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  className="Demo__some-network__share-button"
+                >
+                  <LinkedinIcon size={32} round />
+                </LinkedinShareButton>
+
+                <PinterestShareButton
+                  url={window.location.href}
+                  quote={articleDetails?.data?.articleTitle}
+                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  className="Demo__some-network__share-button"
+                >
+                  <PinterestIcon size={32} round />
+                </PinterestShareButton>
+
+                <TwitterShareButton
+                  url={window.location.href}
+                  quote={articleDetails?.data?.articleTitle}
+                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  className="Demo__some-network__share-button"
+                >
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+
+                <WhatsappShareButton
+                  url={window.location.href}
+                  quote={articleDetails?.data?.articleTitle}
+                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  className="Demo__some-network__share-button"
+                >
+                  <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
+              </div>
+            </div>
+          </div>
+          {/* PROJECTS */}
+          <div className="max-w-7xl mx-auto px-4 mt-16 flex flex-col justify-center items-center">
+            <p className="text-3xl uppercase font-semibold ">
+              related projects
+            </p>
+            <ShowProjects project={project}></ShowProjects>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };

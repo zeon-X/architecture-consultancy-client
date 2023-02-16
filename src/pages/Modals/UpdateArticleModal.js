@@ -2,8 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
-import axios from "axios";
-import UpdateBlogPara from "./UpdateBlogPara";
+import UpdateArticlePara from "./UpdateArticlePara";
 
 const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
   // ADDING PARA FUNC
@@ -156,16 +155,20 @@ const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
               <p className="btn btn-xs bg-red-600 border-none text-white mb-2">
                 To update upload all photos including new and old
               </p>
+              <p className="text-red-600 uppercase mb-2">
+                If update photo to youtube video just paste the youtube link and
+                don't touch the image
+              </p>
               <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-5">
                 {props?.articlePara?.map((x, index) => {
                   return (
-                    <UpdateBlogPara
+                    <UpdateArticlePara
                       key={index}
                       index={index}
                       props={x}
                       propsData={propsData}
                       setPropsData={setPropsData}
-                    ></UpdateBlogPara>
+                    ></UpdateArticlePara>
                   );
                 })}
               </div>

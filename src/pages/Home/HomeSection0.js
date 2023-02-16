@@ -64,7 +64,7 @@ const HomeSection0 = () => {
         className="h-screen bg-center bg-cover  "
       >
         {/* INSIDE BG DIV */}
-        <div className="max-w-7xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex gap-6 justify-center items-center  text-white">
+        <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex gap-6 justify-center items-center  text-white">
           {/* LEFT SIDE */}
           <motion.div
             animate={animation}
@@ -90,13 +90,13 @@ const HomeSection0 = () => {
                       `/project-details/${project?.data[heroState]?._id}/${project?.data[heroState]?.category?._id}`
                     )
                   }
-                  className=" bg-white border border-white rounded-none mt-6 text-black text-sm px-16 py-4 hover:bg-gray-300 "
+                  className=" bg-white border border-white rounded-none mt-6 text-black text-sm lg:px-16 sm:px-10 py-4 hover:bg-gray-300 "
                 >
                   Discover now
                 </button>
                 <button
                   onClick={() => navigate("/pricing/#pricing-top")}
-                  className=" border border-white rounded-none mt-6 text-white text-sm px-16 py-4 font-semibold hover:bg-white hover:text-black "
+                  className=" border border-white rounded-none mt-6 text-white text-sm lg:px-16 sm:px-10 py-4 font-semibold hover:bg-white hover:text-black "
                 >
                   Get a Quote
                 </button>

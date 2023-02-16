@@ -52,7 +52,7 @@ const ViewAllProjects = () => {
 
   const { ref, inView } = useInView();
   const animation = useAnimation();
-  // const animatio1 = useAnimation();
+  const animation1 = useAnimation();
   useEffect(() => {
     if (inView) {
       animation.start({
@@ -60,16 +60,27 @@ const ViewAllProjects = () => {
         opasity: 1,
         visibility: "visible",
       });
+      animation1.start({
+        x: 0,
+        opasity: 1,
+        visibility: "visible",
+        transition: {
+          type: "spring",
+          delay: 0.75,
+          duration: 0.75,
+          bounce: 0.1,
+        },
+      });
     }
   }, [inView]);
 
   return (
     <div
+      ref={ref}
       id=""
       className="max-w-7xl mx-auto px-4 flex flex-col justify-center items-center min-h-screen my-10"
     >
       <motion.div
-        ref={ref}
         initial={{
           x: -100,
           visibility: "hidden",
@@ -120,13 +131,17 @@ const ViewAllProjects = () => {
         </div>
       </motion.div>
 
-      <div className="min-h-screen mt-6">
-        <ShowProjects
-          ref={ref}
-          inView={inView}
-          project={project}
-        ></ShowProjects>
-      </div>
+      <motion.div
+        initial={{
+          x: "-100",
+          opasity: 0,
+          visibility: "hidden",
+        }}
+        animate={animation1}
+        className="min-h-screen mt-6"
+      >
+        <ShowProjects project={project}></ShowProjects>
+      </motion.div>
     </div>
   );
 };

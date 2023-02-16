@@ -26,7 +26,7 @@ const HomeSection4 = () => {
     },
   ];
 
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ threshold: 0.25 });
   const animation = useAnimation();
   // const animatio1 = useAnimation();
   useEffect(() => {

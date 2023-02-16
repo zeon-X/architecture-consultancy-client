@@ -106,7 +106,27 @@ const BlogDetails = () => {
       {blogDetails?.data?.blogPara?.map((x, index) => {
         return (
           <div key={index}>
-            <img className="w-full rounded-xl" src={x?.img} alt="" />
+            {x?.img !== "" && (
+              <div className="h-full w-full">
+                {x?.img?.includes("http") ? (
+                  <img className="w-full rounded-xl" src={x?.img} alt="" />
+                ) : (
+                  <div className="w-full h-full flex justify-center items-center">
+                    <iframe
+                      className="w-full lg:h-[480px] md:h-[480px] sm:h-[280px] rounded-xl"
+                      // width="560"
+                      // height="315"
+                      src={`https://www.youtube.com/embed/${x?.img}`}
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                )}
+              </div>
+            )}
+
             <p
               className="my-16 text-lg text-gray-500"
               dangerouslySetInnerHTML={{ __html: x?.paragraph }}

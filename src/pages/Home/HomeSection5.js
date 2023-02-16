@@ -41,7 +41,7 @@ const HomeSection5 = () => {
     // setRD(review);
   }, [page, review]);
 
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ threshold: 0.4 });
   const animation = useAnimation();
   // const animatio1 = useAnimation();
   useEffect(() => {
@@ -124,7 +124,7 @@ const HomeSection5 = () => {
                 return (
                   <div
                     key={index}
-                    className="review-card w-[360px] p-10 shadow-2xl relative h-full bg-white rounded-xl min-h-[280px]"
+                    className="review-card lg:w-[360px] md:w-[360px] sm:w-[320px] p-10 shadow-2xl relative h-full bg-white rounded-xl min-h-[280px]"
                   >
                     {/* rebiew heading  */}
                     <p className="font-semibold uppercase tracking-wide">

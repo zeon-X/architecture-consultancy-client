@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 const HomeSection2 = () => {
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
   const animation = useAnimation();
   // const animatio1 = useAnimation();
   useEffect(() => {
@@ -17,15 +17,14 @@ const HomeSection2 = () => {
   }, [inView]);
 
   return (
-    <section id="hs2" className="w-full pt-36 pb-16 ">
+    <section ref={ref} id="hs2" className="w-full pt-36 pb-16 ">
       <motion.div
         initial={{
           x: -100,
-          visibility: "hidden",
           opasity: 0,
+          visibility: "hidden",
         }}
         animate={animation}
-        ref={ref}
         className="w-full flex flex-col justify-center items-center"
       >
         {/* heading */}

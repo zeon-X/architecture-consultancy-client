@@ -96,6 +96,12 @@ const DashboardDrawer = () => {
             <NavLink to="manage-hero">Manage Hero Projects</NavLink>
           </li>
           <li>
+            <NavLink to="manage-client-page-component-wwa">
+              Manage Section2
+            </NavLink>
+          </li>
+
+          <li>
             <NavLink to="manage-orders">Manage Orders</NavLink>
           </li>
 

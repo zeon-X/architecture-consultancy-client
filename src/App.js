@@ -37,6 +37,7 @@ import ManageServiceCategory from "./pages/DashboardPagesAdmin/ManageServiceCate
 import AddArticle from "./pages/DashboardPagesAdmin/AddArticle";
 import ManageArticle from "./pages/DashboardPagesAdmin/ManageArticle";
 import ArticleDetails from "./pages/Article/ArticleDetails";
+import ManageCPC from "./pages/DashboardPagesAdmin/ManageCPC";
 
 function App() {
   return (
@@ -247,6 +248,11 @@ function App() {
           <Route
             path="manage-article"
             element={<ManageArticle></ManageArticle>}
+          ></Route>
+
+          <Route
+            path="manage-client-page-component-wwa"
+            element={<ManageCPC></ManageCPC>}
           ></Route>
 
           <Route path="*" element={<NotFound></NotFound>}></Route>

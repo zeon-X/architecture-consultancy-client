@@ -42,9 +42,9 @@ const HomeSection3 = () => {
     return await axiosInstance.get("category/get");
   });
 
-  const { ref, inView } = useInView({ threshold: 0.7 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
   const animation = useAnimation();
-  // const animatio1 = useAnimation();
+  const animation1 = useAnimation();
   useEffect(() => {
     if (inView) {
       animation.start({
@@ -52,86 +52,96 @@ const HomeSection3 = () => {
         opasity: 1,
         visibility: "visible",
       });
+      animation1.start({
+        x: 0,
+        opasity: 1,
+        visibility: "visible",
+        transition: {
+          type: "spring",
+          delay: 0.2,
+          duration: 0.5,
+          bounce: 0.1,
+        },
+      });
     }
   }, [inView]);
 
   return (
     <section
       id="hs3"
+      ref={ref}
       className="px-4 py-16 w-full flex flex-col justify-center items-center "
     >
       <motion.div
-        ref={ref}
         initial={{
           x: -100,
           visibility: "hidden",
           opasity: 0,
         }}
-        animate={animation}
+        animate={animation1}
+        className="w-full flex flex-col justify-center items-center "
       >
-        <div className="sm:px-8">
-          <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
-            Check our latest works
-          </p>
-        </div>
-
-        {/* CATEGORIES */}
-        <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
-          <div>
-            <button
-              onClick={() => {
-                setCategoryChange("");
-              }}
-              className={
-                categoryChange === ""
-                  ? "text-center text-sm text-black "
-                  : "text-center text-sm  text-gray-400 hover:text-black"
-              }
-            >
-              All
-            </button>
+        <div>
+          <div className="sm:px-8">
+            <p className="text-4xl font-bold text-gray-800 mt-6 mb-8 text-center">
+              Check our latest works
+            </p>
           </div>
-          {category?.data?.map((x, index) => {
-            return (
-              <div key={index}>
-                <button
-                  onClick={() => {
-                    setCategoryChange(x?._id);
-                  }}
-                  className={
-                    categoryChange === x?._id
-                      ? "text-center text-sm text-black  "
-                      : "text-center text-sm text-gray-400 hover:text-black"
-                  }
-                >
-                  {x?.categoryTitle}
-                </button>
-              </div>
-            );
-          })}
+
+          {/* CATEGORIES */}
+          <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
+            <div>
+              <button
+                onClick={() => {
+                  setCategoryChange("");
+                }}
+                className={
+                  categoryChange === ""
+                    ? "text-center text-sm text-black "
+                    : "text-center text-sm  text-gray-400 hover:text-black"
+                }
+              >
+                All
+              </button>
+            </div>
+            {category?.data?.map((x, index) => {
+              return (
+                <div key={index}>
+                  <button
+                    onClick={() => {
+                      setCategoryChange(x?._id);
+                    }}
+                    className={
+                      categoryChange === x?._id
+                        ? "text-center text-sm text-black  "
+                        : "text-center text-sm text-gray-400 hover:text-black"
+                    }
+                  >
+                    {x?.categoryTitle}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
+
+        {isLoading === true ? (
+          <div className="h-[600px] flex justify-center items-center">
+            <button className="btn loading">loading</button>
+          </div>
+        ) : (
+          <div className="min-h-screen mt-6">
+            <ShowProjects project={project}></ShowProjects>
+          </div>
+        )}
+
+        <button
+          onClick={() => navigate("/all-projects")}
+          className="uppercase text-gray-600 text-sm font-semibold"
+        >
+          view all works
+        </button>
       </motion.div>
-
-      {isLoading === true ? (
-        <div className="h-[600px] flex justify-center items-center">
-          <button className="btn loading">loading</button>
-        </div>
-      ) : (
-        <ShowProjects
-          ref={ref}
-          inView={inView}
-          project={project}
-        ></ShowProjects>
-      )}
-
-      <button
-        onClick={() => navigate("/all-projects")}
-        // className="font-semibold tracking-widest text-sm hover:text-red-500"
-        // className="btn btn-xs text-white px-6 border-none"
-        className="uppercase text-gray-600 text-sm font-semibold"
-      >
-        view all works
-      </button>
     </section>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
-const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
+const UpdateArticlePara = ({ index, props, propsData, setPropsData }) => {
   const [newParagraph, setNewParagraph] = useState("");
   const [newImg, setNewImg] = useState("");
   const [loading, setLoading] = useState(false);
@@ -54,8 +54,8 @@ const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
   const handleOnClickAddPara = () => {
     let temprops;
     temprops = propsData;
-    temprops.blogPara[index].img = newImg;
-    temprops.blogPara[index].paragraph = newParagraph;
+    temprops.articlePara[index].img = newImg;
+    temprops.articlePara[index].paragraph = newParagraph;
 
     setPropsData(temprops);
   };
@@ -122,4 +122,4 @@ const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
   );
 };
 
-export default UpdateBlogPara;
+export default UpdateArticlePara;

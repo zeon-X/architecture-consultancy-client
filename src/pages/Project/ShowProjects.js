@@ -18,48 +18,11 @@ import {
 } from "react-share";
 import { useAnimation, motion } from "framer-motion";
 
-const ShowProjects = ({ project, ref, inView }) => {
+const ShowProjects = ({ project }) => {
   const navigate = useNavigate();
 
-  // console.log(project);
-
-  // const { ref, inView } = useInView();
-  const animation = useAnimation();
-  useEffect(() => {
-    if (inView) {
-      animation.start({
-        x: 0,
-        opasity: 1,
-        transition: {
-          type: "spring",
-          delay: 0.75,
-          duration: 0.8,
-          bounce: 0.1,
-        },
-      });
-    }
-  }, [inView]);
-
   return (
-    <motion.div
-      initial={{
-        x: "-100vw",
-        opasity: 0,
-      }}
-      animate={animation}
-      ref={ref}
-      // animate={{
-      //   y: 0,
-      //   opasity: 1,
-      //   visibility: "visible",
-      //   transition: {
-      //     type: "spring",
-      //     delay: 0.5,
-      //     duration: 0.75,
-      //     bounce: 0.3,
-      //   },
-      // }}
-    >
+    <div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
         {project?.data?.map((x, index) => {
           return (
@@ -163,7 +126,7 @@ const ShowProjects = ({ project, ref, inView }) => {
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
