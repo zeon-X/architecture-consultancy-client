@@ -42,7 +42,7 @@ const HomeSection3 = () => {
     return await axiosInstance.get("category/get");
   });
 
-  const { ref, inView } = useInView({ threshold: 0.3 });
+  const { ref, inView } = useInView({ threshold: 0.15 });
   const animation = useAnimation();
   const animation1 = useAnimation();
   useEffect(() => {

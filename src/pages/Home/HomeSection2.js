@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 const HomeSection2 = () => {
-  const { ref, inView } = useInView({ threshold: 0.3 });
+  const { ref, inView } = useInView({ threshold: 0.2 });
   const animation = useAnimation();
   // const animatio1 = useAnimation();
   useEffect(() => {

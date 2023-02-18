@@ -40,7 +40,7 @@ const ArticleDetails = () => {
     isError,
     data: articleDetails,
     error,
-  } = useQuery(["articleDetailsdata"], async ({}) => {
+  } = useQuery(["articleDetailsdata", _id], async ({}) => {
     let data = await axiosInstance.get(`article/find?_id=${_id}`);
 
     return data;

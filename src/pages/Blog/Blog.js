@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import { useAnimation, motion } from "framer-motion";
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -28,7 +29,25 @@ const Blog = () => {
     }
   }, [isLoading]);
   return (
-    <div className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center min-h-screen">
+    <motion.div
+      initial={{
+        x: -100,
+        opasity: 0,
+        visibility: "hidden",
+      }}
+      animate={{
+        x: 0,
+        opacity: 1,
+        visibility: "visible",
+        transition: {
+          type: "spring",
+          delay: 0.75,
+          duration: 0.75,
+          bounce: 0.1,
+        },
+      }}
+      className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center min-h-screen"
+    >
       {/* intro */}
       <div className="">
         <p className="text-sm text-black tracking-widest uppercase text-center">
@@ -136,7 +155,7 @@ const Blog = () => {
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 

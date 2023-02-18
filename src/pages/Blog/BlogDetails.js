@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useAnimation, motion } from "framer-motion";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -23,9 +24,6 @@ import {
 const BlogDetails = () => {
   const [changes, increaseChanges] = useState(0);
   const { _id } = useParams();
-  //   console.log(_id);
-
-  // console.log(window.location.href);
 
   // REACT FORM HOOKS
   const {
@@ -41,7 +39,7 @@ const BlogDetails = () => {
     isError,
     data: blogDetails,
     error,
-  } = useQuery(["blogDetailsdata"], async ({}) => {
+  } = useQuery(["blogDetailsdata", _id], async ({}) => {
     let data = await axiosInstance.get(`blog/find?_id=${_id}`);
 
     return data;
@@ -90,7 +88,25 @@ const BlogDetails = () => {
   };
 
   return (
-    <div className="sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
+    <motion.div
+      initial={{
+        x: -100,
+        opasity: 0,
+        visibility: "hidden",
+      }}
+      animate={{
+        x: 0,
+        opacity: 1,
+        visibility: "visible",
+        transition: {
+          type: "spring",
+          delay: 0.75,
+          duration: 0.75,
+          bounce: 0.1,
+        },
+      }}
+      className="sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center"
+    >
       {/* BLOG HEADING */}
       <div className=" mb-16 flex lg:flex-row sm:flex-col justify-between lg:items-center sm:items-start w-full">
         <p className="text-4xl font-bold lg:w-9/12 sm:w-full">
@@ -298,7 +314,7 @@ const BlogDetails = () => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

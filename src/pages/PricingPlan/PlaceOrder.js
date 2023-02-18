@@ -173,12 +173,12 @@ const PlaceOrder = () => {
 
   return (
     <div className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col  min-h-screen">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="" onSubmit={handleSubmit(onSubmit)}>
         {/*---------- VARIABLE FOR ORDER ---------*/}
         <p className="uppercase text-sm tracking-widest btn btn-xs rounded-b-none">
           Order information
         </p>
-        <div className="border border-gray-300 p-8 rounded-b-xl rounded-tr-xl mb-16 text-sm">
+        <div className="border border-gray-300  p-8 rounded-b-xl rounded-tr-xl mb-16 text-sm">
           {/* ORDER FOR */}
           <div className="mt-6">
             <p>

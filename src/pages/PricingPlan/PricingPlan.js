@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import pricing from "../../JSON/PricingJSON";
+import "./pp.css";
 
 const PricingPlan = () => {
   const navigate = useNavigate();
@@ -14,28 +15,33 @@ const PricingPlan = () => {
           Make teamwork more productive.
         </p>
       </div>
-      {/* FREE CONSULTATIONS */}
-      <div className="bg-yellow-100 rounded-xl p-8 flex lg:flex-row sm:flex-col gap-10 justify-between items-center mb-6 mt-16  border border-gray-100">
-        <div>
-          <p className="text-2xl font-semibold uppercase">free consultation!</p>
-          <p className="text-sm text-gray-600 ">
-            You may ask for consulation which is free of cost!
-          </p>
+      <div className="sticky ">
+        {/* FREE CONSULTATIONS */}
+        <div className="borderAnimate  glowing rounded-xl lg:py-10 p-10 sm:py-16 flex lg:flex-row sm:flex-col gap-10 justify-between items-center mt-10">
+          <div className="flex flex-col lg:items-start sm:items-center">
+            <p className="text-2xl font-semibold uppercase">
+              free consultation!
+            </p>
+            <p className="text-sm lg:text-left sm:text-center">
+              You may ask for consulation which is free of cost!
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/order/free-consultation")}
+            className="btn btn-wide bg-green-600 border-none text-white "
+          >
+            Get Now
+          </button>
         </div>
-        <button
-          onClick={() => navigate("/order/free-consultation")}
-          className="btn btn-wide bg-green-600 border-none text-white"
-        >
-          Get Now
-        </button>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 justify-center  gap-4">
+
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 justify-center mt-10 gap-4">
         {pricing?.map((x, index) => {
           return (
             <div
               key={index}
               className={
-                "flex flex-col justify-between gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2 "
+                "flex flex-col justify-between gap-6 shadow px-6 py-10 rounded-lg border border-gray-100 mt-2 bg-white"
               }
             >
               <p className="text-xl font-semibold">{x?.title}</p>

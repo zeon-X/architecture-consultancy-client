@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { auth } from "../firebase.init";
 import Footer from "../shared/Footer";
 import Header from "../shared/Header";
+import axiosInstance from "../utilities/axiosInstance/axiosInstance";
 
 import LogoutFunc from "../utilities/Functions/LogoutFunc";
 
@@ -22,6 +24,36 @@ const Drawer = ({ children }) => {
     LogoutFunc(auth);
     userInfo = {};
   };
+
+  const {
+    isLoading,
+    isError,
+    data: category,
+    error1,
+  } = useQuery(["servicecategorys"], async () => {
+    let data = await axiosInstance.get("service-category/get");
+
+    return data.data;
+  });
+
+  const [cat, setCat] = useState([]);
+
+  useEffect(() => {
+    let tem = category;
+    let main = tem?.filter((x) => x?.parentId === null);
+    let sub = tem?.filter((x) => x?.parentId !== null);
+
+    // console.log(main);
+    // console.log(sub);
+
+    main?.map((x) => {
+      let subCat = sub?.filter((y) => y?.parentId === x?._id);
+      x.sub = subCat;
+    });
+    setCat(main);
+    // console.log(main);
+  }, [category]);
+
   return (
     <div>
       <div className="drawer">
@@ -49,8 +81,76 @@ const Drawer = ({ children }) => {
             <li>
               <NavLink to="/#hs0">Home</NavLink>
             </li>
-            <li>
-              <NavLink to="/#hs1">Service</NavLink>
+            <li tabindex="0">
+              <a href="/#hs2">
+                Service
+                <svg
+                  className="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                </svg>
+              </a>
+              <ul
+                tabindex="0"
+                className="menu menu-compact bg-base-100 w-56 p-2 rounded-box shadow-2xl"
+              >
+                {cat?.map((x) => {
+                  return (
+                    <li>
+                      <a
+                        tabindex="1"
+                        className="flex justify-between"
+                        onClick={() => {
+                          navigate(`/article-details/${x?.categoryCode}`);
+                        }}
+                      >
+                        {x?.categoryTitle}
+                        {x?.sub?.length !== 0 && (
+                          <svg
+                            className="fill-current"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                            />
+                          </svg>
+                        )}
+                      </a>
+                      {x?.sub?.length !== 0 && (
+                        <ul
+                          tabIndex={1}
+                          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                        >
+                          {x?.sub?.map((y) => {
+                            return (
+                              <li>
+                                <a
+                                  onClick={() => {
+                                    navigate(
+                                      `/article-details/${y?.categoryCode}`
+                                    );
+                                  }}
+                                >
+                                  {y?.categoryTitle}
+                                </a>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
             </li>
             <li>
               <NavLink to="/#hs2">What We Do</NavLink>

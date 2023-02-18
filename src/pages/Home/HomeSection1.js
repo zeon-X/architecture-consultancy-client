@@ -85,13 +85,13 @@ const HomeSection1 = () => {
               style={{
                 backgroundImage: `url(${section2?.img1})`,
               }}
-              className=" h-5/6 lg:w-6/12 md:w-[300px] rounded-tr-[30%] rounded-bl-[30%] shadow-lg bg-cover bg-center z-[5]"
+              className=" h-5/6 lg:w-6/12 md:w-[300px] sm:w-[300px] rounded-tr-[30%] rounded-bl-[30%] shadow-lg bg-cover bg-center z-[5]"
             ></div>
             <div
               style={{
                 backgroundImage: `url(${section2?.img2})`,
               }}
-              className="lg:w-4/12 md:w-[160px] h-3/6 rounded-tr-[30%] rounded-bl-[30%] shadow-lg bg-cover bg-center absolute bottom-0 lg:left-20 md:left-20 sm:left-8 z-[6]"
+              className="lg:w-4/12 md:w-[160px] sm:w-[160px] h-3/6 rounded-tr-[30%] rounded-bl-[30%] shadow-lg bg-cover bg-center absolute bottom-0 lg:left-20 md:left-20 sm:left-8 z-[6]"
             ></div>
 
             <img
