@@ -77,7 +77,11 @@ const ProjectDetails = () => {
       <div
         className="relative lg:h-[320px] sm:h-[220px] w-full bg-cover bg-center shadow-xl flex justify-center items-center"
         style={{
-          backgroundImage: `url(${projectDetails?.img})`,
+          backgroundImage: `url(${
+            projectDetails?.img?.includes("mp4")
+              ? projectDetails?.galleryAfter[0]
+              : projectDetails?.img
+          })`,
         }}
       >
         <motion.p
@@ -90,12 +94,12 @@ const ProjectDetails = () => {
             opacity: 1,
           }}
           style={{ color: "rgba(255, 255, 255, 0.7)" }}
-          className="lg:text-7xl sm:text-5xl  font-extrabold tracking-widest uppercase"
+          className="lg:text-7xl sm:text-5xl  font-extrabold tracking-widest uppercase "
         >
           <i>"Projects"</i>
         </motion.p>
       </div>
-      <div className="max-w-7xl w-full mx-auto px-4 flex flex-col justify-center items-center ">
+      <div className="max-w-7xl w-full mx-auto px-4 flex flex-col justify-center items-center bg-white">
         <motion.div
           initial={{
             x: "-100vh",
@@ -288,7 +292,7 @@ const ProjectDetails = () => {
         </motion.div>
       </div>
 
-      <div ref={ref}>
+      <div ref={ref} className="bg-white">
         <motion.div
           initial={{
             x: "-100",

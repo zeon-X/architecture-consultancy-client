@@ -6,6 +6,7 @@ import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import MyOrdersRow from "./MyOrdersRow";
+import { useAnimation, motion } from "framer-motion";
 
 const MyOrders = () => {
   const userInfo = JSON.parse(localStorage.getItem("user"));
@@ -29,8 +30,23 @@ const MyOrders = () => {
   if (isLoading) return Swal.showLoading();
 
   return (
-    <div className="max-w-7xl min-h-screen mx-auto py-6 lg:px-10 md:px-10 sm:px-2  w-full">
-      <p className="text-lg font-semibold">All Orders</p>
+    <motion.div
+      initial={{
+        x: "-100vh",
+        opasity: 0,
+      }}
+      animate={{
+        x: 0,
+        opacity: 1,
+        transition: {
+          type: "spring",
+          bounce: 0.1,
+          duration: 1,
+        },
+      }}
+      className="max-w-7xl min-h-screen mx-auto py-6 lg:px-10 md:px-10 sm:px-2  w-full"
+    >
+      <p className="text-lg font-semibold mt-2">My All Orders</p>
       {/* purchase products */}
       <div className="overflow-auto flex flex-col-reverse mt-2 ">
         {myorders?.map((x, index) => {
@@ -44,7 +60,7 @@ const MyOrders = () => {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

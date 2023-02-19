@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { useAnimation, motion } from "framer-motion";
 
 const PlaceOrder = () => {
   const { type } = useParams();
@@ -172,7 +173,22 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col  min-h-screen">
+    <motion.div
+      initial={{
+        x: "-100vh",
+        opasity: 0,
+      }}
+      animate={{
+        x: 0,
+        opacity: 1,
+        transition: {
+          type: "spring",
+          bounce: 0.1,
+          duration: 1,
+        },
+      }}
+      className="lg:px-20 sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col  min-h-screen"
+    >
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         {/*---------- VARIABLE FOR ORDER ---------*/}
         <p className="uppercase text-sm tracking-widest btn btn-xs rounded-b-none">
@@ -571,7 +587,7 @@ const PlaceOrder = () => {
           ></input>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

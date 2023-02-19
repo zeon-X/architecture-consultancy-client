@@ -107,7 +107,7 @@ const Header = () => {
               <a href="/#hs1">What We Are</a>
             </li>
 
-            <li tabindex="0">
+            <li tabindex="0" className="dropdown-end">
               <a href="/#hs2">
                 Service
                 <svg
@@ -122,7 +122,7 @@ const Header = () => {
               </a>
               <ul
                 tabindex="0"
-                className="menu menu-compact bg-base-100 w-56 p-2 rounded-box shadow-2xl"
+                className="menu menu-compact bg-base-100  lg:w-56 md:w-20  p-2 rounded-box shadow-2xl"
               >
                 {cat?.map((x, index) => {
                   return (
@@ -240,7 +240,7 @@ const Header = () => {
                   >
                     <a className="bg-gray-100">Admin Dashboard</a>
                   </li>
-                  <li onClick={() => navigate("/dashboard-admin/manage-hero")}>
+                  {/* <li onClick={() => navigate("/dashboard-admin/manage-hero")}>
                     <a className="">Manage Hero Projects</a>
                   </li>
                   <li
@@ -291,7 +291,7 @@ const Header = () => {
                   </li>
                   <li onClick={() => navigate("/dashboard-admin/manage-blog")}>
                     <a className="">Manage Blog</a>
-                  </li>
+                  </li> */}
                 </>
               )}
 
@@ -306,14 +306,16 @@ const Header = () => {
               {(!user || !userInfo) && (
                 <>
                   <li>
-                    <label htmlFor="login-modal" className="">
+                    {/* <label htmlFor="login-modal" className="">
                       Login
-                    </label>
+                    </label> */}
+                    <NavLink to={"/login"}>Login</NavLink>
                   </li>
                   <li>
-                    <label htmlFor="register-modal" className="">
+                    {/* <label htmlFor="register-modal" className="">
                       Register
-                    </label>
+                    </label> */}
+                    <NavLink to={"/register"}>Register</NavLink>
                   </li>
                 </>
               )}

@@ -2,11 +2,31 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import pricing from "../../JSON/PricingJSON";
 import "./pp.css";
+import { useAnimation, motion } from "framer-motion";
 
 const PricingPlan = () => {
   const navigate = useNavigate();
   return (
-    <section id="pricing-top" className="max-w-7xl mx-auto py-16 px-4 w-full">
+    <motion.div
+      initial={{
+        x: -100,
+        opasity: 0,
+        visibility: "hidden",
+      }}
+      animate={{
+        x: 0,
+        opacity: 1,
+        visibility: "visible",
+        transition: {
+          type: "spring",
+          delay: 0.75,
+          duration: 0.75,
+          bounce: 0.1,
+        },
+      }}
+      id="pricing-top"
+      className="max-w-7xl mx-auto py-16 px-4 w-full"
+    >
       <div className="">
         <p className="text-sm text-black tracking-widest uppercase text-center">
           Pricing Plans
@@ -85,7 +105,7 @@ const PricingPlan = () => {
           );
         })}
       </div>
-    </section>
+    </motion.div>
   );
 };
 

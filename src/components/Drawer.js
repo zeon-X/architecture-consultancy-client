@@ -36,23 +36,23 @@ const Drawer = ({ children }) => {
     return data.data;
   });
 
-  const [cat, setCat] = useState([]);
+  // const [cat, setCat] = useState([]);
 
-  useEffect(() => {
-    let tem = category;
-    let main = tem?.filter((x) => x?.parentId === null);
-    let sub = tem?.filter((x) => x?.parentId !== null);
+  // useEffect(() => {
+  //   let tem = category;
+  //   let main = tem?.filter((x) => x?.parentId === null);
+  //   let sub = tem?.filter((x) => x?.parentId !== null);
 
-    // console.log(main);
-    // console.log(sub);
+  //   // console.log(main);
+  //   // console.log(sub);
 
-    main?.map((x) => {
-      let subCat = sub?.filter((y) => y?.parentId === x?._id);
-      x.sub = subCat;
-    });
-    setCat(main);
-    // console.log(main);
-  }, [category]);
+  //   main?.map((x) => {
+  //     let subCat = sub?.filter((y) => y?.parentId === x?._id);
+  //     x.sub = subCat;
+  //   });
+  //   setCat(main);
+  //   // console.log(main);
+  // }, [category]);
 
   return (
     <div>
@@ -81,7 +81,7 @@ const Drawer = ({ children }) => {
             <li>
               <NavLink to="/#hs0">Home</NavLink>
             </li>
-            <li tabindex="0">
+            {/* <li tabindex="0">
               <a href="/#hs2">
                 Service
                 <svg
@@ -96,7 +96,7 @@ const Drawer = ({ children }) => {
               </a>
               <ul
                 tabindex="0"
-                className="menu menu-compact bg-base-100 w-56 p-2 rounded-box shadow-2xl"
+                className="p-2 bg-base-100 rounded-box shadow-2xl"
               >
                 {cat?.map((x) => {
                   return (
@@ -126,10 +126,7 @@ const Drawer = ({ children }) => {
                         )}
                       </a>
                       {x?.sub?.length !== 0 && (
-                        <ul
-                          tabIndex={1}
-                          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-                        >
+                        <ul tabIndex={1} className="p-2 bg-base-100">
                           {x?.sub?.map((y) => {
                             return (
                               <li>
@@ -151,7 +148,31 @@ const Drawer = ({ children }) => {
                   );
                 })}
               </ul>
-            </li>
+            </li> */}
+
+            <div className="collapse collapse-arrow">
+              <input type="checkbox" className="peer" />
+              <div className="collapse-title ">Service</div>
+              <div className="collapse-content">
+                <ul className="menu p-4  bg-base-100">
+                  {category?.map((x) => {
+                    return (
+                      <li>
+                        <a
+                          className=""
+                          onClick={() => {
+                            navigate(`/article-details/${x?.categoryCode}`);
+                          }}
+                        >
+                          {x?.categoryTitle}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+
             <li>
               <NavLink to="/#hs2">What We Do</NavLink>
             </li>

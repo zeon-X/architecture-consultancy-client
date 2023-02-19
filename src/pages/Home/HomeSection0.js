@@ -18,6 +18,7 @@ const HomeSection0 = () => {
   } = useQuery(["heroprojectdata"], async () => {
     let data = await axiosInstance.get(`project/get-hero-projects?limit=3`);
     let tem = data;
+
     return tem;
   });
   // console.log(project);
@@ -53,18 +54,34 @@ const HomeSection0 = () => {
     // }
   }, [inView]);
 
+  console.log(project?.data[heroState]?.img);
   return (
     <section id="hs0" className="w-full mb-16 mt-[-80px]">
       {/* MAIN DIV */}
       <div
         ref={ref}
-        style={{
-          backgroundImage: `url(${project?.data[heroState]?.img})`,
-        }}
-        className="h-screen bg-center bg-cover  "
+        // style={{
+        //   backgroundImage: `url(${project?.data[heroState]?.img})`,
+        // }}
+        className="h-screen w-full relative flex flex-col items-center"
       >
+        <div className="h-screen w-full">
+          {project?.data[heroState]?.img?.includes("mp4") && (
+            <video className="myVideo" loop muted autoPlay>
+              <source src={project?.data[heroState]?.img} type="video/mp4" />
+            </video>
+          )}
+          {!project?.data[heroState]?.img?.includes("mp4") && (
+            <div
+              style={{
+                backgroundImage: `url(${project?.data[heroState]?.img})`,
+              }}
+              className="h-screen w-full bg-cover bg-center"
+            ></div>
+          )}
+        </div>
         {/* INSIDE BG DIV */}
-        <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex gap-6 justify-center items-center  text-white">
+        <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex gap-6 justify-center items-center absolute top-0 text-white">
           {/* LEFT SIDE */}
           <motion.div
             animate={animation}

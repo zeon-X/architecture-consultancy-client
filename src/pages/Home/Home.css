@@ -1,5 +1,19 @@
 /* ||||||||||||||||| HOME SECTION 0 ||||||||||||||| */
 
+/* .myVideo {
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+  } */
+.myVideo {
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: 0;
+  }
+
 /* |||||||||||||||||| HOME SECTION 2 ||||||||||||||| */
 .bg-move:hover{
     background-position-x: left;

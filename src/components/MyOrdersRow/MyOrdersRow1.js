@@ -45,10 +45,10 @@ const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
   }, [x]);
   const navigate = useNavigate();
   return (
-    <div className="my-6 border border-gray-200 rounded text-sm">
+    <div className="my-6 border border-gray-400 text-sm bg-white shadow-lg rounded-2xl">
       <div className="w-full grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 justify-center items-start">
         {/* order info */}
-        <div className="p-6  border-r border-gray-200 flex flex-col gap-2">
+        <div className="p-10 min-h-full border-r border-gray-200 flex flex-col gap-2">
           <p>
             Order Id: <span className="btn btn-xs ml-2">{x?._id}</span>{" "}
           </p>
@@ -103,7 +103,7 @@ const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
           )}
         </div>
         {/* order status */}
-        <div className="p-0 min-h-full flex justify-center items-center">
+        <div className="py-10 min-h-full flex justify-center items-center">
           <ul className="steps">
             {orderStatus?.map((status) => {
               return (
@@ -121,7 +121,7 @@ const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
           </ul>
         </div>
         {/* contact info  , date, status details*/}
-        <div className="p-6 min-h-full border-l border-gray-200 flex flex-col gap-2">
+        <div className="p-10 min-h-full border-l border-gray-200 flex flex-col gap-2">
           <p className=" mb-2 font-semibold underline">
             Provided Contact Information
           </p>

@@ -16,7 +16,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import { useAnimation, motion } from "framer-motion";
+import { useAnimation, motion, easeInOut } from "framer-motion";
 
 const ShowProjects = ({ project }) => {
   const navigate = useNavigate();
@@ -26,14 +26,27 @@ const ShowProjects = ({ project }) => {
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
         {project?.data?.map((x, index) => {
           return (
-            <div
+            <motion.div
+              whileHover={{
+                scale: 1.05,
+
+                transition: {
+                  duration: 0.3,
+                  ease: easeInOut,
+                },
+              }}
               key={index}
-              className="border border-gray-100 bg-white shadow-lg  h-full"
+              onClick={() => {
+                navigate(`/project-details/${x?._id}/${x?.category?._id}`);
+              }}
+              className="border border-gray-100 bg-white shadow-lg  h-full hover:cursor-pointer"
             >
               <div
-                className="   relative h-[250px] w-full bg-cover bg-center hover:bg-auto shadow-lg "
+                className="relative h-[250px] w-full bg-cover bg-center  transition-all shadow-lg "
                 style={{
-                  backgroundImage: `url(${x?.img})`,
+                  backgroundImage: `url(${
+                    x?.img?.includes("mp4") ? x?.galleryAfter[0] : x?.img
+                  })`,
                 }}
               >
                 <p className="uppercase absolute top-0 right-0 bg-white text-sm font-semibold p-2">
@@ -122,7 +135,7 @@ const ShowProjects = ({ project }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
