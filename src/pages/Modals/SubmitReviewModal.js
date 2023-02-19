@@ -1,22 +1,23 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import axios from "axios";
 
 const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
+  // console.log(orderData);
   const API = "04f0795ca819457ba8b6c8ec73023069";
-  const userInfo = JSON.parse(localStorage.getItem("user"));
+  let userInfo = JSON.parse(localStorage.getItem("user"));
   // REACT FORM HOOKS
   const {
     register,
     resetField,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
+    // console.log(orderData);
     Swal.showLoading();
 
     // IMAGE UPLOADS  ----- SINGLE
@@ -43,13 +44,13 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
     data.clientName = userInfo?.name;
 
     await axiosInstance.post(`review/create`, data).then((res) => {
-      console.log(res.data);
       if (res.status === 201) {
-        orderData.reviewId = res?.data?._id;
+        let tem = orderData;
+        tem.reviewId = res?.data?._id;
         axiosInstance
           .put(
             `order/update?_id=${orderData?._id}&userId=${userInfo?._id}`,
-            orderData
+            tem
           )
           .then((res) => {
             // console.log(res.data);
@@ -83,7 +84,7 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
       }
     });
 
-    console.log(data);
+    // console.log(data);
   };
 
   return (
@@ -94,7 +95,10 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
         className="modal-toggle"
       />
       <label htmlFor="submit-review-modal" className="modal cursor-pointer">
-        <label className="modal-box relative py-10" htmlFor="">
+        <label
+          className="modal-box relative py-10"
+          htmlFor="submit-review-modal"
+        >
           <div className="py-3 lg:px-10 md:px-10 sm:px-2  w-full">
             <p className="text-sm font-bold ">Add a Review</p>
 
@@ -153,7 +157,7 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
                   <p className="text-xs mb-2">Add a Heading/Title</p>
                   <input
                     {...register("reviewTitle", {
-                      required: false,
+                      required: true,
                     })}
                     type="text"
                     placeholder="Type here"
@@ -170,7 +174,7 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
                 <p className="text-xs mb-2">Review</p>
                 <textarea
                   {...register("reviewDiscription", {
-                    required: false,
+                    required: true,
                   })}
                   className="textarea textarea-bordered h-24 text-xs rounded"
                   placeholder="Type Here"

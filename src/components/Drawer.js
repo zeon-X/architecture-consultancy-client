@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -12,8 +12,8 @@ import LogoutFunc from "../utilities/Functions/LogoutFunc";
 
 const Drawer = ({ children }) => {
   const navigate = useNavigate();
-  const userInfo = JSON.parse(localStorage.getItem("user"));
-  const [user, loading, error] = useAuthState(auth);
+  let userInfo = JSON.parse(localStorage.getItem("user"));
+  const [user] = useAuthState(auth);
   const logout = () => {
     Swal.fire({
       icon: "success",
@@ -25,12 +25,7 @@ const Drawer = ({ children }) => {
     userInfo = {};
   };
 
-  const {
-    isLoading,
-    isError,
-    data: category,
-    error1,
-  } = useQuery(["servicecategorys"], async () => {
+  const { data: category } = useQuery(["servicecategoryssssss"], async () => {
     let data = await axiosInstance.get("service-category/get");
 
     return data.data;
@@ -81,7 +76,7 @@ const Drawer = ({ children }) => {
             <li>
               <NavLink to="/#hs0">Home</NavLink>
             </li>
-            {/* <li tabindex="0">
+            {/* <li tabIndex="0">
               <a href="/#hs2">
                 Service
                 <svg
@@ -95,14 +90,14 @@ const Drawer = ({ children }) => {
                 </svg>
               </a>
               <ul
-                tabindex="0"
+                tabIndex="0"
                 className="p-2 bg-base-100 rounded-box shadow-2xl"
               >
                 {cat?.map((x) => {
                   return (
                     <li>
-                      <a
-                        tabindex="1"
+                      <div
+                        tabIndex="1"
                         className="flex justify-between"
                         onClick={() => {
                           navigate(`/article-details/${x?.categoryCode}`);
@@ -124,13 +119,13 @@ const Drawer = ({ children }) => {
                             />
                           </svg>
                         )}
-                      </a>
+                      </div>
                       {x?.sub?.length !== 0 && (
                         <ul tabIndex={1} className="p-2 bg-base-100">
                           {x?.sub?.map((y) => {
                             return (
                               <li>
-                                <a
+                                <div
                                   onClick={() => {
                                     navigate(
                                       `/article-details/${y?.categoryCode}`
@@ -138,7 +133,7 @@ const Drawer = ({ children }) => {
                                   }}
                                 >
                                   {y?.categoryTitle}
-                                </a>
+                                </div>
                               </li>
                             );
                           })}
@@ -155,17 +150,17 @@ const Drawer = ({ children }) => {
               <div className="collapse-title ">Service</div>
               <div className="collapse-content">
                 <ul className="menu p-4  bg-base-100">
-                  {category?.map((x) => {
+                  {category?.map((x, index) => {
                     return (
-                      <li>
-                        <a
+                      <li key={index}>
+                        <div
                           className=""
                           onClick={() => {
                             navigate(`/article-details/${x?.categoryCode}`);
                           }}
                         >
                           {x?.categoryTitle}
-                        </a>
+                        </div>
                       </li>
                     );
                   })}
@@ -209,7 +204,7 @@ const Drawer = ({ children }) => {
             {user && userInfo && (
               <>
                 <li onClick={logout}>
-                  <a>Logout</a>
+                  <div>Logout</div>
                 </li>
               </>
             )}

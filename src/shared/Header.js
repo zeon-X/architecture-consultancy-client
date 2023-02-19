@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import logo from "../assets/logo/logo.png";
+import { NavLink, useNavigate } from "react-router-dom";
+import logo from "../assets/logo/favicon.ico";
 import { auth } from "../firebase.init";
 import Swal from "sweetalert2";
 import "./Header.css";
 import LogoutFunc from "../utilities/Functions/LogoutFunc";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Loading from "./Loading";
 import axiosInstance from "../utilities/axiosInstance/axiosInstance";
 import { useQuery } from "react-query";
 
 const Header = () => {
   const navigate = useNavigate();
-  const userInfo = JSON.parse(localStorage.getItem("user"));
-  const [user, loading, error] = useAuthState(auth);
+  let userInfo = JSON.parse(localStorage.getItem("user"));
+  const [user] = useAuthState(auth);
   const logout = () => {
     Swal.fire({
       icon: "success",
@@ -25,12 +24,7 @@ const Header = () => {
     userInfo = {};
   };
 
-  const {
-    isLoading,
-    isError,
-    data: category,
-    error1,
-  } = useQuery(["servicecategorys"], async () => {
+  const { data: category } = useQuery(["servicecategorys"], async () => {
     let data = await axiosInstance.get("service-category/get");
 
     return data.data;
@@ -49,6 +43,7 @@ const Header = () => {
     main?.map((x) => {
       let subCat = sub?.filter((y) => y?.parentId === x?._id);
       x.sub = subCat;
+      return 1;
     });
     setCat(main);
     // console.log(main);
@@ -107,7 +102,7 @@ const Header = () => {
               <a href="/#hs1">What We Are</a>
             </li>
 
-            <li tabindex="0" className="dropdown-end">
+            <li tabIndex="0" className="dropdown-end">
               <a href="/#hs2">
                 Service
                 <svg
@@ -121,14 +116,14 @@ const Header = () => {
                 </svg>
               </a>
               <ul
-                tabindex="0"
+                tabIndex="0"
                 className="menu menu-compact bg-base-100  lg:w-56 md:w-20  p-2 rounded-box shadow-2xl"
               >
                 {cat?.map((x, index) => {
                   return (
                     <li key={index}>
-                      <a
-                        tabindex="1"
+                      <div
+                        tabIndex="1"
                         className="flex justify-between"
                         onClick={() => {
                           navigate(`/article-details/${x?.categoryCode}`);
@@ -150,7 +145,7 @@ const Header = () => {
                             />
                           </svg>
                         )}
-                      </a>
+                      </div>
                       {x?.sub?.length !== 0 && (
                         <ul
                           tabIndex={1}
@@ -159,7 +154,7 @@ const Header = () => {
                           {x?.sub?.map((y, index) => {
                             return (
                               <li key={index}>
-                                <a
+                                <div
                                   onClick={() => {
                                     navigate(
                                       `/article-details/${y?.categoryCode}`
@@ -167,7 +162,7 @@ const Header = () => {
                                   }}
                                 >
                                   {y?.categoryTitle}
-                                </a>
+                                </div>
                               </li>
                             );
                           })}
@@ -224,10 +219,10 @@ const Header = () => {
               {user && userInfo?.role === "user" && (
                 <>
                   <li onClick={() => navigate("/pricing/#pricing-top")}>
-                    <a className="">Place an Order</a>
+                    <div className="">Place an Order</div>
                   </li>
                   <li onClick={() => navigate("/my-orders")}>
-                    <a>My Orders</a>
+                    <div>My Orders</div>
                   </li>
                 </>
               )}
@@ -238,59 +233,59 @@ const Header = () => {
                     className=""
                     onClick={() => navigate("/dashboard-admin/manage-orders")}
                   >
-                    <a className="bg-gray-100">Admin Dashboard</a>
+                    <div className="bg-gray-100">Admin Dashboard</div>
                   </li>
                   {/* <li onClick={() => navigate("/dashboard-admin/manage-hero")}>
-                    <a className="">Manage Hero Projects</a>
+                    <div  className="">Manage Hero Projects</div> 
                   </li>
                   <li
                     onClick={() => navigate("/dashboard-admin/manage-orders")}
                   >
-                    <a className="">Manage Orders</a>
+                    <div  className="">Manage Orders</div> 
                   </li>
                   <li
                     onClick={() =>
                       navigate("/dashboard-admin/manage-add-category")
                     }
                   >
-                    <a className="">Add Category</a>
+                    <div  className="">Add Category</div> 
                   </li>
                   <li
                     onClick={() => navigate("/dashboard-admin/manage-category")}
                   >
-                    <a className="">Manage Category</a>
+                    <div  className="">Manage Category</div> 
                   </li>
                   <li
                     onClick={() =>
                       navigate("/dashboard-admin/manage-add-project")
                     }
                   >
-                    <a className="">Add Project</a>
+                    <div  className="">Add Project</div> 
                   </li>
                   <li
                     onClick={() => navigate("/dashboard-admin/manage-projects")}
                   >
-                    <a className="">Manage Project</a>
+                    <div  className="">Manage Project</div> 
                   </li>
                   <li
                     onClick={() =>
                       navigate("/dashboard-admin/manage-add-custom-review")
                     }
                   >
-                    <a className="">Add Custom Review</a>
+                    <div  className="">Add Custom Review</div> 
                   </li>
                   <li
                     onClick={() => navigate("/dashboard-admin/manage-review")}
                   >
-                    <a className="">Manage Review</a>
+                    <div  className="">Manage Review</div> 
                   </li>
                   <li
                     onClick={() => navigate("/dashboard-admin/manage-add-blog")}
                   >
-                    <a className="">Add Blog</a>
+                    <div  className="">Add Blog</div> 
                   </li>
                   <li onClick={() => navigate("/dashboard-admin/manage-blog")}>
-                    <a className="">Manage Blog</a>
+                    <div  className="">Manage Blog</div> 
                   </li> */}
                 </>
               )}
@@ -298,7 +293,7 @@ const Header = () => {
               {user && userInfo && (
                 <>
                   <li onClick={logout}>
-                    <a>Logout</a>
+                    <div>Logout</div>
                   </li>
                 </>
               )}

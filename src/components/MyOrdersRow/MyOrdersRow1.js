@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import SubmitReviewModal from "../../pages/Modals/SubmitReviewModal";
 
-const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
+const MyOrdersRow1 = ({ x, handleSetClickAddReviewBtn, index }) => {
+  // console.log(x);
   //status functionalities
   const [orderStatus, setOrderStatus] = useState([
     {
@@ -43,7 +42,9 @@ const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
 
     setOrderStatus(tem);
   }, [x]);
-  const navigate = useNavigate();
+
+  // console.log(x);
+
   return (
     <div className="my-6 border border-gray-400 text-sm bg-white shadow-lg rounded-2xl">
       <div className="w-full grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 justify-center items-start">
@@ -76,6 +77,9 @@ const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
             disabled={
               x?.status !== "completed" || x?.reviewId !== "" ? true : false
             }
+            onClick={() => {
+              handleSetClickAddReviewBtn(index);
+            }}
             htmlFor="submit-review-modal"
             className="btn btn-xs  text-white"
           >
@@ -105,9 +109,10 @@ const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
         {/* order status */}
         <div className="py-10 min-h-full flex justify-center items-center">
           <ul className="steps">
-            {orderStatus?.map((status) => {
+            {orderStatus?.map((status, index) => {
               return (
                 <li
+                  key={index}
                   className={
                     status?.active === true
                       ? "step step-neutral px-1"
@@ -195,12 +200,6 @@ const MyOrdersRow1 = ({ x, changes, increaseChanges }) => {
           )}
         </div>
       </div>
-      {/* Modal */}
-      <SubmitReviewModal
-        orderData={x}
-        increaseChanges={increaseChanges}
-        changes={changes}
-      ></SubmitReviewModal>
     </div>
   );
 };

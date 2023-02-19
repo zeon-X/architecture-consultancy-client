@@ -15,7 +15,7 @@ const HomeSection0 = () => {
     isError,
     data: project,
     error,
-  } = useQuery(["heroprojectdata"], async () => {
+  } = useQuery(["heroprojectdatahome"], async () => {
     let data = await axiosInstance.get(`project/get-hero-projects?limit=3`);
     let tem = data;
 
@@ -54,7 +54,7 @@ const HomeSection0 = () => {
     // }
   }, [inView]);
 
-  console.log(project?.data[heroState]?.img);
+  // console.log(project?.data[heroState]?.img);
   return (
     <section id="hs0" className="w-full mb-16 mt-[-80px]">
       {/* MAIN DIV */}
@@ -123,7 +123,7 @@ const HomeSection0 = () => {
             <div className="btn-group text-gray-300 gap-4 flex-wrap justify-center items-center">
               {project?.data?.map((x, index) => {
                 return (
-                  <div className="flex justify-center items-center">
+                  <div key={index} className="flex justify-center items-center">
                     <button
                       className={
                         index === heroState

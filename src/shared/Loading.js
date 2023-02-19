@@ -1,15 +1,10 @@
 import React from "react";
 import "./Loading.css";
 
-const Loading = ({ msg }) => {
+const Loading = () => {
   return (
-    <div className="flex flex-col h-screen w-full absolute justify-center items-center">
-      <div className="lds-roller">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <p className="text-sm">{msg}</p>
+    <div className="flex h-screen w-full max-w-7xl mx-auto justify-center items-center">
+      <button className="btn loading">loading</button>
     </div>
   );
 };

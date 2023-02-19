@@ -6,8 +6,8 @@ import LogoutFunc from "../Functions/LogoutFunc";
 
 const RequireAuthAndAdmin = ({ children }) => {
   const location = useLocation();
-  const [user, loading, error] = useAuthState(auth);
-  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const [user, loading] = useAuthState(auth);
+  let userInfo = JSON.parse(localStorage.getItem("user"));
 
   const logout = () => {
     LogoutFunc(auth);

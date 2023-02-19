@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
   },
 });
 const printAuth = () => {
-  console.log(localStorage.getItem("authorization"));
+  // console.log(localStorage.getItem("authorization"));
 };
 printAuth();
 export default axiosInstance;

@@ -38,7 +38,7 @@ const HomeSection3 = () => {
     isError1,
     data: category,
     error1,
-  } = useQuery(["categorys"], async ({}) => {
+  } = useQuery(["categoryasdasdadasdsadasds"], async ({}) => {
     return await axiosInstance.get("category/get");
   });
 

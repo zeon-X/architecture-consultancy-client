@@ -13,7 +13,7 @@ const AddServiceCategory = () => {
     isError,
     data: serviceCategory,
     error,
-  } = useQuery(["parservicecat", changes], async ({ changes }) => {
+  } = useQuery(["parservicecatttt", changes], async ({ changes }) => {
     // console.log(changes);
     let data = await axiosInstance.get("service-category/get-parent");
 

@@ -120,7 +120,7 @@ const RegisterModal = () => {
     <div>
       <input type="checkbox" id="register-modal" className="modal-toggle" />
       <label htmlFor="register-modal" className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="">
+        <label className="modal-box relative" htmlFor="register-modal">
           <div className="p-5">
             <p className="font-bold text-2xl text-center w-full">Register</p>
             <p className="text-xs text-center">RETURNING CUSTOMER</p>

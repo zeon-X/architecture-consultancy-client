@@ -21,7 +21,7 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
     isError,
     data: category,
     error,
-  } = useQuery(["categorys"], async ({}) => {
+  } = useQuery(["cateeeeeeegorys"], async ({}) => {
     return await axiosInstance.get("category/get");
   });
 

@@ -11,7 +11,7 @@ const UpdateServiceCategoryModal = ({ props, changes, increaseChanges }) => {
     isError,
     data: serviceCategory,
     error,
-  } = useQuery(["parservicecat", changes], async ({ changes }) => {
+  } = useQuery(["parrrrrrrrservicecat", changes], async ({ changes }) => {
     // console.log(changes);
     let data = await axiosInstance.get("service-category/get-parent");
 

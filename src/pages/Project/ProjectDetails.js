@@ -125,6 +125,7 @@ const ProjectDetails = () => {
                   {projectDetails?.galleryBefore?.map((x) => {
                     return (
                       <div
+                        key={x}
                         className="h-[450px] w-full bg-cover bg-center shadow-lg relative"
                         style={{
                           backgroundImage: `url(${x})`,
@@ -146,6 +147,7 @@ const ProjectDetails = () => {
                   {projectDetails?.galleryAfter?.map((x) => {
                     return (
                       <div
+                        key={x}
                         className="h-[450px] w-full bg-cover bg-center shadow-lg relative"
                         style={{
                           backgroundImage: `url(${x})`,

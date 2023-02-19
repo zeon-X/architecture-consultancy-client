@@ -89,7 +89,7 @@ const LoginModal = () => {
     <div>
       <input type="checkbox" id="login-modal" className="modal-toggle" />
       <label htmlFor="login-modal" className="modal cursor-pointer">
-        <label className="modal-box relative py-10" htmlFor="">
+        <label className="modal-box relative py-10" htmlFor="login-modal">
           <div className="">
             <p className="font-bold text-2xl text-center w-full">Login</p>
             <p className="text-xs text-center">RETURNING CUSTOMER</p>

@@ -4,15 +4,11 @@ import Drawer from "./components/Drawer";
 import Home from "./pages/Home/Home";
 import RequireAuth from "./utilities/RequireAuth/RequireAuth";
 import DashboardDrawer from "./components/DashboardDrawer";
-import MyProfile from "./pages/DashboardPagesShared/MyProfile";
 import ManageAllOrders from "./pages/DashboardPagesAdmin/ManageAllOrders";
 import RequireAuthAndAdmin from "./utilities/RequireAuth/RequireAuthAndAdmin";
 import ManageProjects from "./pages/DashboardPagesAdmin/ManageProjects";
-import MakeAdmin from "./pages/DashboardPagesAdmin/MakeAdmin";
 import AddAProject from "./pages/DashboardPagesAdmin/AddAProject";
 import MyOrders from "./pages/DashBoardPagesUser/MyOrders";
-import AddReview from "./pages/DashBoardPagesUser/AddReview";
-import EditMyProfile from "./pages/DashboardPagesShared/EditMyProfile";
 import NotFound from "./shared/NotFound";
 import AddCategory from "./pages/DashboardPagesAdmin/AddCategory";
 import ManageCategory from "./pages/DashboardPagesAdmin/ManageCategory";
@@ -154,17 +150,7 @@ function App() {
             </Drawer>
           }
         ></Route>
-        {/* REVIEW */}
-        <Route
-          path="/my-reviews"
-          element={
-            <Drawer>
-              <RequireAuth>
-                <AddReview></AddReview>
-              </RequireAuth>
-            </Drawer>
-          }
-        ></Route>
+
         {/* -------- USER DB END --------- */}
         {/* -------- ADMIN DB WITH PANEL START--------- */}
         <Route

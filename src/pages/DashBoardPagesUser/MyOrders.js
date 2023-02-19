@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 import MyOrdersRow1 from "../../components/MyOrdersRow/MyOrdersRow1";
 import ErrorPage from "../../shared/ErrorPage";
 import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
-import MyOrdersRow from "./MyOrdersRow";
-import { useAnimation, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import SubmitReviewModal from "../Modals/SubmitReviewModal";
 
 const MyOrders = () => {
-  const userInfo = JSON.parse(localStorage.getItem("user"));
+  let userInfo = JSON.parse(localStorage.getItem("user"));
+  const [clickAddReviewBtn, handleSetClickAddReviewBtn] = useState(-1);
   const [changes, increaseChanges] = useState(0);
   const {
     isLoading,
     isError,
     data: myorders,
     error,
-  } = useQuery(["userorders", changes], async () => {
+  } = useQuery(["userorderslist", changes], async () => {
     let fdata = await axiosInstance.get(
       `order/find-by-user?_id=${userInfo?._id}`
     );
-    // let fdata = await axiosInstance.get(`order/get`);
     Swal.close();
     return fdata.data;
   });
 
-  // console.log(purchase);
+  // console.log(myorders);
   if (isError) return <ErrorPage msg={error}></ErrorPage>;
-  if (isLoading) return Swal.showLoading();
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <motion.div
@@ -44,22 +44,29 @@ const MyOrders = () => {
           duration: 1,
         },
       }}
-      className="max-w-7xl min-h-screen mx-auto py-6 lg:px-10 md:px-10 sm:px-2  w-full"
+      className="max-w-7xl min-h-screen mx-auto py-6 lg:px-10 md:px-10 sm:px-2 w-full"
     >
       <p className="text-lg font-semibold mt-2">My All Orders</p>
       {/* purchase products */}
-      <div className="overflow-auto flex flex-col-reverse mt-2 ">
+      <div className="overflow-auto flex flex-col-reverse mt-2">
         {myorders?.map((x, index) => {
           return (
             <MyOrdersRow1
               key={index}
+              index={index}
               x={x}
-              increaseChanges={increaseChanges}
-              changes={changes}
+              handleSetClickAddReviewBtn={handleSetClickAddReviewBtn}
             ></MyOrdersRow1>
           );
         })}
       </div>
+
+      {/* Modal */}
+      <SubmitReviewModal
+        orderData={myorders[clickAddReviewBtn]}
+        increaseChanges={increaseChanges}
+        changes={changes}
+      ></SubmitReviewModal>
     </motion.div>
   );
 };

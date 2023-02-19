@@ -4,13 +4,12 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAnimation, motion } from "framer-motion";
 
 const PlaceOrder = () => {
   const { type } = useParams();
-  const API = "04f0795ca819457ba8b6c8ec73023069";
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // -----------USER DATA FETCHING
   const [userData, setUserData] = useState({});
@@ -148,8 +147,8 @@ const PlaceOrder = () => {
     await axiosInstance.post("order/create", data).then((res) => {
       if (res.status === 201) {
         Swal.fire(
-          "Saved!",
-          `You have successfully completed Ordered.`,
+          "Success!",
+          `You have successfully requested Ordered.`,
           "success"
         ).then(() => {
           resetField("clientBudget");
@@ -164,6 +163,8 @@ const PlaceOrder = () => {
           resetField("inspirationImages");
           resetField("otherFiles");
           resetField("projectDiscription");
+
+          navigate("/my-orders");
         });
       } else {
         Swal.fire("Error!", `Something went wrong`, "error");

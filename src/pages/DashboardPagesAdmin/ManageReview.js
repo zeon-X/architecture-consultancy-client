@@ -122,9 +122,11 @@ const ManageReview = () => {
                   <td align="center" className="p-2 border border-gray-300">
                     {x?.reviewTitle}
                   </td>
-                  <td align="center" className="p-2 border border-gray-300">
-                    {x?.reviewDiscription.slice(0, 40)}
-                    <span>..</span>
+                  <td
+                    align="center"
+                    className="p-2 border border-gray-300 max-w-[200px]"
+                  >
+                    {x?.reviewDiscription}
                   </td>
                   {/* BTNS FROM HERE */}
 

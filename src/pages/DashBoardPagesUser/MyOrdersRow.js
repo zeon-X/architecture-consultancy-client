@@ -5,7 +5,7 @@ import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 const MyOrdersRow = ({ props, changes, increaseChanges }) => {
   const [btnActive, setBtnActive] = useState(false);
   const { _id, productId, quantity, payment_status } = props;
-  const userInfo = JSON.parse(localStorage.getItem("user"));
+  let userInfo = JSON.parse(localStorage.getItem("user"));
   //   console.log(props);
   const [q, setQ] = useState(quantity);
   const handleDeleteOrder = (_id) => {
