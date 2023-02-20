@@ -26,8 +26,9 @@ const Header = () => {
 
   const { data: category } = useQuery(["servicecategorys"], async () => {
     let data = await axiosInstance.get("service-category/get");
-
-    return data.data;
+    data = data?.data;
+    data = data?.reverse();
+    return data;
   });
 
   const [cat, setCat] = useState([]);
@@ -99,7 +100,7 @@ const Header = () => {
             </li>
 
             <li>
-              <a href="/#hs1">What We Are</a>
+              <a href="/#hs1">Who We Are</a>
             </li>
 
             <li tabIndex="0" className="dropdown-end">

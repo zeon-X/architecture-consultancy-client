@@ -74,7 +74,7 @@ const HomeSection6 = () => {
                   return (
                     <div
                       key={index}
-                      className="flex flex-col h-full border border-gray-300 w-full"
+                      className="flex flex-col h-full border border-gray-300 w-full bg-white"
                     >
                       {/* IMAGE PART */}
                       <div

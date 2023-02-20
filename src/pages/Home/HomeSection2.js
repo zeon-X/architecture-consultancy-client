@@ -1,8 +1,11 @@
 import { useAnimation, motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-
+import { useQuery } from "react-query";
+import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import { useNavigate } from "react-router-dom";
 const HomeSection2 = () => {
+  const navigate = useNavigate();
   const { ref, inView } = useInView({ threshold: 0.2 });
   const animation = useAnimation();
   // const animatio1 = useAnimation();
@@ -15,6 +18,19 @@ const HomeSection2 = () => {
       });
     }
   }, [inView]);
+
+  const {
+    isLoading,
+    isError,
+    data: category,
+    error,
+  } = useQuery(["servicecatmainuser"], async () => {
+    // console.log(changes);
+    let data = await axiosInstance.get("service-category/get-parent");
+    return data?.data;
+  });
+
+  // console.log(category);
 
   return (
     <section ref={ref} id="hs2" className="w-full pt-36 pb-16 ">
@@ -30,7 +46,10 @@ const HomeSection2 = () => {
         {/* heading */}
         <div className="w-full flex lg:flex-row md:flex-row sm:flex-col justify-between lg:items-center md:items-center sm:items-start lg:px-16 md:px-10 sm:px-2">
           <p className="text-3xl font-bold text-black">What we do</p>
-          <button className="flex items-center gap-2 text-sm uppercase mt-4 hover:text-red-500">
+          <button
+            onClick={() => navigate("/all-services")}
+            className="flex items-center gap-2 text-sm uppercase mt-4 hover:text-red-500"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -53,56 +72,70 @@ const HomeSection2 = () => {
         <div className="w-full lg:flex md:hidden sm:hidden h-[580px] mt-6 text-white ">
           {/* planning */}
           <div
-            style={{ backgroundImage: `url(https://i.ibb.co/T2DNyxw/p.jpg)` }}
+            style={{
+              backgroundImage: `url(${
+                category ? category[0]?.categoryImage : ""
+              })`,
+            }}
             className="relative w-3/12 bg-center bg-cover bg-move transition-all ease-in-out"
           >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              Planning
+            <p className="absolute bottom-10 left-10 font-bold text-2xl ">
+              {category ? category[0]?.categoryTitle : ""}
             </p>
           </div>
           {/* interior */}
           <div
             style={{
-              backgroundImage: `url(https://images.pexels.com/photos/10936675/pexels-photo-10936675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
+              backgroundImage: `url(${
+                category ? category[1]?.categoryImage : ""
+              })`,
             }}
             className="relative w-3/12 bg-center bg-cover bg-move transition-all ease-in-out"
           >
             <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              Interior
+              {category ? category[1]?.categoryTitle : ""}
             </p>
           </div>
 
           <div className="w-6/12 flex flex-col justify-evenly">
             {/* exterior */}
             <div
-              style={{ backgroundImage: `url(https://i.ibb.co/Px8DvhP/e.jpg)` }}
+              style={{
+                backgroundImage: `url(${
+                  category ? category[2]?.categoryImage : ""
+                })`,
+              }}
               className="relative h-[290px] bg-center bg-cover bg-move-tb transition-all ease-in-out"
             >
-              <p className="absolute bottom-10 left-10 font-bold text-2xl">
-                Exterior
+              <p className="absolute bottom-10 left-10 font-bold text-2xl ">
+                {category ? category[2]?.categoryTitle : ""}
               </p>
             </div>
             <div className="flex h-[290px] ">
               {/* decor */}
               <div
                 style={{
-                  backgroundImage: `url(https://i.ibb.co/D7T3jLZ/d.jpg)`,
+                  backgroundImage: `url(${
+                    category ? category[3]?.categoryImage : ""
+                  })`,
                 }}
                 className="relative w-6/12 bg-center bg-cover bg-move transition-all ease-in-out"
               >
                 <p className="absolute bottom-10 left-10 font-bold text-2xl">
-                  Decrotion
+                  {category ? category[3]?.categoryTitle : ""}
                 </p>
               </div>
               {/* construction */}
               <div
                 style={{
-                  backgroundImage: `url(https://i.ibb.co/BV9rvsQ/c.jpg)`,
+                  backgroundImage: `url(${
+                    category ? category[4]?.categoryImage : ""
+                  })`,
                 }}
                 className="relative w-6/12 bg-center bg-cover bg-move transition-all ease-in-out"
               >
                 <p className="absolute bottom-10 left-10 font-bold text-2xl">
-                  Construction
+                  {category ? category[4]?.categoryTitle : ""}
                 </p>
               </div>
             </div>
@@ -111,53 +144,32 @@ const HomeSection2 = () => {
 
         {/* main categories article MOBILE */}
         <div className="w-full lg:hidden md:flex sm:flex flex-wrap mx-auto gap-3 mt-10 text-white ">
-          {/* planning */}
-          <div
-            style={{ backgroundImage: `url(https://i.ibb.co/T2DNyxw/p.jpg)` }}
-            className="relative w-full h-[420px] bg-center bg-cover bg-move transition-all ease-in-out"
-          >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              Planning
-            </p>
-          </div>
-          {/* interior */}
-          <div
-            style={{
-              backgroundImage: `url(https://images.pexels.com/photos/10936675/pexels-photo-10936675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
-            }}
-            className="relative w-full h-[420px]  bg-center bg-cover bg-move transition-all ease-in-out"
-          >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              Interior
-            </p>
-          </div>
-          {/* exterior */}
-          <div
-            style={{ backgroundImage: `url(https://i.ibb.co/Px8DvhP/e.jpg)` }}
-            className="relative w-full h-[420px]  bg-center bg-cover bg-move-tb transition-all ease-in-out"
-          >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              Exterior
-            </p>
-          </div>
-          {/* decor */}
-          <div
-            style={{ backgroundImage: `url(https://i.ibb.co/D7T3jLZ/d.jpg)` }}
-            className="relative w-full h-[420px]  bg-center bg-cover bg-move transition-all ease-in-out"
-          >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              Decrotion
-            </p>
-          </div>
-          {/* construction */}
-          <div
-            style={{ backgroundImage: `url(https://i.ibb.co/BV9rvsQ/c.jpg)` }}
-            className="relative w-full h-[420px]  bg-center bg-cover bg-move transition-all ease-in-out"
-          >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              Construction
-            </p>
-          </div>
+          {category?.map((x) => {
+            return (
+              <div
+                key={x?._id}
+                style={{
+                  backgroundImage: `url(${x?.categoryImage})`,
+                }}
+                className="relative w-full h-[420px] bg-center bg-cover bg-move transition-all ease-in-out"
+              >
+                <div className="absolute bottom-10 left-10 ">
+                  <p className="font-bold text-2xl">{x?.categoryTitle}</p>
+                  <div className="">
+                    <p className="my-4">{x?.categoryDiscription}</p>
+                    <button
+                      onClick={() =>
+                        navigate(`/article-details/${x?.categoryCode}`)
+                      }
+                      className="btn rounded-none bg-red-500 border-none"
+                    >
+                      Read More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </motion.div>
     </section>

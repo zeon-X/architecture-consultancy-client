@@ -81,7 +81,7 @@ const HomeSection0 = () => {
           )}
         </div>
         {/* INSIDE BG DIV */}
-        <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex gap-6 justify-center items-center absolute top-0 text-white">
+        <div className="max-w-6xl lg:px-0 md:px-10 sm:px-10  mx-auto h-full flex lg:flex-row md:flex-row sm:flex-col  gap-6 justify-center items-center absolute lg:top-0 md:top-0 sm:top-28 text-white">
           {/* LEFT SIDE */}
           <motion.div
             animate={animation}
@@ -89,7 +89,7 @@ const HomeSection0 = () => {
               x: -100,
               opasity: 0,
             }}
-            className="w-8/12 h-full flex flex-col justify-center py-10 items-start"
+            className="lg:w-8/12 md:w-8/12 sm:w-full h-full flex flex-col justify-center py-10 items-start"
           >
             {/* BIG TITLE */}
             <div className="mb-24">
@@ -107,13 +107,13 @@ const HomeSection0 = () => {
                       `/project-details/${project?.data[heroState]?._id}/${project?.data[heroState]?.category?._id}`
                     )
                   }
-                  className=" bg-white border border-white rounded-none mt-6 text-black text-sm lg:px-16 sm:px-10 py-4 hover:bg-gray-300 "
+                  className=" bg-white border border-white rounded-none mt-6 text-black text-sm lg:px-16 sm:px-6 py-4 hover:bg-gray-300 "
                 >
                   Discover now
                 </button>
                 <button
                   onClick={() => navigate("/pricing/#pricing-top")}
-                  className=" border border-white rounded-none mt-6 text-white text-sm lg:px-16 sm:px-10 py-4 font-semibold hover:bg-white hover:text-black "
+                  className=" border border-white rounded-none mt-6 text-white text-sm lg:px-16 sm:px-6 py-4 font-semibold hover:bg-white hover:text-black "
                 >
                   Get a Quote
                 </button>
@@ -145,7 +145,7 @@ const HomeSection0 = () => {
             </div>
           </motion.div>
           {/* RIGHT SIDE */}
-          <div className="w-4/12  h-full flex flex-col justify-end items-center">
+          <div className="lg:w-4/12 md:w-4/12 sm:w-full h-full flex flex-col lg:justify-end md:justify-end sm:justify-center items-center">
             <motion.div
               animate={animation1}
               initial={{

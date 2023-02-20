@@ -43,7 +43,7 @@ const HomeSection1 = () => {
             opasity: 0,
           }}
           animate={animation}
-          className="flex lg:flex-row md:flex-col sm:flex-col gap-10"
+          className="flex lg:flex-row md:flex-col sm:flex-col justify-center items-center gap-4 px-6"
         >
           {/* writing section */}
           <div className="lg:w-5/12 md:w-full sm:w-full lg:order-1 md:order-2 sm:order-2">
@@ -80,7 +80,7 @@ const HomeSection1 = () => {
             </button>
           </div>
           {/* image section border border-black*/}
-          <div className="lg:w-7/12 md:w-full sm:w-full  lg:h-[600px] md:h-[540px] sm:h-[440px] flex justify-center relative lg:order-2 md:order-1 sm:order-1">
+          <div className="lg:w-7/12 md:w-w-7/12 sm:w-full  lg:h-[600px] md:h-[540px] sm:h-[440px] flex justify-center relative lg:order-2 md:order-1 sm:order-1">
             <div
               style={{
                 backgroundImage: `url(${section2?.img1})`,
