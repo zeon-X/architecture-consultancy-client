@@ -99,7 +99,7 @@ const ProjectDetails = () => {
           <i>"Projects"</i>
         </motion.p>
       </div>
-      <div className="max-w-7xl w-full mx-auto px-4 flex flex-col justify-center items-center bg-white">
+      <div className="max-w-7xl w-full mx-auto px-4 flex flex-col justify-center items-center ">
         <motion.div
           initial={{
             x: "-100vh",
@@ -120,27 +120,52 @@ const ProjectDetails = () => {
           <div className="lg:w-7/12 md:w-full sm:w-full h-full">
             {projectDetails?.galleryBefore.length !== 0 && (
               <div className="mb-6">
-                {/* <p className="font-semibold text-2xl">Before Images</p> */}
+                <p className="text-3xl uppercase font-semibold mb-6">
+                  Before Images
+                </p>
                 <div className="flex flex-col gap-6">
                   {projectDetails?.galleryBefore?.map((x) => {
                     return (
                       <div
                         key={x}
-                        className="h-[450px] w-full bg-cover bg-center shadow-lg relative"
+                        className="lg:h-[450px] md:h-[450px] sm:h-[240px] w-full bg-cover bg-center shadow-lg relative"
                         style={{
                           backgroundImage: `url(${x})`,
                         }}
                       >
-                        <p className="uppercase absolute bottom-0 right-0 bg-white font-semibold p-2">
-                          Before Images
-                        </p>
+                        {/* <p className="uppercase absolute bottom-0 right-0 text-white font-semibold p-2">
+                          Before Image
+                        </p> */}
                       </div>
                     );
                   })}
                 </div>
               </div>
             )}
-            {projectDetails?.galleryAfter.length !== 0 && (
+            {projectDetails?.galleryBefore.length !== 0 ? (
+              <div>
+                <p className="text-3xl uppercase font-semibold  mb-6">
+                  After Images
+                </p>
+                <div className="flex flex-col gap-6 ">
+                  {projectDetails?.galleryAfter?.map((x) => {
+                    return (
+                      <div
+                        key={x}
+                        className="lg:h-[450px] md:h-[450px] sm:h-[240px] w-full bg-cover bg-center shadow-lg relative"
+                        style={{
+                          backgroundImage: `url(${x})`,
+                        }}
+                      >
+                        {/* <p className="uppercase absolute bottom-0 right-0  text-white font-semibold p-2">
+                          After Image
+                        </p> */}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
               <div>
                 {/* <p className="font-semibold text-2xl">Before Images</p> */}
                 <div className="flex flex-col gap-6 ">
@@ -148,15 +173,11 @@ const ProjectDetails = () => {
                     return (
                       <div
                         key={x}
-                        className="h-[450px] w-full bg-cover bg-center shadow-lg relative"
+                        className="lg:h-[450px] md:h-[450px] sm:h-[240px]  w-full bg-cover bg-center shadow-lg relative"
                         style={{
                           backgroundImage: `url(${x})`,
                         }}
-                      >
-                        <p className="uppercase absolute bottom-0 right-0 bg-warning text-white font-semibold p-2">
-                          After Images
-                        </p>
-                      </div>
+                      ></div>
                     );
                   })}
                 </div>
@@ -245,7 +266,7 @@ const ProjectDetails = () => {
               <p className="uppercase font-semibold">Share</p>
               <div className="flex gap-4 mt-2 text-lg text-gray-400">
                 <FacebookShareButton
-                  url={`http://imranscreation.com/project-details/${_id}/${catId}`}
+                  url={`https://imranscreation.com/project-details/${_id}/${catId}`}
                   quote={projectDetails?.title}
                   description={projectDetails?.aboutLeft?.slice(0, 90)}
                   className="Demo__some-network__share-button"
@@ -254,7 +275,7 @@ const ProjectDetails = () => {
                 </FacebookShareButton>
 
                 <LinkedinShareButton
-                  url={`http://imranscreation.com/project-details/${_id}/${catId}`}
+                  url={`https://imranscreation.com/project-details/${_id}/${catId}`}
                   quote={projectDetails?.title}
                   description={projectDetails?.aboutLeft?.slice(0, 90)}
                   className="Demo__some-network__share-button"
@@ -263,7 +284,7 @@ const ProjectDetails = () => {
                 </LinkedinShareButton>
 
                 <PinterestShareButton
-                  url={`http://imranscreation.com/project-details/${_id}/${catId}`}
+                  url={`https://imranscreation.com/project-details/${_id}/${catId}`}
                   quote={projectDetails?.title}
                   description={projectDetails?.aboutLeft?.slice(0, 90)}
                   className="Demo__some-network__share-button"
@@ -272,7 +293,7 @@ const ProjectDetails = () => {
                 </PinterestShareButton>
 
                 <TwitterShareButton
-                  url={`http://imranscreation.com/project-details/${_id}/${catId}`}
+                  url={`https://imranscreation.com/project-details/${_id}/${catId}`}
                   quote={projectDetails?.title}
                   description={projectDetails?.aboutLeft?.slice(0, 90)}
                   className="Demo__some-network__share-button"
@@ -281,7 +302,7 @@ const ProjectDetails = () => {
                 </TwitterShareButton>
 
                 <WhatsappShareButton
-                  url={`http://imranscreation.com/project-details/${_id}/${catId}`}
+                  url={`https://imranscreation.com/project-details/${_id}/${catId}`}
                   quote={projectDetails?.title}
                   description={projectDetails?.aboutLeft?.slice(0, 90)}
                   className="Demo__some-network__share-button"
@@ -294,7 +315,7 @@ const ProjectDetails = () => {
         </motion.div>
       </div>
 
-      <div ref={ref} className="bg-white">
+      <div ref={ref} className="w-full">
         <motion.div
           initial={{
             x: "-100",
@@ -302,7 +323,7 @@ const ProjectDetails = () => {
             visibility: "hidden",
           }}
           animate={animation1}
-          className="max-w-7xl mx-auto px-4 mt-16 flex flex-col justify-center items-center"
+          className="max-w-7xl mx-auto mt-16 flex flex-col justify-center items-center"
         >
           <p className="text-3xl uppercase font-semibold ">related projects</p>
           <ShowProjects project={project}></ShowProjects>

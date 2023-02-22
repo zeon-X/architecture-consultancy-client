@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { auth } from "../../firebase.init";
+import Loading from "../../shared/Loading";
 import SocialLogin from "../../shared/SocialLogin/SocialLogin";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import LogoutFunc from "../../utilities/Functions/LogoutFunc";
@@ -75,7 +76,7 @@ const LoginPage = () => {
 
   // LODING AND SPINNERS
   if (loading || loading1) {
-    return Swal.showLoading();
+    return <Loading></Loading>;
   }
   if (error) {
     Swal.close();

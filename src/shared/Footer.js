@@ -1,5 +1,5 @@
 import React from "react";
-
+import logo from "../assets/logo/logoi.png";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -25,24 +25,26 @@ const Footer = () => {
       id="contact-us"
       className="lg:px-20 lg:py-16 sm:p-10 bg-[#000000da] text-base-content grid grid-cols-1 justify-center items-center"
     >
-      <div className="flex lg:flex-row sm:flex-col gap-6 justify-between items-start w-full h-full max-w-7xl mx-auto text-white">
+      <div className="flex lg:flex-row sm:flex-col gap-6 justify-between items-start w-full h-full max-w-7xl mx-auto text-white ">
         {/* site name */}
-        <div className="flex items-start justify-start h-full">
+        <div className="flex flex-col items-start justify-start h-full max-w-[300px]">
           <p className="text-lg font-semibold pb-10">Imran's Creation</p>
+          <img className="w-36" src={logo} alt="" />
         </div>
         {/* contact us */}
-        <div className="">
+        <div className="max-w-[300px]">
           <p className="text-lg font-semibold mb-10">Contact Us</p>
           <p className="text-sm mb-3 text-gray-400 ">
-            2972 Westheimer Rd. Santa Ana, Illinois 85486
+            House no-20, Block E, Future Town, Mohammadpur, Basila, 40 feet
+            road, Dhaka, Bangladesh
           </p>
-          <p className="text-sm mb-3 text-gray-400">(907) 555-0101</p>
+          <p className="text-sm mb-3 text-gray-400">+8801774803059</p>
           <p className="text-sm mb-3 text-gray-400">
-            nathan.roberts@example.com
+            contact@imranscreation.com
           </p>
         </div>
         {/* site map */}
-        <div className="flex flex-col">
+        <div className="flex flex-col max-w-[300px]">
           <p className="text-lg font-semibold mb-10">Site map</p>
           <a href="/#hs0" className="text-sm mb-3 text-gray-400">
             Home
@@ -61,16 +63,12 @@ const Footer = () => {
           </a>
         </div>
         {/* sign uo to date */}
-        <div className="">
+        <div className="max-w-[300px]">
           <p className="text-lg font-semibold mb-10">Get a Free consulation</p>
-          <p className="text-sm mb-3 text-gray-400">
-            Consulation is free. Be informormed about our services.
+          <p className="text-sm mb-4 text-gray-400">
+            Be informormed about our services. Ask for free consulation now!
           </p>
-          {/* <input
-            type="text"
-            placeholder="Enter Email Address Here"
-            className="my-4 text-xs bg-transparent rounded-none border-b border-gray-400 w-full"
-          ></input> */}
+
           <div>
             <button
               onClick={() => navigate("/pricing/#pricing-top")}

@@ -115,7 +115,7 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
     <div>
       <input type="checkbox" id="update-blog-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-auto max-w-7xl">
+        <div className="modal-box w-auto max-w-5xl">
           <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full">
             <p className="text-sm font-bold pt-16">Update a Blog</p>
 

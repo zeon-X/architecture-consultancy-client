@@ -47,6 +47,17 @@ const MyOrders = () => {
       className="max-w-7xl min-h-screen mx-auto py-6 lg:px-10 md:px-10 sm:px-2 w-full"
     >
       <p className="text-lg font-semibold mt-2">My All Orders</p>
+
+      {myorders?.length === 0 && (
+        <div className="h-screen w-full max-w-7xl flex flex-col  justify-center items-center">
+          <img
+            className="w-44 h-44"
+            src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png"
+            alt=""
+          />
+          <p className="uppercase mt-6 text-2xl">No orders yet</p>
+        </div>
+      )}
       {/* purchase products */}
       <div className="overflow-auto flex flex-col-reverse mt-2">
         {myorders?.map((x, index) => {

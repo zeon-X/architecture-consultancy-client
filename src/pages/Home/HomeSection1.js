@@ -34,7 +34,10 @@ const HomeSection1 = () => {
   });
 
   return (
-    <section id="hs1" className="w-full my-32 flex justify-center items-center">
+    <section
+      id="hs1"
+      className="w-full pt-44 pb-30 flex justify-center items-center"
+    >
       <div ref={ref}>
         <motion.div
           initial={{

@@ -70,7 +70,7 @@ const HomeSection3 = () => {
     <section
       id="hs3"
       ref={ref}
-      className="px-4 py-16 w-full flex flex-col justify-center items-center "
+      className="px-4 w-full pt-44 pb-36 flex justify-center items-center"
     >
       <motion.div
         initial={{
@@ -130,7 +130,7 @@ const HomeSection3 = () => {
             <button className="btn loading">loading</button>
           </div>
         ) : (
-          <div className="min-h-screen mt-6">
+          <div className="w-full mt-6">
             <ShowProjects project={project}></ShowProjects>
           </div>
         )}

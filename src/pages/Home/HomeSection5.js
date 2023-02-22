@@ -57,7 +57,7 @@ const HomeSection5 = () => {
   return (
     <section
       id="hs5"
-      className="pt-36 pb-24 w-full flex flex-col justify-center items-center bg-cover bg-center"
+      className="py-44 w-full flex flex-col justify-center items-center bg-cover bg-center"
       style={{
         backgroundImage: `url(https://media.istockphoto.com/id/1283613574/photo/white-interior.jpg?b=1&s=170667a&w=0&k=20&c=wU_8pCfhh1Gae4iBky0LtatAcQCwWC6D0LF3Tf_-ea4=)`,
       }}

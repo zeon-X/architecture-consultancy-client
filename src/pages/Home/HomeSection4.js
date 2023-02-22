@@ -40,7 +40,7 @@ const HomeSection4 = () => {
   }, [inView]);
 
   return (
-    <section id="hs4" className="w-full mb-16">
+    <section id="hs4" className="w-full pb-32">
       <motion.div
         initial={{
           x: -100,

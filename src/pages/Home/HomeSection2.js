@@ -33,7 +33,11 @@ const HomeSection2 = () => {
   // console.log(category);
 
   return (
-    <section ref={ref} id="hs2" className="w-full pt-36 pb-16 ">
+    <section
+      ref={ref}
+      id="hs2"
+      className="w-full pt-44 flex justify-center items-center"
+    >
       <motion.div
         initial={{
           x: -100,

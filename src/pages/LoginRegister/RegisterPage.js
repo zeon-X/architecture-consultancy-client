@@ -106,7 +106,7 @@ const RegisterPage = () => {
 
   // LODING AND SPINNERS
   if (loading || loading1) {
-    return Swal.showLoading();
+    return <Loading></Loading>;
   }
   if (error) {
     Swal.close();

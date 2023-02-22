@@ -14,7 +14,8 @@ const SeeAllService = () => {
   } = useQuery(["servicecatalluser"], async () => {
     // console.log(changes);
     let data = await axiosInstance.get("service-category/get");
-    return data?.data;
+    data = data?.data?.reverse();
+    return data;
   });
 
   return (

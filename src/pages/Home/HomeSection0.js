@@ -56,7 +56,7 @@ const HomeSection0 = () => {
 
   // console.log(project?.data[heroState]?.img);
   return (
-    <section id="hs0" className="w-full mb-16 mt-[-80px]">
+    <section id="hs0" className="w-full mt-[-80px]">
       {/* MAIN DIV */}
       <div
         ref={ref}
@@ -145,7 +145,7 @@ const HomeSection0 = () => {
             </div>
           </motion.div>
           {/* RIGHT SIDE */}
-          <div className="lg:w-4/12 md:w-4/12 sm:w-full h-full flex flex-col lg:justify-end md:justify-end sm:justify-center items-center">
+          <div className="lg:w-4/12 md:w-4/12 sm:w-full h-full sm:hidden lg:flex md:flex flex-col lg:justify-end md:justify-end sm:justify-center items-center">
             <motion.div
               animate={animation1}
               initial={{

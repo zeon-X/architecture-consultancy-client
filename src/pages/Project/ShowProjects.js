@@ -22,7 +22,7 @@ const ShowProjects = ({ project }) => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="w-full ">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
         {project?.data?.map((x, index) => {
           return (
@@ -36,10 +36,10 @@ const ShowProjects = ({ project }) => {
                 },
               }}
               key={index}
-              onClick={() => {
-                navigate(`/project-details/${x?._id}/${x?.category?._id}`);
-              }}
-              className="border border-gray-100 bg-white shadow-lg  h-full hover:cursor-pointer"
+              // onClick={() => {
+              //   navigate(`/project-details/${x?._id}/${x?.category?._id}`);
+              // }}
+              className="border border-gray-100 bg-white shadow-lg w-full h-full "
             >
               <div
                 className="relative h-[250px] w-full bg-cover bg-center  transition-all shadow-lg "
@@ -89,7 +89,7 @@ const ShowProjects = ({ project }) => {
                   </button>
                   <div className="flex gap-2  text-lg text-gray-400">
                     <FacebookShareButton
-                      url={`http://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
+                      url={`https://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
                       quote={x?.title}
                       description={x?.aboutLeft?.slice(0, 90)}
                       className="Demo__some-network__share-button"
@@ -98,7 +98,7 @@ const ShowProjects = ({ project }) => {
                     </FacebookShareButton>
 
                     <LinkedinShareButton
-                      url={`http://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
+                      url={`https://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
                       quote={x?.title}
                       description={x?.aboutLeft?.slice(0, 90)}
                       className="Demo__some-network__share-button"
@@ -107,7 +107,7 @@ const ShowProjects = ({ project }) => {
                     </LinkedinShareButton>
 
                     <PinterestShareButton
-                      url={`http://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
+                      url={`https://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
                       quote={x?.title}
                       description={x?.aboutLeft?.slice(0, 90)}
                       className="Demo__some-network__share-button"
@@ -116,7 +116,7 @@ const ShowProjects = ({ project }) => {
                     </PinterestShareButton>
 
                     <TwitterShareButton
-                      url={`http://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
+                      url={`https://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
                       quote={x?.title}
                       description={x?.aboutLeft?.slice(0, 90)}
                       className="Demo__some-network__share-button"
@@ -125,7 +125,7 @@ const ShowProjects = ({ project }) => {
                     </TwitterShareButton>
 
                     <WhatsappShareButton
-                      url={`http://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
+                      url={`https://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
                       quote={x?.title}
                       description={x?.aboutLeft?.slice(0, 90)}
                       className="Demo__some-network__share-button"

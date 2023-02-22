@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/logo/favicon.ico";
+import logo from "../assets/logo/logo.png";
 import { auth } from "../firebase.init";
 import Swal from "sweetalert2";
 import "./Header.css";
@@ -77,19 +77,21 @@ const Header = () => {
         {/* START */}
         <div className="navbar-start flex lg:justify-start md:justify-end sm:justify-end items-center px-2 mx-2">
           {/* starting left portion here */}
-          {/* <img
-            className="hover:cursor-pointer"
-            onClick={() => navigate("/")}
-            src={logo}
-            alt="logo"
-          /> */}
 
-          <p
-            className="hover:cursor-pointer font-semibold lg:text-xl sm:text-[16px]"
+          <div
             onClick={() => navigate("/")}
+            className="flex justify-center items-center select-none"
           >
-            Imran's Creation
-          </p>
+            <img
+              className="hover:cursor-pointer w-10 mr-2"
+              src={logo}
+              alt="logo"
+            />
+
+            <p className="hover:cursor-pointer font-semibold lg:text-xl sm:text-[16px]">
+              Imran's Creation
+            </p>
+          </div>
         </div>
         {/* CENTER */}
         <div className="navbar-center flex-none hidden lg:block mx-auto">

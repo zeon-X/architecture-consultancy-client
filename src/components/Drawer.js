@@ -76,115 +76,56 @@ const Drawer = ({ children }) => {
             <li>
               <NavLink to="/#hs0">Home</NavLink>
             </li>
-            {/* <li tabIndex="0">
-              <a href="/#hs2">
-                Service
-                <svg
-                  className="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                </svg>
-              </a>
-              <ul
-                tabIndex="0"
-                className="p-2 bg-base-100 rounded-box shadow-2xl"
-              >
-                {cat?.map((x) => {
+
+            <div className="collapse collapse-arrow">
+              <input type="checkbox" className="peer" />
+              <div className="collapse-title ">Our Services</div>
+              <div className="collapse-content">
+                {category?.map((x, index) => {
                   return (
-                    <li>
+                    <li key={index}>
                       <div
-                        tabIndex="1"
-                        className="flex justify-between"
+                        className=""
                         onClick={() => {
                           navigate(`/article-details/${x?.categoryCode}`);
                         }}
                       >
                         {x?.categoryTitle}
-                        {x?.sub?.length !== 0 && (
-                          <svg
-                            className="fill-current"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                            />
-                          </svg>
-                        )}
                       </div>
-                      {x?.sub?.length !== 0 && (
-                        <ul tabIndex={1} className="p-2 bg-base-100">
-                          {x?.sub?.map((y) => {
-                            return (
-                              <li>
-                                <div
-                                  onClick={() => {
-                                    navigate(
-                                      `/article-details/${y?.categoryCode}`
-                                    );
-                                  }}
-                                >
-                                  {y?.categoryTitle}
-                                </div>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      )}
                     </li>
                   );
                 })}
-              </ul>
-            </li> */}
 
-            <div className="collapse collapse-arrow">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title ">Service</div>
-              <div className="collapse-content">
-                <ul className="menu p-4  bg-base-100">
-                  {category?.map((x, index) => {
-                    return (
-                      <li key={index}>
-                        <div
-                          className=""
-                          onClick={() => {
-                            navigate(`/article-details/${x?.categoryCode}`);
-                          }}
-                        >
-                          {x?.categoryTitle}
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
+                <li>
+                  <div
+                    className=""
+                    onClick={() => {
+                      navigate(`/all-services`);
+                    }}
+                  >
+                    See All services
+                  </div>
+                </li>
               </div>
             </div>
 
-            <li>
+            {/* <li>
               <NavLink to="/#hs2">What We Do</NavLink>
-            </li>
+            </li> */}
 
             <li>
               <NavLink to="/all-projects">Our Latest Works</NavLink>
             </li>
 
             <li>
-              <NavLink to="/blogs">Blog</NavLink>
+              <NavLink to="/blogs">Our Blogs</NavLink>
+            </li>
+            <li>
+              <NavLink to="/pricing/#pricing-top">Place an Order</NavLink>
             </li>
 
             {user && userInfo?.role === "user" && (
               <>
-                <li>
-                  <NavLink to="/pricing/#pricing-top">Place an Order</NavLink>
-                </li>
                 <li>
                   <NavLink to={"/my-orders"}>My Orders</NavLink>
                 </li>

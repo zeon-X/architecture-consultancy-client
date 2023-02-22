@@ -10,10 +10,10 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
   const API = "04f0795ca819457ba8b6c8ec73023069";
   const [loading, setLoading] = useState(false);
 
-  const [updatedCategory, setCategory] = useState(props?.category?._id);
-  const handleCategory = (event) => {
-    setCategory(event.target.value);
-  };
+  const [propsData, setPropsData] = useState(props);
+  useEffect(() => {
+    setPropsData(props);
+  }, [props]);
 
   // category fetching.
   const {
@@ -109,11 +109,11 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
 
     // ASSEMBLING ALL DATA
     if (image !== "") data.img = image;
-    else data.img = props?.img;
+    else data.img = propsData?.img;
     if (imageArrayBefore.length !== 0) data.galleryBefore = imageArrayBefore;
-    else data.galleryBefore = props?.galleryBefore;
+    else data.galleryBefore = propsData?.galleryBefore;
     if (imageArrayAfter.length !== 0) data.galleryAfter = imageArrayAfter;
-    else data.galleryAfter = props?.galleryAfter;
+    else data.galleryAfter = propsData?.galleryAfter;
 
     // console.log(data);
 
@@ -147,7 +147,7 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
         className="modal-toggle"
       />
       <div className="modal">
-        <div className="modal-box w-auto max-w-7xl">
+        <div className="modal-box w-auto max-w-5xl">
           <div className="w-full py-6 lg:px-10 md:px-10 sm:px-2 pt-16">
             <p className="text-sm font-bold">Update a project</p>
 
@@ -403,7 +403,11 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                   <p className="btn btn-xs bg-red-600 border-none text-white mx-2">
                     To update the image upload all photos including new and old
                   </p>
-                  <img className="w-7/12 rounded-lg" src={props?.img} alt="" />
+                  <img
+                    className="w-7/12 rounded-lg"
+                    src={propsData?.img}
+                    alt=""
+                  />
                 </div>
               </div>
 
@@ -423,14 +427,12 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                 </div>
                 {/* previous uploaded img display */}
                 <div className="my-4">
-                  <p className="btn btn-xs mb-1">
-                    Previously added before Image
-                  </p>
-                  <p className="btn btn-xs bg-red-600 border-none text-white mx-2">
-                    To update the image upload all photos including new and old
+                  <p className="">Previously added before Image</p>
+                  <p className=" text-red-600 border-none  mb-1">
+                    *To update the image upload all photos including new and old
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    {props?.galleryBefore?.map((x, index) => {
+                    {propsData?.galleryBefore?.map((x, index) => {
                       return (
                         <img
                           key={index}
@@ -442,6 +444,17 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                     })}
                   </div>
                 </div>
+
+                <p
+                  onClick={() => {
+                    let tem = propsData;
+                    tem.galleryBefore = [];
+                    setPropsData(tem);
+                  }}
+                  className="btn btn-sm bg-red-500 border-none text-white"
+                >
+                  Remove All Before Images
+                </p>
               </div>
 
               <div className="p-4 border border-gray-200 my-10">
@@ -460,14 +473,12 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                 </div>
                 {/* previous uploaded img display */}
                 <div className="my-4">
-                  <p className="btn btn-xs mb-1">
-                    Previously added before Image
-                  </p>
-                  <p className="btn btn-xs bg-red-600 border-none text-white mx-2">
-                    To update the image upload all photos including new and old
+                  <p className="">Previously added After Image</p>
+                  <p className=" text-red-600 border-none  mb-1">
+                    *To update the image upload all photos including new and old
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    {props?.galleryAfter?.map((x, index) => {
+                    {propsData?.galleryAfter?.map((x, index) => {
                       return (
                         <img
                           key={index}
@@ -479,6 +490,17 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                     })}
                   </div>
                 </div>
+
+                <p
+                  onClick={() => {
+                    let tem = propsData;
+                    tem.galleryAfter = [];
+                    setPropsData(tem);
+                  }}
+                  className="btn btn-sm bg-red-500 border-none text-white"
+                >
+                  Remove All After Images
+                </p>
               </div>
 
               {/* submit */}
