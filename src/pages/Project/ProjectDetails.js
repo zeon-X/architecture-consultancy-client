@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import Swal from "sweetalert2";
+import p from "../../assets/object/person.webp";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -20,10 +20,12 @@ import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import ShowProjects from "./ShowProjects";
+import Loading from "../../shared/Loading";
 
 const ProjectDetails = () => {
   const { _id, catId } = useParams();
   // console.log(_id);
+  const [load, isLoad] = useState(false);
 
   const {
     isLoading,
@@ -54,6 +56,17 @@ const ProjectDetails = () => {
     return fdata;
   });
 
+  const [imgTags, setImgTags] = useState([]);
+
+  useEffect(() => {
+    isLoad(true);
+    let tem = projectDetails?.aboutRight?.split(",");
+    setImgTags(tem);
+    isLoad(false);
+  }, [projectDetails]);
+
+  // console.log(imgTags);
+
   const { ref, inView } = useInView();
   const animation1 = useAnimation();
   useEffect(() => {
@@ -71,6 +84,10 @@ const ProjectDetails = () => {
       });
     }
   }, [inView]);
+
+  // console.log(imgTags === undefined);
+
+  if (isLoading1 || isLoading || load) return <Loading></Loading>;
 
   return (
     <div className="flex flex-col  items-center min-h-screen w-full">
@@ -124,43 +141,37 @@ const ProjectDetails = () => {
                   Before Images
                 </p>
                 <div className="flex flex-col gap-6">
-                  {projectDetails?.galleryBefore?.map((x) => {
+                  {projectDetails?.galleryBefore?.map((x, index) => {
                     return (
-                      <div
-                        key={x}
-                        className="lg:h-[450px] md:h-[450px] sm:h-[240px] w-full bg-cover bg-center shadow-lg relative"
-                        style={{
-                          backgroundImage: `url(${x})`,
-                        }}
-                      >
-                        {/* <p className="uppercase absolute bottom-0 right-0 text-white font-semibold p-2">
-                          Before Image
-                        </p> */}
-                      </div>
+                      <img
+                        key={index}
+                        className="w-full"
+                        src={x}
+                        alt={projectDetails?.category?.categoryTitle}
+                      />
                     );
                   })}
                 </div>
               </div>
             )}
-            {projectDetails?.galleryBefore.length !== 0 ? (
+            {projectDetails?.galleryBefore?.length !== 0 ? (
               <div>
                 <p className="text-3xl uppercase font-semibold  mb-6">
                   After Images
                 </p>
                 <div className="flex flex-col gap-6 ">
-                  {projectDetails?.galleryAfter?.map((x) => {
+                  {projectDetails?.galleryAfter?.map((x, index) => {
                     return (
-                      <div
-                        key={x}
-                        className="lg:h-[450px] md:h-[450px] sm:h-[240px] w-full bg-cover bg-center shadow-lg relative"
-                        style={{
-                          backgroundImage: `url(${x})`,
-                        }}
-                      >
-                        {/* <p className="uppercase absolute bottom-0 right-0  text-white font-semibold p-2">
-                          After Image
-                        </p> */}
-                      </div>
+                      <img
+                        key={index}
+                        className="w-full"
+                        src={x}
+                        alt={
+                          imgTags?.length !== 0 && imgTags !== undefined
+                            ? imgTags[index]
+                            : projectDetails?.category?.categoryTitle
+                        }
+                      />
                     );
                   })}
                 </div>
@@ -169,15 +180,18 @@ const ProjectDetails = () => {
               <div>
                 {/* <p className="font-semibold text-2xl">Before Images</p> */}
                 <div className="flex flex-col gap-6 ">
-                  {projectDetails?.galleryAfter?.map((x) => {
+                  {projectDetails?.galleryAfter?.map((x, index) => {
                     return (
-                      <div
-                        key={x}
-                        className="lg:h-[450px] md:h-[450px] sm:h-[240px]  w-full bg-cover bg-center shadow-lg relative"
-                        style={{
-                          backgroundImage: `url(${x})`,
-                        }}
-                      ></div>
+                      <img
+                        key={index}
+                        className="w-full"
+                        src={x}
+                        alt={
+                          imgTags?.length !== 0 && imgTags !== undefined
+                            ? imgTags[index]
+                            : projectDetails?.category?.categoryTitle
+                        }
+                      />
                     );
                   })}
                 </div>
@@ -194,10 +208,10 @@ const ProjectDetails = () => {
                 className="mt-6 text-gray-700"
                 dangerouslySetInnerHTML={{ __html: projectDetails?.aboutLeft }}
               ></p>
-              <p
+              {/* <p
                 className="mb-6 text-gray-700"
                 dangerouslySetInnerHTML={{ __html: projectDetails?.aboutRight }}
-              ></p>
+              ></p> */}
 
               {/* PROJECT INFO */}
               <div className="grid grid-cols-2 gap-6 mb-6 bg-white rounded shadow p-5">
@@ -245,7 +259,11 @@ const ProjectDetails = () => {
                       <div className="flex gap-3 items-center mt-4">
                         <img
                           className="rounded-full w-10"
-                          src={projectDetails?.reviewId?.clientImg}
+                          src={
+                            projectDetails?.reviewId?.clientImg
+                              ? projectDetails?.reviewId?.clientImg
+                              : p
+                          }
                           alt=""
                         />
 

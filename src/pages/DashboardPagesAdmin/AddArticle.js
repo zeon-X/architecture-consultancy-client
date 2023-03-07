@@ -127,6 +127,16 @@ const AddArticle = () => {
         </div>
 
         <p className="font-semibold  mt-16 mb-3">Article Image and paragraph</p>
+        <p>Add the tag after ending the paragraph</p>
+        <p className="  mb-2 ">
+          To add image tag write{" "}
+          <span className="font-semibold text-red-600">imranvhaisera</span>{" "}
+          first then write the tag in the{" "}
+          <span className="font-semibold text-red-600">
+            paragraph with image
+          </span>{" "}
+          box
+        </p>
         <div className="grid lg:grid-cols-1 sm:grid-cols-1 gap-5 border border-gray-300 rounded-lg mb-16 p-5">
           {/* --------single image ----------*/}
 

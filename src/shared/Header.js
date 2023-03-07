@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/logo/logo.png";
+import logo from "../assets/logo/logo.webp";
 import { auth } from "../firebase.init";
 import Swal from "sweetalert2";
 import "./Header.css";
@@ -83,7 +83,7 @@ const Header = () => {
             className="flex justify-center items-center select-none"
           >
             <img
-              className="hover:cursor-pointer w-10 mr-2"
+              className="hover:cursor-pointer w-12 h-12 mr-2 lg:block sm:hidden"
               src={logo}
               alt="logo"
             />

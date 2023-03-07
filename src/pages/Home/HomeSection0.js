@@ -3,8 +3,9 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 // import project from "../../JSON/HeroJSON";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
-import { easeInOut, motion, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import ar from "../../assets/object/ar.webp";
 
 const HomeSection0 = () => {
   const navigate = useNavigate();
@@ -137,7 +138,7 @@ const HomeSection0 = () => {
                     {index === heroState ? (
                       <div className="border border-b border-white w-[44px] ml-4"></div>
                     ) : (
-                      <div></div>
+                      <></>
                     )}
                   </div>
                 );
@@ -145,7 +146,7 @@ const HomeSection0 = () => {
             </div>
           </motion.div>
           {/* RIGHT SIDE */}
-          <div className="lg:w-4/12 md:w-4/12 sm:w-full h-full sm:hidden lg:flex md:flex flex-col lg:justify-end md:justify-end sm:justify-center items-center">
+          <div className="lg:w-4/12  h-full sm:hidden lg:flex md:flex flex-col lg:justify-end md:justify-end sm:justify-center items-center">
             <motion.div
               animate={animation1}
               initial={{
@@ -160,13 +161,9 @@ const HomeSection0 = () => {
                     `/project-details/${project?.data[heroState]?._id}/${project?.data[heroState]?.category?._id}`
                   )
                 }
-                className="mb-8 hover:cursor-pointer "
+                className="mb-8 hover:cursor-pointer hover:scale-90 transition-all ease-in-out"
               >
-                <img
-                  className="lg:w-[180px] lg:h-[120px] md:w-[90px] md:h-[60px] sm:w-[45px] sm:h-[30px]"
-                  src={"https://i.ibb.co/PtckDVr/ar.png"}
-                  alt=""
-                />
+                <img className="lg:h-[120px]  md:h-[60px] " src={ar} alt="" />
               </button>
               <p>
                 {project?.data[heroState]?.title} -{" "}

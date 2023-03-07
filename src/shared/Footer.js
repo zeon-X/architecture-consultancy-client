@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo/logoi.png";
+import logo from "../assets/logo/logoi.webp";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -17,19 +17,21 @@ const Footer = () => {
       link: "https://www.facebook.com/eng.imranh",
     },
   ];
-
+  let fotterBgImage =
+    "https://images.unsplash.com/photo-1431576901776-e539bd916ba2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80";
   let year = new Date().getFullYear();
   const navigate = useNavigate();
   return (
     <footer
+      // style={{ backgroundImage: `url(${fotterBgImage})` }}
       id="contact-us"
-      className="lg:px-20 lg:py-16 sm:p-10 bg-[#000000da] text-base-content grid grid-cols-1 justify-center items-center"
+      className="lg:px-20 lg:py-16 sm:p-10 bg-[#000000da] text-base-content grid grid-cols-1 justify-center items-center bg-cover bg-center"
     >
       <div className="flex lg:flex-row sm:flex-col gap-6 justify-between items-start w-full h-full max-w-7xl mx-auto text-white ">
         {/* site name */}
         <div className="flex flex-col items-start justify-start h-full max-w-[300px]">
           <p className="text-lg font-semibold pb-10">Imran's Creation</p>
-          <img className="w-36" src={logo} alt="" />
+          <img className="w-36 h-36" src={logo} alt="" />
         </div>
         {/* contact us */}
         <div className="max-w-[300px]">

@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import rc from "../../assets/reviewcover/rc.webp";
 
 // REVIEW
 const HomeSection5 = () => {
@@ -59,7 +60,7 @@ const HomeSection5 = () => {
       id="hs5"
       className="py-44 w-full flex flex-col justify-center items-center bg-cover bg-center"
       style={{
-        backgroundImage: `url(https://media.istockphoto.com/id/1283613574/photo/white-interior.jpg?b=1&s=170667a&w=0&k=20&c=wU_8pCfhh1Gae4iBky0LtatAcQCwWC6D0LF3Tf_-ea4=)`,
+        backgroundImage: `url(${rc})`,
       }}
     >
       <motion.div

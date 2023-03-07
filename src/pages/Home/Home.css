@@ -23,8 +23,32 @@
 }
 
 .bg-move,.bg-move-tb{
-    cursor: pointer;
+    transition: all 0.8s ease-in-out;
 }
+
+
+.affected{
+    bottom: -220px;
+    transition: all 0.5s ease-in-out;
+}
+.hover-parent{
+    pointer-events:auto;
+}
+
+
+.hover-parent:hover ~ .affected {
+    bottom: 0;
+}
+.hover-parent:hover ~ .affected-child {
+    color: brown;
+}
+
+.affected:hover {
+    bottom: 0;
+}
+
+
+
 
 /* |||||||||||||||||| HOME SECTION 3 ||||||||||||||| */
 /* project */

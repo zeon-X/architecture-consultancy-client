@@ -38,6 +38,22 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
         });
     }
 
+    // IMAGE UPLOADS  ----- SINGLE
+    // let image = "";
+    // let formData1 = new FormData();
+    // formData1.append("file", data?.clientImg[0]);
+    // await axiosInstance
+    //   .post("/file/upload", formData1)
+    //   .then((res) => {
+    //     //console.log(res);
+    //     if (res.status === 200) {
+    //       image = res?.data?.url;
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
     // Data assembling-----------------
     if (image !== "") data.clientImg = image;
     else data.clientImg = "";
@@ -131,7 +147,7 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
                         )}
                       </label>
                     </div>
-                    {/* ------client img-------- */}
+                    {/* ------client clientImg-------- */}
                     <div className="form-control w-full ">
                       <label className="label">
                         <span className="">Image</span>

@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const AddCustomReview = () => {
@@ -25,6 +24,7 @@ const AddCustomReview = () => {
     // IMAGE UPLOADS  ----- SINGLE
     let image = "";
     let imgData = new FormData();
+    // console.log(data.clientImg);
     if (data.clientImg[0]) {
       imgData.append("image", data.clientImg[0]);
       await axios

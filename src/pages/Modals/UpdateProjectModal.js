@@ -2,13 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
-import axios from "axios";
 import { useQuery } from "react-query";
 
 const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
   //   console.log(props);
-  const API = "04f0795ca819457ba8b6c8ec73023069";
-  const [loading, setLoading] = useState(false);
 
   const [propsData, setPropsData] = useState(props);
   useEffect(() => {
@@ -115,7 +112,7 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
     if (imageArrayAfter.length !== 0) data.galleryAfter = imageArrayAfter;
     else data.galleryAfter = propsData?.galleryAfter;
 
-    // console.log(data);
+    console.log(data);
 
     let { galleryAfterTem, galleryBeforeTem, ...rest } = data;
     // console.log(rest);
@@ -138,6 +135,8 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
         // console.log(res.data);
       });
   };
+
+  console.log(propsData);
 
   return (
     <div className="">
@@ -330,10 +329,10 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
               </div>
 
               {/* About Left-Right*/}
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-5">
                 <div className="form-control w-full ">
                   <label className="label">
-                    <span className="">About Left</span>
+                    <span className="">Discription</span>
                   </label>
                   <textarea
                     type="text"
@@ -344,26 +343,6 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                     })}
                   />
                   {errors.aboutLeft && (
-                    <label className="label">
-                      <span className="-alt text-sm text-red-500">
-                        This field is required
-                      </span>
-                    </label>
-                  )}
-                </div>
-                <div className="form-control w-full ">
-                  <label className="label">
-                    <span className="">About Right</span>
-                  </label>
-                  <textarea
-                    type="text"
-                    name="aboutRight"
-                    className="textarea textarea-bordered rounded text-xs h-24"
-                    {...register("aboutRight", {
-                      required: false,
-                    })}
-                  />
-                  {errors.aboutRight && (
                     <label className="label">
                       <span className="-alt text-sm text-red-500">
                         This field is required
@@ -501,6 +480,29 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
                 >
                   Remove All After Images
                 </p>
+
+                <div className="form-control w-full mt-6">
+                  <label className="label">
+                    <span className="uppercase">
+                      Image Tags {"("} Put a comma {","} between each tag {")"}
+                    </span>
+                  </label>
+                  <textarea
+                    type="text"
+                    name="aboutRight"
+                    className="textarea textarea-bordered rounded text-xs h-24"
+                    {...register("aboutRight", {
+                      required: false,
+                    })}
+                  />
+                  {errors.aboutRight && (
+                    <label className="label">
+                      <span className="-alt text-sm text-red-500">
+                        This field is required
+                      </span>
+                    </label>
+                  )}
+                </div>
               </div>
 
               {/* submit */}

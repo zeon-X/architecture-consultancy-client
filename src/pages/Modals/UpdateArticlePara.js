@@ -67,7 +67,7 @@ const UpdateArticlePara = ({ index, props, propsData, setPropsData }) => {
       {/* img file select */}
       <div className="form-control w-full ">
         <label className="label">
-          <span className="">Youtube Video Link</span>
+          <span className="">Add embed Youtube Video Link Here</span>
         </label>
         <input
           type="text"

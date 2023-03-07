@@ -4,6 +4,8 @@ import { useInView } from "react-intersection-observer";
 import { useQuery } from "react-query";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
+
 const HomeSection2 = () => {
   const navigate = useNavigate();
   const { ref, inView } = useInView({ threshold: 0.2 });
@@ -36,7 +38,7 @@ const HomeSection2 = () => {
     <section
       ref={ref}
       id="hs2"
-      className="w-full pt-44 flex justify-center items-center"
+      className="w-full pt-16 flex justify-center items-center"
     >
       <motion.div
         initial={{
@@ -73,74 +75,180 @@ const HomeSection2 = () => {
         </div>
 
         {/* main categories article DSKTOP */}
-        <div className="w-full lg:flex md:hidden sm:hidden h-[580px] mt-6 text-white ">
-          {/* planning */}
+        <div className="w-full lg:flex md:hidden sm:hidden h-[580px] mt-6 text-white hover-effect-container">
+          {/* <div className="relative w-3/12 overflow-hidden">
+            <div
+              style={{
+                backgroundImage: `url(${
+                  category ? category[0]?.categoryImage : ""
+                })`,
+              }}
+              className="w-full h-full bg-center bg-cover bg-move hover-parent"
+            ></div>
+            <div className="absolute   w-full  flex flex-col items-start justify-end p-6  affected">
+             
+              <p className="select-none font-bold text-2xl ">
+                {category ? category[0]?.categoryTitle : ""}
+              </p>
+              <div className="mt-16 affected-child">
+                <p className="select-none ">
+                  {category ? category[0]?.categoryDiscription : ""}
+                </p>
+                <button
+                  onClick={() =>
+                    navigate(`/article-details/${category[0]?.categoryCode}`)
+                  }
+                  className="mt-4 btn rounded-none bg-red-500 border-none text-white"
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div> */}
+
           <div
             style={{
               backgroundImage: `url(${
                 category ? category[0]?.categoryImage : ""
               })`,
             }}
-            className="relative w-3/12 bg-center bg-cover bg-move transition-all ease-in-out"
+            className="relative w-3/12 bg-center bg-cover bg-move "
           >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl ">
-              {category ? category[0]?.categoryTitle : ""}
-            </p>
+            <div className="absolute bottom-10 left-10 ">
+              <p className=" font-bold text-2xl">
+                {category ? category[0]?.categoryTitle : ""}
+              </p>
+              <div className="">
+                <p className="">
+                  {category ? category[0]?.categoryDiscription : ""}
+                </p>
+                <button
+                  onClick={() =>
+                    navigate(`/article-details/${category[0]?.categoryCode}`)
+                  }
+                  className="mt-4 btn rounded-none bg-red-500 border-none text-white"
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
           </div>
-          {/* interior */}
+
           <div
             style={{
               backgroundImage: `url(${
                 category ? category[1]?.categoryImage : ""
               })`,
             }}
-            className="relative w-3/12 bg-center bg-cover bg-move transition-all ease-in-out"
+            className="relative w-3/12 bg-center bg-cover bg-move "
           >
-            <p className="absolute bottom-10 left-10 font-bold text-2xl">
-              {category ? category[1]?.categoryTitle : ""}
-            </p>
+            <div className="absolute bottom-10 left-10 ">
+              <p className=" font-bold text-2xl">
+                {category ? category[1]?.categoryTitle : ""}
+              </p>
+              <div className="">
+                <p className="">
+                  {category ? category[1]?.categoryDiscription : ""}
+                </p>
+                <button
+                  onClick={() =>
+                    navigate(`/article-details/${category[1]?.categoryCode}`)
+                  }
+                  className="mt-4 btn rounded-none bg-red-500 border-none text-white"
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className="w-6/12 flex flex-col justify-evenly">
-            {/* exterior */}
             <div
               style={{
                 backgroundImage: `url(${
                   category ? category[2]?.categoryImage : ""
                 })`,
               }}
-              className="relative h-[290px] bg-center bg-cover bg-move-tb transition-all ease-in-out"
+              className="relative h-[290px] bg-center bg-cover bg-move-tb "
             >
-              <p className="absolute bottom-10 left-10 font-bold text-2xl ">
-                {category ? category[2]?.categoryTitle : ""}
-              </p>
+              <div className="absolute bottom-10 left-10 ">
+                <p className=" font-bold text-2xl">
+                  {category ? category[2]?.categoryTitle : ""}
+                </p>
+                <div className="">
+                  <p className="">
+                    {category ? category[2]?.categoryDiscription : ""}
+                  </p>
+                  <button
+                    onClick={() =>
+                      navigate(`/article-details/${category[2]?.categoryCode}`)
+                    }
+                    className="mt-4 btn rounded-none bg-red-500 border-none text-white"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="flex h-[290px] ">
-              {/* decor */}
               <div
                 style={{
                   backgroundImage: `url(${
                     category ? category[3]?.categoryImage : ""
                   })`,
                 }}
-                className="relative w-6/12 bg-center bg-cover bg-move transition-all ease-in-out"
+                className="relative w-6/12 bg-center bg-cover bg-move "
               >
-                <p className="absolute bottom-10 left-10 font-bold text-2xl">
-                  {category ? category[3]?.categoryTitle : ""}
-                </p>
+                <div className="absolute bottom-10 left-10 ">
+                  <p className=" font-bold text-2xl">
+                    {category ? category[3]?.categoryTitle : ""}
+                  </p>
+                  <div className="">
+                    <p className="">
+                      {category ? category[3]?.categoryDiscription : ""}
+                    </p>
+                    <button
+                      onClick={() =>
+                        navigate(
+                          `/article-details/${category[3]?.categoryCode}`
+                        )
+                      }
+                      className="mt-4 btn rounded-none bg-red-500 border-none text-white"
+                    >
+                      Read More
+                    </button>
+                  </div>
+                </div>
               </div>
-              {/* construction */}
+
               <div
                 style={{
                   backgroundImage: `url(${
                     category ? category[4]?.categoryImage : ""
                   })`,
                 }}
-                className="relative w-6/12 bg-center bg-cover bg-move transition-all ease-in-out"
+                className="relative w-6/12 bg-center bg-cover bg-move "
               >
-                <p className="absolute bottom-10 left-10 font-bold text-2xl">
-                  {category ? category[4]?.categoryTitle : ""}
-                </p>
+                <div className="absolute bottom-10 left-10 ">
+                  <p className=" font-bold text-2xl">
+                    {category ? category[4]?.categoryTitle : ""}
+                  </p>
+                  <div className="">
+                    <p className="">
+                      {category ? category[4]?.categoryDiscription : ""}
+                    </p>
+                    <button
+                      onClick={() =>
+                        navigate(
+                          `/article-details/${category[4]?.categoryCode}`
+                        )
+                      }
+                      className="mt-4 btn rounded-none bg-red-500 border-none text-white"
+                    >
+                      Read More
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -155,7 +263,7 @@ const HomeSection2 = () => {
                 style={{
                   backgroundImage: `url(${x?.categoryImage})`,
                 }}
-                className="relative w-full h-[420px] bg-center bg-cover bg-move transition-all ease-in-out"
+                className="relative w-full h-[420px] bg-center bg-cover bg-move "
               >
                 <div className="absolute bottom-10 left-10 ">
                   <p className="font-bold text-2xl">{x?.categoryTitle}</p>

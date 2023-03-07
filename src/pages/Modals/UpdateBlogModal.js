@@ -149,8 +149,16 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
               <p className="font-semibold  mt-16 mb-3">
                 Blog Image and paragraph
               </p>
-              <p className="btn btn-xs bg-red-600 border-none text-white mb-2">
-                To update upload all photos including new and old
+              <p className="  mb-2 max-w-[400px]">
+                To add tag with image write{" "}
+                <span className="font-semibold text-red-600">
+                  imranvhaisera
+                </span>{" "}
+                first then write the tag in the{" "}
+                <span className="font-semibold text-red-600">
+                  paragraph with image
+                </span>{" "}
+                box
               </p>
               <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-5">
                 {props?.blogPara?.map((x, index) => {

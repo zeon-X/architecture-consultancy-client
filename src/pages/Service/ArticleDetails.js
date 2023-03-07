@@ -46,6 +46,8 @@ const ArticleDetails = () => {
     return data;
   });
 
+  // console.log(articleDetails?.data);
+
   const {
     isLoading1,
     isError1,
@@ -116,7 +118,7 @@ const ArticleDetails = () => {
                         <img
                           className="w-full rounded-xl"
                           src={x?.img}
-                          alt=""
+                          alt={x?.paragraph?.split("imranvhaisera")[1]}
                         />
                       ) : (
                         <div className="w-full h-full flex justify-center items-center">
@@ -136,20 +138,41 @@ const ArticleDetails = () => {
 
                   <p
                     className="my-16 text-lg text-gray-500"
-                    dangerouslySetInnerHTML={{ __html: x?.paragraph }}
+                    dangerouslySetInnerHTML={{
+                      __html: x?.paragraph?.split("imranvhaisera")[0],
+                    }}
                   ></p>
                 </div>
               ) : (
                 <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-6">
                   <p
                     className="my-16 text-lg text-gray-500 lg:order-1 md:order-2 sm:order-2"
-                    dangerouslySetInnerHTML={{ __html: x?.paragraph }}
+                    dangerouslySetInnerHTML={{
+                      __html: x?.paragraph?.split("imranvhaisera")[0],
+                    }}
                   ></p>
-                  <img
-                    className="w-full rounded-xl  lg:order-2 md:order-1 sm:order-1"
-                    src={x?.img}
-                    alt=""
-                  />
+                  {x?.img !== "" && (
+                    <div className="w-full h-full lg:order-2 md:order-2 sm:order-1">
+                      {x?.img?.includes("http") ? (
+                        <img
+                          className="w-full rounded-xl"
+                          src={x?.img}
+                          alt={x?.paragraph?.split("imranvhaisera")[1]}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex justify-center items-center lg:order-2 md:order-2 sm:order-1">
+                          <iframe
+                            className="w-full lg:h-full md:h-[480px] sm:h-[280px] rounded-xl"
+                            // width="560"
+                            // height="315"
+                            src={`https://www.youtube.com/embed/${x?.img}`}
+                            title="YouTube video player"
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

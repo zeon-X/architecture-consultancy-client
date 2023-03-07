@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useAnimation, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import p from "../../assets/object/person.webp";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -125,7 +125,11 @@ const BlogDetails = () => {
             {x?.img !== "" && (
               <div className="h-full w-full">
                 {x?.img?.includes("http") ? (
-                  <img className="w-full rounded-xl" src={x?.img} alt="" />
+                  <img
+                    className="w-full rounded-xl"
+                    src={x?.img}
+                    alt={x?.paragraph?.split("imranvhaisera")[1]}
+                  />
                 ) : (
                   <div className="w-full h-full flex justify-center items-center">
                     <iframe
@@ -144,7 +148,9 @@ const BlogDetails = () => {
 
             <p
               className="my-16 text-lg text-gray-500"
-              dangerouslySetInnerHTML={{ __html: x?.paragraph }}
+              dangerouslySetInnerHTML={{
+                __html: x?.paragraph?.split("imranvhaisera")[0],
+              }}
             ></p>
           </div>
         );
@@ -226,11 +232,7 @@ const BlogDetails = () => {
             {commentsData?.data?.map((x) => {
               return (
                 <div className="w-full flex p-8 gap-6 bg-gray-100 rounded-xl justify-center items-center mb-6">
-                  <img
-                    className="w-20 h-20"
-                    src="https://cdn-icons-png.flaticon.com/512/727/727399.png"
-                    alt=""
-                  />
+                  <img className="w-20 h-20" src={p} alt="" />
                   <div className="w-full">
                     <div className="flex justify-between items-center w-full">
                       <p className="text-lg font-semibold">{x?.name}</p>

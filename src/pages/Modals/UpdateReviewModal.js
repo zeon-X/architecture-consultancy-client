@@ -30,7 +30,7 @@ const UpdateReviewModal = ({ props, increaseChanges, changes }) => {
     let image = "";
     let imgData = new FormData();
     // console.log(data.clientImg);
-    if (data.clientImg[0]) {
+    if (typeof data.clientImg !== typeof image) {
       imgData.append("image", data.clientImg[0]);
       await axios
         .post(`https://api.imgbb.com/1/upload?key=${API}`, imgData)

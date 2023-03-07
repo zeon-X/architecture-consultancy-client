@@ -72,7 +72,10 @@ const Blog = () => {
                       {x?.blogTitle?.slice(0, 20)}
                     </p>
                     <p className="my-6  text-gray-400  lg:text-right sm:text-left">
-                      {x?.blogPara[0]?.paragraph?.slice(0, 120)}..
+                      {x?.blogPara[0]?.paragraph
+                        ?.split("imranvhaisera")[0]
+                        ?.slice(0, 120)}
+                      ..
                     </p>
                     <button
                       onClick={() => {
@@ -124,7 +127,10 @@ const Blog = () => {
                       {x?.blogTitle?.slice(0, 20)}
                     </p>
                     <p className="my-6  text-gray-400">
-                      {x?.blogPara[0]?.paragraph.slice(0, 120)}..
+                      {x?.blogPara[0]?.paragraph
+                        ?.split("imranvhaisera")[0]
+                        ?.slice(0, 120)}
+                      ..
                     </p>
                     <button
                       onClick={() => {

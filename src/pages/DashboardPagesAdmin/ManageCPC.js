@@ -167,26 +167,7 @@ const ManageCPC = () => {
                     })}
                   />
                 </div>
-                {/* sectionAbout */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="">Section About</span>
-                  </label>
-                  <textarea
-                    {...register("sectionAbout", {
-                      required: true,
-                    })}
-                    className="textarea textarea-bordered h-24 text-xs rounded"
-                    placeholder="Type Here"
-                  ></textarea>
-                  <label className="label">
-                    {errors.sectionAbout && (
-                      <span className="label-text-alt text-sm text-red-500">
-                        This field is required
-                      </span>
-                    )}
-                  </label>
-                </div>
+
                 {/* img1 */}
                 <div className="form-control w-full ">
                   <label className="label">
@@ -247,6 +228,26 @@ const ManageCPC = () => {
                     />
                   </div>
                 </div>
+              </div>
+              {/* sectionAbout */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="">Section About</span>
+                </label>
+                <textarea
+                  {...register("sectionAbout", {
+                    required: true,
+                  })}
+                  className="textarea textarea-bordered h-24 text-xs rounded"
+                  placeholder="Type Here"
+                ></textarea>
+                <label className="label">
+                  {errors.sectionAbout && (
+                    <span className="label-text-alt text-sm text-red-500">
+                      This field is required
+                    </span>
+                  )}
+                </label>
               </div>
             </div>
             <div className="w-full flex justify-center items-center">

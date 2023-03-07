@@ -17,6 +17,8 @@ const HomeSection6 = () => {
     return data;
   });
 
+  // console.log(blog);
+
   const { ref, inView } = useInView({ threshold: 0.3 });
   const animation = useAnimation();
   const animation1 = useAnimation();

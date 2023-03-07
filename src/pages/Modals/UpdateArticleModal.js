@@ -152,8 +152,16 @@ const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
               <p className="font-semibold  mt-16 mb-3">
                 Article Image and paragraph
               </p>
-              <p className="btn btn-xs bg-red-600 border-none text-white mb-2">
-                To update upload all photos including new and old
+              <p className="  mb-2 max-w-[400px]">
+                To add tag with image write{" "}
+                <span className="font-semibold text-red-600">
+                  imranvhaisera
+                </span>{" "}
+                first then write the tag in the{" "}
+                <span className="font-semibold text-red-600">
+                  paragraph with image
+                </span>{" "}
+                box
               </p>
               <p className="text-red-600 uppercase mb-2">
                 If update photo to youtube video just paste the youtube link and

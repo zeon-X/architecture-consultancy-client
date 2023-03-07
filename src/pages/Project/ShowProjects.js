@@ -42,7 +42,7 @@ const ShowProjects = ({ project }) => {
               className="border border-gray-100 bg-white shadow-lg w-full h-full "
             >
               <div
-                className="relative h-[250px] w-full bg-cover bg-center  transition-all shadow-lg "
+                className="relative h-[250px] w-full bg-cover bg-center   shadow-lg "
                 style={{
                   backgroundImage: `url(${
                     x?.img?.includes("mp4") ? x?.galleryAfter[0] : x?.img

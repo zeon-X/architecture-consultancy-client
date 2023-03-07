@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import Swal from "sweetalert2";
 import LogoutFunc from "../../utilities/Functions/LogoutFunc";
+import g from "../../assets/social/g.webp";
+import f from "../../assets/social/f.webp";
 
 const SocialLogin = ({ navNext }) => {
   const [loading1, setLoading1] = useState(false);
@@ -67,25 +69,10 @@ const SocialLogin = ({ navNext }) => {
       {error && <p className="text-xs text-red-500">{error.message}</p>}
       <div className="flex justify-center items-center gap-3 mt-6">
         <button onClick={handleGoogleLogin} className="btn bg-white ">
-          <img
-            className="w-5 h-5"
-            src="https://cdn-icons-png.flaticon.com/512/104/104093.png"
-            alt=""
-          />
+          <img className="w-5 h-5" src={g} alt="" />
         </button>
         <button className="btn bg-white ">
-          <img
-            className="w-5 h-5"
-            src="https://cdn-icons-png.flaticon.com/512/2175/2175193.png"
-            alt=""
-          />
-        </button>
-        <button className="btn bg-white ">
-          <img
-            className="w-5 h-5"
-            src="https://cdn-icons-png.flaticon.com/512/733/733609.png"
-            alt=""
-          />
+          <img className="w-5 h-5" src={f} alt="" />
         </button>
       </div>
     </div>

@@ -16,8 +16,8 @@ const AddAProject = () => {
     isError,
     data: category,
     error,
-  } = useQuery(["categorys", changes], async ({ changes }) => {
-    console.log(changes);
+  } = useQuery(["categorys", changes], async () => {
+    // console.log(changes);
     return await axiosInstance.get("category/get");
   });
 
