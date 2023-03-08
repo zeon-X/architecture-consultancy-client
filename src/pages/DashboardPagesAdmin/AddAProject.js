@@ -319,7 +319,7 @@ const AddAProject = () => {
         <div className="grid grid-cols-2 gap-5">
           <div className="form-control w-full ">
             <label className="label">
-              <span className="">About Left</span>
+              <span className="">Discription</span>
             </label>
             <textarea
               type="text"
@@ -339,7 +339,9 @@ const AddAProject = () => {
           </div>
           <div className="form-control w-full ">
             <label className="label">
-              <span className="">About Right</span>
+              <span className="">
+                After Image Tags. Better to fill this field at update
+              </span>
             </label>
             <textarea
               type="text"

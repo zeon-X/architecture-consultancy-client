@@ -7,6 +7,7 @@ import ic4 from "../../assets/object/bgd2.webp";
 import DOMPurify from "dompurify";
 import { useQuery } from "react-query";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
+import Loading from "../../shared/Loading";
 
 const HomeSection1 = () => {
   const { ref, inView } = useInView({ threshold: 0.5 });
@@ -35,17 +36,19 @@ const HomeSection1 = () => {
     return fdata?.whoWeAreSection;
   });
 
-  const [discription, setDiscription] = useState("");
-  useEffect(() => {
-    let tem = section2?.sectionAbout?.split("imranvhaisera");
+  // const [discription, setDiscription] = useState("");
+  // useEffect(() => {
+  //   let tem = section2?.sectionAbout?.split("imranvhaisera");
 
-    if (tem !== undefined) {
-      let result = tem[0].replace("\n", "");
-      setDiscription(result);
-    }
-  }, [section2]);
+  //   if (tem !== undefined) {
+  //     let result = tem[0].replace("\n", "");
+  //     setDiscription(result);
+  //   }
+  // }, [section2]);
 
   // console.log(discription);
+
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <section
@@ -75,7 +78,12 @@ const HomeSection1 = () => {
             </p>
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(discription),
+                __html:
+                  section2?.sectionAbout?.split("imranvhaisera") !== undefined
+                    ? DOMPurify.sanitize(
+                        section2?.sectionAbout?.split("imranvhaisera")[0]
+                      )
+                    : DOMPurify.sanitize(""),
               }}
             />
 

@@ -55,7 +55,7 @@ const Header = () => {
   return (
     <div className="w-full main_header relative text-sm bg-white z-50 flex flex-col justify-center items-center">
       {/* Navbar Main + sticky */}
-      <div className="py-4  text-black z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-200  lg:px-20 sm:px-2">
+      <div className="py-5  text-gray-700 z-50 flex justify-evenly items-center navbar w-full border-b border-t border-gray-100  lg:px-20 sm:px-2">
         {/* TOGGLE BTN MOBILE SM DEVICE */}
         <div className="flex-none lg:hidden">
           <label htmlFor="normalmenusm" className="btn btn-square btn-ghost">

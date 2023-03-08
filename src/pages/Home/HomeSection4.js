@@ -1,29 +1,31 @@
 import { useAnimation, motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import imran from "../../assets/team/imran.webp";
+import mahraj from "../../assets/team/maraj.jpg";
 
 const HomeSection4 = () => {
   const team = [
     {
-      pic: "",
+      pic: imran,
       name: "Md Imran Hossain",
-      des: "ceo/founder",
+      des: "ceo founder",
     },
     {
-      pic: "",
-      name: "Jacob Jones",
+      pic: mahraj,
+      name: "Maraj Mahmud",
       des: "lead design",
     },
     {
-      pic: "",
-      name: "Haibatullah Bin Salman",
+      pic: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+      name: "Waliullah Sajib",
       des: "project manager",
     },
-    {
-      pic: "",
-      name: "Something Pichai",
-      des: "architechture",
-    },
+    // {
+    //   pic: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+    //   name: "Something Pichai",
+    //   des: "architechture",
+    // },
   ];
 
   const { ref, inView } = useInView({ threshold: 0.25 });
@@ -59,15 +61,15 @@ const HomeSection4 = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center lg:gap-10 sm:gap-4 mt-16">
+        <div className="flex flex-wrap justify-center items-center lg:gap-16 sm:gap-4 mt-16">
           {team.map((x, index) => {
             return (
               <div
                 key={index}
-                className="flex flex-col justify-center lg:items-start md:items-center sm:items-center"
+                className="flex flex-col justify-center items-center"
               >
                 <div
-                  className="h-[260px] w-[260px] bg-cover bg-center rounded"
+                  className="h-[260px] w-[260px] bg-cover bg-center lg:rounded-[50%] md:rounded-[50%] sm:rounded-none shadow-lg"
                   style={{
                     backgroundImage: `url(${x.pic})`,
                   }}

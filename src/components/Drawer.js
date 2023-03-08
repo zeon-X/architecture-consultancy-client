@@ -59,7 +59,10 @@ const Drawer = ({ children }) => {
 
           <Header></Header>
 
-          <div className=" mx-auto w-full  bg-gray-100">
+          <div
+            style={{ backgroundColor: "rgb(242, 243, 245,0.4)" }}
+            className=" mx-auto w-full  "
+          >
             {/* Page content here ||||| max-w-7xl  */}
             {children}
             {/*  Footer  */}
