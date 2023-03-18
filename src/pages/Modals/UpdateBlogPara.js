@@ -5,11 +5,13 @@ import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
   const [newParagraph, setNewParagraph] = useState("");
   const [newImg, setNewImg] = useState("");
+  const [newImgTags, setNewImgTags] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setNewParagraph(props?.paragraph);
     setNewImg(props?.img);
+    setNewImgTags(props?.imgTags);
   }, [props]);
 
   //   ON CHANGE TITLE IT WILL UPDATE THE TITLE
@@ -19,6 +21,10 @@ const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
 
   const handleLinkChange = (event) => {
     setNewImg(event.target.value);
+  };
+
+  const handleImageTags = (event) => {
+    setNewImgTags(event.target.value);
   };
 
   // ON CHANGE IMAGE IT WILL ADD THE IMAGE
@@ -56,12 +62,13 @@ const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
     temprops = propsData;
     temprops.blogPara[index].img = newImg;
     temprops.blogPara[index].paragraph = newParagraph;
+    temprops.blogPara[index].imgTags = newImgTags;
 
     setPropsData(temprops);
   };
 
   return (
-    <div className="flex flex-col gap-2 border border-gray-300 rounded-lg p-5">
+    <div className="flex flex-col gap-2 border border-gray-300 rounded-lg p-5 w-full max-w-5xl">
       {/* --------single image ----------*/}
 
       {/* img file select */}
@@ -92,6 +99,19 @@ const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
 
         <img className="rounded-lg h-40" src={newImg} alt="" />
       </div>
+
+      {/* image  tags*/}
+      <div className="form-control w-full ">
+        <label className="label">
+          <span className="">Image Tags</span>
+        </label>
+        <input
+          onChange={handleImageTags}
+          value={newImgTags}
+          type="text"
+          className="input input-bordered text-xs rounded w-full"
+        />
+      </div>
       {/* paragraph */}
       <div className="form-control w-full ">
         <label className="label">
@@ -111,7 +131,9 @@ const UpdateBlogPara = ({ index, props, propsData, setPropsData }) => {
       <p
         onClick={handleOnClickAddPara}
         className={
-          newImg !== props?.img || newParagraph !== props?.paragraph
+          newImg !== props?.img ||
+          newParagraph !== props?.paragraph ||
+          newImgTags !== props?.imgTags
             ? "btn btn-wide"
             : "btn btn-wide btn-disabled"
         }

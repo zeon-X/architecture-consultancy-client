@@ -72,7 +72,7 @@ const ManageBlogs = () => {
             <tr>
               <th className="p-2 border border-gray-300 ">Image</th>
               <th className="p-2 border border-gray-300 ">Title</th>
-              <th className="p-2 border border-gray-300 ">Updation Date</th>
+              <th className="p-2 border border-gray-300 ">Slug</th>
               {/* <th className="p-2 border border-gray-300 ">Update</th> */}
               <th className="p-2 border border-gray-300 ">Delete</th>
               <th className="p-2 border border-gray-300 ">Update</th>
@@ -95,7 +95,7 @@ const ManageBlogs = () => {
                     {x?.blogTitle}
                   </td>
                   <td align="center" className="p-2 border border-gray-300">
-                    {x?.updatedAt}
+                    {x?.slug}
                   </td>
 
                   {/* BTNS FROM HERE */}
@@ -134,7 +134,7 @@ const ManageBlogs = () => {
                   >
                     <button
                       onClick={() => {
-                        navigate(`/blog-details/${x?._id}`);
+                        navigate(`/blogs/${x?.slug}`);
                       }}
                       className="btn btn-xs bg-success border-none text-white"
                     >

@@ -23,7 +23,7 @@ import {
 
 const BlogDetails = () => {
   const [changes, increaseChanges] = useState(0);
-  const { _id } = useParams();
+  const { slug } = useParams();
 
   // REACT FORM HOOKS
   const {
@@ -39,11 +39,18 @@ const BlogDetails = () => {
     isError,
     data: blogDetails,
     error,
-  } = useQuery(["blogDetailsdata", _id], async ({}) => {
-    let data = await axiosInstance.get(`blog/find?_id=${_id}`);
-
-    return data;
+  } = useQuery(["blogDetailsdata", slug], async ({}) => {
+    let data = await axiosInstance.get(`blog/find-by-slug?slug=${slug}`);
+    let tem = data?.data[0];
+    return tem;
   });
+
+  console.log(blogDetails);
+  const [_id, setId] = useState(null);
+  useEffect(() => {
+    setId(blogDetails?._id);
+    increaseChanges(changes + 1);
+  }, [blogDetails]);
 
   // COMMENT DATA FETCHING
   const {
@@ -110,26 +117,28 @@ const BlogDetails = () => {
       {/* BLOG HEADING */}
       <div className=" mb-16 flex lg:flex-row sm:flex-col justify-between lg:items-center sm:items-start w-full">
         <p className="text-4xl font-bold lg:w-9/12 sm:w-full">
-          {blogDetails?.data?.blogTitle}
+          {blogDetails?.blogTitle}
         </p>
         <p className="lg:w-3/12 sm:w-full text-sm">
-          Update At: {blogDetails?.data?.updatedAt.split("T")[0]} Time:{" "}
-          {blogDetails?.data?.updatedAt.split("T")[1].split(".")[0]}
+          Update At: {blogDetails?.updatedAt.split("T")[0]} Time:{" "}
+          {blogDetails?.updatedAt.split("T")[1].split(".")[0]}
         </p>
       </div>
 
       {/* BLOG DETAILS */}
-      {blogDetails?.data?.blogPara?.map((x, index) => {
+      {blogDetails?.blogPara?.map((x, index) => {
         return (
           <div key={index}>
             {x?.img !== "" && (
-              <div className="h-full w-full">
-                {x?.img?.includes("http") ? (
-                  <img
-                    className="w-full rounded-xl"
-                    src={x?.img}
-                    alt={x?.paragraph?.split("imranvhaisera")[1]}
-                  />
+              <div
+                className={
+                  index === 0
+                    ? "w-full h-full "
+                    : "h-full lg:w-6/12 md:w-8/12 sm:w-full mx-auto"
+                }
+              >
+                {x?.img?.includes("https") ? (
+                  <img src={x?.img} alt={x?.imgTags} />
                 ) : (
                   <div className="w-full h-full flex justify-center items-center">
                     <iframe
@@ -149,7 +158,7 @@ const BlogDetails = () => {
             <p
               className="my-16 text-lg text-gray-500"
               dangerouslySetInnerHTML={{
-                __html: x?.paragraph?.split("imranvhaisera")[0],
+                __html: x?.paragraph,
               }}
             ></p>
           </div>
@@ -170,8 +179,8 @@ const BlogDetails = () => {
           <div className="flex gap-2 mt-4 text-lg text-gray-400">
             <FacebookShareButton
               url={window.location.href}
-              quote={blogDetails?.data?.blogTitle}
-              description={blogDetails?.data?.blogPara[0]?.paragraph}
+              quote={blogDetails?.blogTitle}
+              description={blogDetails?.blogPara[0]?.paragraph}
               className="Demo__some-network__share-button"
             >
               <FacebookIcon size={32} round />
@@ -179,8 +188,8 @@ const BlogDetails = () => {
 
             <LinkedinShareButton
               url={window.location.href}
-              quote={blogDetails?.data?.blogTitle}
-              description={blogDetails?.data?.blogPara[0]?.paragraph}
+              quote={blogDetails?.blogTitle}
+              description={blogDetails?.blogPara[0]?.paragraph}
               className="Demo__some-network__share-button"
             >
               <LinkedinIcon size={32} round />
@@ -188,8 +197,8 @@ const BlogDetails = () => {
 
             <PinterestShareButton
               url={window.location.href}
-              quote={blogDetails?.data?.blogTitle}
-              description={blogDetails?.data?.blogPara[0]?.paragraph}
+              quote={blogDetails?.blogTitle}
+              description={blogDetails?.blogPara[0]?.paragraph}
               className="Demo__some-network__share-button"
             >
               <PinterestIcon size={32} round />
@@ -197,8 +206,8 @@ const BlogDetails = () => {
 
             <TwitterShareButton
               url={window.location.href}
-              quote={blogDetails?.data?.blogTitle}
-              description={blogDetails?.data?.blogPara[0]?.paragraph}
+              quote={blogDetails?.blogTitle}
+              description={blogDetails?.blogPara[0]?.paragraph}
               className="Demo__some-network__share-button"
             >
               <TwitterIcon size={32} round />
@@ -206,8 +215,8 @@ const BlogDetails = () => {
 
             <WhatsappShareButton
               url={window.location.href}
-              quote={blogDetails?.data?.blogTitle}
-              description={blogDetails?.data?.blogPara[0]?.paragraph}
+              quote={blogDetails?.blogTitle}
+              description={blogDetails?.blogPara[0]?.paragraph}
               className="Demo__some-network__share-button"
             >
               <WhatsappIcon size={32} round />

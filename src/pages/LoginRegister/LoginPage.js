@@ -138,12 +138,12 @@ const LoginPage = () => {
           <div className="flex justify-between text-xs mb-4 w-full max-w-xs">
             <p>
               Don't have an Account?
-              <label
-                htmlFor="register-modal"
-                className="underline hover:cursor-pointer"
+              <button
+                className="text-blue-900 underline"
+                onClick={() => navigate("/register")}
               >
                 Register
-              </label>
+              </button>
             </p>
             <a
               onClick={handleForgetPassword}

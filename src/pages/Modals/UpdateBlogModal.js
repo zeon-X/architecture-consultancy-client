@@ -8,9 +8,9 @@ import UpdateBlogPara from "./UpdateBlogPara";
 const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
   // ADDING PARA FUNC
   const [propsData, setPropsData] = useState(props);
-  //   const [blogPara, setBlogPara] = useState([]);
   const [newParagraph, setNewParagraph] = useState("");
   const [newImg, setNewImg] = useState("");
+  const [newImgTags, setNewImgTags] = useState("");
   const [loading, setLoading] = useState(false);
 
   // REACT FORM HOOKS
@@ -34,6 +34,9 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
   //   ON CHANGE TITLE IT WILL UPDATE THE TITLE
   const handleParagraph = (event) => {
     setNewParagraph(event.target.value);
+  };
+  const handleImageTags = (event) => {
+    setNewImgTags(event.target.value);
   };
 
   // ON CHANGE IMAGE IT WILL ADD THE IMAGE
@@ -71,11 +74,13 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
       temPropsData.blogPara.push({
         img: newImg,
         paragraph: newParagraph,
+        imgTags: newImgTags,
       });
 
       setPropsData(temPropsData);
 
       setNewImg("");
+      setNewImgTags("");
       setNewParagraph("");
     }
   };
@@ -87,6 +92,7 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
     //   ASSEMBLYING DATA
     let temData = propsData;
     temData.blogTitle = data.blogTitle;
+    temData.slug = data.slug;
     data = temData;
 
     // console.log(data);
@@ -112,11 +118,11 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
   };
 
   return (
-    <div>
+    <div className="w-full max-w-5xl">
       <input type="checkbox" id="update-blog-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box w-auto max-w-5xl">
-          <div className="py-6 lg:px-10 md:px-10 sm:px-2  w-full">
+          <div className="py-6 lg:px-10 md:px-10 sm:px-2 w-full max-w-5xl">
             <p className="text-sm font-bold pt-16">Update a Blog</p>
 
             <form className="mt-4 text-xs" onSubmit={handleSubmit(onSubmit)}>
@@ -146,21 +152,36 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
                 </div>
               </div>
 
+              {/* Blog Slug  */}
+              <div className="form-control w-full ">
+                <label className="label">
+                  <span className="">
+                    Blog Slug {"(use dash - between each word)"}
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  name="slug"
+                  className="input input-bordered text-xs rounded w-full "
+                  {...register("slug", {
+                    required: true,
+                    message: "This field is required",
+                  })}
+                />
+                {errors.slug && (
+                  <label className="label">
+                    <span className="-alt text-sm text-red-500">
+                      This field is required
+                    </span>
+                  </label>
+                )}
+              </div>
+
               <p className="font-semibold  mt-16 mb-3">
                 Blog Image and paragraph
               </p>
-              <p className="  mb-2 max-w-[400px]">
-                To add tag with image write{" "}
-                <span className="font-semibold text-red-600">
-                  imranvhaisera
-                </span>{" "}
-                first then write the tag in the{" "}
-                <span className="font-semibold text-red-600">
-                  paragraph with image
-                </span>{" "}
-                box
-              </p>
-              <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-5">
+
+              <div className="">
                 {props?.blogPara?.map((x, index) => {
                   return (
                     <UpdateBlogPara
@@ -205,11 +226,24 @@ const UpdateBlogModal = ({ props, increaseChanges, changes }) => {
                     className="textarea textarea-bordered rounded text-xs h-24"
                   />
                 </div>
+
+                {/* image  tags*/}
+                <div className="form-control w-full ">
+                  <label className="label">
+                    <span className="">Image Tags</span>
+                  </label>
+                  <input
+                    onChange={handleImageTags}
+                    value={newImgTags}
+                    type="text"
+                    className="input input-bordered text-xs rounded w-full"
+                  />
+                </div>
                 {/* add btn */}
                 <p
                   onClick={handleOnClickAddPara}
                   className={
-                    newImg != "" && newParagraph != ""
+                    newImg !== "" && newParagraph !== "" && newImgTags !== ""
                       ? "btn btn-wide"
                       : "btn btn-wide btn-disabled"
                   }

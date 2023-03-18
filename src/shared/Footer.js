@@ -60,7 +60,7 @@ const Footer = () => {
           <a href="/#hs3" className="text-sm mb-3 text-gray-400">
             Our Latest Work
           </a>
-          <a href="/blog" className="text-sm mb-3 text-gray-400">
+          <a href="/blogs" className="text-sm mb-3 text-gray-400">
             Our Blog
           </a>
         </div>

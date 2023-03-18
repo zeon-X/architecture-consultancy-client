@@ -129,7 +129,7 @@ const Header = () => {
                         tabIndex="1"
                         className="flex justify-between"
                         onClick={() => {
-                          navigate(`/article-details/${x?.categoryCode}`);
+                          navigate(`/services/${x?.categoryCode}`);
                         }}
                       >
                         {x?.categoryTitle}
@@ -159,9 +159,7 @@ const Header = () => {
                               <li key={index}>
                                 <div
                                   onClick={() => {
-                                    navigate(
-                                      `/article-details/${y?.categoryCode}`
-                                    );
+                                    navigate(`/services/${y?.categoryCode}`);
                                   }}
                                 >
                                   {y?.categoryTitle}

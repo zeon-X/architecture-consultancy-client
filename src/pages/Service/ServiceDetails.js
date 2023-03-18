@@ -23,9 +23,9 @@ import ShowProjects from "../Project/ShowProjects";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const ArticleDetails = () => {
-  const { _id } = useParams();
-  //   console.log(_id);
+const ServiceDetails = () => {
+  const { slug } = useParams();
+  console.log(slug);
   // REACT FORM HOOKS
   const {
     register,
@@ -38,15 +38,15 @@ const ArticleDetails = () => {
   const {
     isLoading,
     isError,
-    data: articleDetails,
+    data: serviceData,
     error,
-  } = useQuery(["articleDetailsdata", _id], async ({}) => {
-    let data = await axiosInstance.get(`article/find?_id=${_id}`);
-
-    return data;
+  } = useQuery(["serviceDataDetails", slug], async ({}) => {
+    let data = await axiosInstance.get(`article/find-by-slug?slug=${slug}`);
+    let tem = data?.data[0];
+    return tem;
   });
 
-  // console.log(articleDetails?.data);
+  console.log(serviceData);
 
   const {
     isLoading1,
@@ -84,7 +84,7 @@ const ArticleDetails = () => {
       {/* ARTICLE HEADING */}
 
       <p className="text-4xl font-bold w-full mb-16 mt-6">
-        {articleDetails?.data?.articleTitle}
+        {serviceData?.articleTitle}
       </p>
 
       {/* ARTICLE DETAILS */}
@@ -107,7 +107,7 @@ const ArticleDetails = () => {
         }}
         className="flex flex-col gap-6 min-h-screen"
       >
-        {articleDetails?.data?.articlePara?.map((x, index) => {
+        {serviceData?.articlePara?.map((x, index) => {
           return (
             <div key={index}>
               {index % 2 === 0 ? (
@@ -118,7 +118,7 @@ const ArticleDetails = () => {
                         <img
                           className="w-full rounded-xl"
                           src={x?.img}
-                          alt={x?.paragraph?.split("imranvhaisera")[1]}
+                          alt={x?.imgTags}
                         />
                       ) : (
                         <div className="w-full h-full flex justify-center items-center">
@@ -137,18 +137,18 @@ const ArticleDetails = () => {
                   )}
 
                   <p
-                    className="my-16 text-lg text-gray-500"
+                    className=" text-lg text-black"
                     dangerouslySetInnerHTML={{
-                      __html: x?.paragraph?.split("imranvhaisera")[0],
+                      __html: x?.paragraph,
                     }}
                   ></p>
                 </div>
               ) : (
                 <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-6">
                   <p
-                    className="my-16 text-lg text-gray-500 lg:order-1 md:order-2 sm:order-2"
+                    className=" text-lg text-black lg:order-1 md:order-2 sm:order-2"
                     dangerouslySetInnerHTML={{
-                      __html: x?.paragraph?.split("imranvhaisera")[0],
+                      __html: x?.paragraph,
                     }}
                   ></p>
                   {x?.img !== "" && (
@@ -157,7 +157,7 @@ const ArticleDetails = () => {
                         <img
                           className="w-full rounded-xl"
                           src={x?.img}
-                          alt={x?.paragraph?.split("imranvhaisera")[1]}
+                          alt={x?.imgTags}
                         />
                       ) : (
                         <div className="w-full h-full flex justify-center items-center lg:order-2 md:order-2 sm:order-1">
@@ -175,6 +175,13 @@ const ArticleDetails = () => {
                   )}
                 </div>
               )}
+
+              <div
+                className="my-16 text-lg text-black lg:order-1 md:order-2 sm:order-2"
+                dangerouslySetInnerHTML={{
+                  __html: x?.paragraphFull,
+                }}
+              ></div>
             </div>
           );
         })}
@@ -190,21 +197,21 @@ const ArticleDetails = () => {
           animate={animation1}
         >
           {/* CREATED BY ADMIN */}
-          <div className="bg-gray-200 p-12 flex lg:flex-row sm:flex-col justify-between gap-6 w-full mt-20">
+          {/* <div className="bg-gray-200 p-12 flex lg:flex-row sm:flex-col justify-between gap-6 w-full mt-20">
             <div>
               <p className="uppercase tracking-widest text-sm">created by</p>
-              <p className="text-lg text-gray-400 font-semibold tracking-widest mt-4">
+              <p className="text-lg text-black font-semibold tracking-widest mt-4">
                 admin
               </p>
             </div>
             <div>
               <p className="uppercase tracking-widest text-sm">share to</p>
-              {/* SHARE BTNS */}
-              <div className="flex gap-2 mt-4 text-lg text-gray-400">
+             
+              <div className="flex gap-2 mt-4 text-lg text-black">
                 <FacebookShareButton
                   url={window.location.href}
-                  quote={articleDetails?.data?.articleTitle}
-                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  quote={serviceData?.articleTitle}
+                  description={serviceData?.articlePara[0]?.paragraph}
                   className="Demo__some-network__share-button"
                 >
                   <FacebookIcon size={32} round />
@@ -212,8 +219,8 @@ const ArticleDetails = () => {
 
                 <LinkedinShareButton
                   url={window.location.href}
-                  quote={articleDetails?.data?.articleTitle}
-                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  quote={serviceData?.articleTitle}
+                  description={serviceData?.articlePara[0]?.paragraph}
                   className="Demo__some-network__share-button"
                 >
                   <LinkedinIcon size={32} round />
@@ -221,8 +228,8 @@ const ArticleDetails = () => {
 
                 <PinterestShareButton
                   url={window.location.href}
-                  quote={articleDetails?.data?.articleTitle}
-                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  quote={serviceData?.articleTitle}
+                  description={serviceData?.articlePara[0]?.paragraph}
                   className="Demo__some-network__share-button"
                 >
                   <PinterestIcon size={32} round />
@@ -230,8 +237,8 @@ const ArticleDetails = () => {
 
                 <TwitterShareButton
                   url={window.location.href}
-                  quote={articleDetails?.data?.articleTitle}
-                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  quote={serviceData?.articleTitle}
+                  description={serviceData?.articlePara[0]?.paragraph}
                   className="Demo__some-network__share-button"
                 >
                   <TwitterIcon size={32} round />
@@ -239,15 +246,15 @@ const ArticleDetails = () => {
 
                 <WhatsappShareButton
                   url={window.location.href}
-                  quote={articleDetails?.data?.articleTitle}
-                  description={articleDetails?.data?.articlePara[0]?.paragraph}
+                  quote={serviceData?.articleTitle}
+                  description={serviceData?.articlePara[0]?.paragraph}
                   className="Demo__some-network__share-button"
                 >
                   <WhatsappIcon size={32} round />
                 </WhatsappShareButton>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* PROJECTS */}
           <div className="max-w-7xl mx-auto px-4 mt-16 flex flex-col justify-center items-center">
             <p className="text-3xl uppercase font-semibold ">
@@ -261,4 +268,4 @@ const ArticleDetails = () => {
   );
 };
 
-export default ArticleDetails;
+export default ServiceDetails;

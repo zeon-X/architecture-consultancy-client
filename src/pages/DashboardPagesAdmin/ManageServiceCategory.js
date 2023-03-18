@@ -70,7 +70,7 @@ const ManageServiceCategory = () => {
             <tr>
               <th className="p-2 border border-gray-300 ">Category Image</th>
               <th className="p-2 border border-gray-300 ">Category Title</th>
-              <th className="p-2 border border-gray-300 ">Article Id</th>
+              <th className="p-2 border border-gray-300 ">Article Slug</th>
               <th className="p-2 border border-gray-300 ">Category Type</th>
               <th className="p-2 border border-gray-300 ">Parent Category</th>
               <th className="p-2 border border-gray-300 ">
@@ -89,7 +89,7 @@ const ManageServiceCategory = () => {
                     <img className=" w-16 h-16" src={x?.categoryImage} alt="" />
                   </td>
                   <td align="center" className="p-2 border border-gray-300 ">
-                    <p className="btn btn-xs">{x?.categoryTitle}</p>
+                    <p className="font-bold">{x?.categoryTitle}</p>
                   </td>
                   <td align="center" className="p-2 border border-gray-300">
                     {x?.categoryCode}
@@ -102,7 +102,7 @@ const ManageServiceCategory = () => {
                     {x?.parentTitle === "" ? (
                       "-Parent-"
                     ) : (
-                      <p className="btn btn-xs">{x?.parentTitle}</p>
+                      <p className="uppercase font-bold">{x?.parentTitle}</p>
                     )}
                   </td>
                   <td className="p-2 border border-gray-300 w-[300px]">

@@ -18,11 +18,19 @@ const AddArticle = () => {
   // ADDING PARA FUNC
   const [articlePara, setArticlePara] = useState([]);
   const [newParagraph, setNewParagraph] = useState("");
+  const [newParagraphFull, setNewParagraphFull] = useState("");
   const [newImg, setNewImg] = useState("");
+  const [newImgTags, setNewImgTags] = useState("");
 
   //   ON CHANGE TITLE IT WILL UPDATE THE TITLE
   const handleParagraph = (event) => {
     setNewParagraph(event.target.value);
+  };
+  const handleParagraphFull = (event) => {
+    setNewParagraphFull(event.target.value);
+  };
+  const handleImageTags = (event) => {
+    setNewImgTags(event.target.value);
   };
   // ON CHANGE IMAGE IT WILL ADD THE IMAGE
   const handleImageChange = async (event) => {
@@ -58,10 +66,14 @@ const AddArticle = () => {
       let temArticleArr = articlePara;
       temArticleArr.push({
         img: newImg,
+        imgTags: newImgTags,
         paragraph: newParagraph,
+        paragraphFull: newParagraphFull,
       });
       setNewImg("");
+      setNewImgTags("");
       setNewParagraph("");
+      setNewParagraphFull("");
       setArticlePara(temArticleArr);
     }
   };
@@ -124,19 +136,34 @@ const AddArticle = () => {
               </label>
             )}
           </div>
+          {/* Article Slug  */}
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="">
+                Article Slug {"(use dash - between each word)"}
+              </span>
+            </label>
+            <input
+              type="text"
+              name="slug"
+              className="input input-bordered text-xs rounded w-full "
+              {...register("slug", {
+                required: true,
+                message: "This field is required",
+              })}
+            />
+            {errors.slug && (
+              <label className="label">
+                <span className="-alt text-sm text-red-500">
+                  This field is required
+                </span>
+              </label>
+            )}
+          </div>
         </div>
 
         <p className="font-semibold  mt-16 mb-3">Article Image and paragraph</p>
-        <p>Add the tag after ending the paragraph</p>
-        <p className="  mb-2 ">
-          To add image tag write{" "}
-          <span className="font-semibold text-red-600">imranvhaisera</span>{" "}
-          first then write the tag in the{" "}
-          <span className="font-semibold text-red-600">
-            paragraph with image
-          </span>{" "}
-          box
-        </p>
+
         <div className="grid lg:grid-cols-1 sm:grid-cols-1 gap-5 border border-gray-300 rounded-lg mb-16 p-5">
           {/* --------single image ----------*/}
 
@@ -152,16 +179,40 @@ const AddArticle = () => {
               className="input input-bordered text-xs rounded w-full "
             />
           </div>
-          {/* paragraph */}
+          {/* image  tags*/}
           <div className="form-control w-full ">
             <label className="label">
-              <span className="">Paragraph with the image</span>
+              <span className="">Image Tags</span>
+            </label>
+            <input
+              onChange={handleImageTags}
+              value={newImgTags}
+              type="text"
+              className="input input-bordered text-xs rounded w-full"
+            />
+          </div>
+          {/* paragraph side to the image */}
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="">Paragraph side with the image</span>
             </label>
             <textarea
               onChange={handleParagraph}
               value={newParagraph}
               type="text"
-              name="aboutLeft"
+              className="textarea textarea-bordered rounded text-xs h-24"
+            />
+          </div>
+
+          {/* paragraph down to the image */}
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="">Paragraph down to the image</span>
+            </label>
+            <textarea
+              onChange={handleParagraphFull}
+              value={newParagraphFull}
+              type="text"
               className="textarea textarea-bordered rounded text-xs h-24"
             />
           </div>

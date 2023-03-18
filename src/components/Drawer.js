@@ -90,7 +90,7 @@ const Drawer = ({ children }) => {
                       <div
                         className=""
                         onClick={() => {
-                          navigate(`/article-details/${x?.categoryCode}`);
+                          navigate(`/services/${x?.categoryCode}`);
                         }}
                       >
                         {x?.categoryTitle}
@@ -103,7 +103,7 @@ const Drawer = ({ children }) => {
                   <div
                     className=""
                     onClick={() => {
-                      navigate(`/all-services`);
+                      navigate(`/services`);
                     }}
                   >
                     See All services

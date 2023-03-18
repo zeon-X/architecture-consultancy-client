@@ -224,9 +224,12 @@ const RegisterPage = () => {
           {/* Navigation LINKS */}
           <div className="flex justify-between text-xs mb-4 w-full max-w-xs">
             <p>Alradey have an Account?</p>
-            <label htmlFor="login-modal" className="underline">
+            <button
+              className="text-blue-900 underline"
+              onClick={() => navigate("/login")}
+            >
               Login
-            </label>
+            </button>
           </div>
 
           <input

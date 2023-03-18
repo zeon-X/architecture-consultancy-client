@@ -53,7 +53,7 @@ const HomeSection2 = () => {
         <div className="w-full flex lg:flex-row md:flex-row sm:flex-col justify-between lg:items-center md:items-center sm:items-start lg:px-16 md:px-10 sm:px-2">
           <p className="text-3xl font-bold text-black">What we do</p>
           <button
-            onClick={() => navigate("/all-services")}
+            onClick={() => navigate("/services")}
             className="flex items-center gap-2 text-sm uppercase mt-4 hover:text-red-500"
           >
             <svg
@@ -96,7 +96,7 @@ const HomeSection2 = () => {
                 </p>
                 <button
                   onClick={() =>
-                    navigate(`/article-details/${category[0]?.categoryCode}`)
+                    navigate(`/services/${category[0]?.categoryCode}`)
                   }
                   className="mt-4 btn rounded-none bg-red-500 border-none text-white"
                 >
@@ -124,7 +124,7 @@ const HomeSection2 = () => {
                 </p>
                 <button
                   onClick={() =>
-                    navigate(`/article-details/${category[0]?.categoryCode}`)
+                    navigate(`/services/${category[0]?.categoryCode}`)
                   }
                   className="mt-4 btn rounded-none bg-red-500 border-none text-white"
                 >
@@ -152,7 +152,7 @@ const HomeSection2 = () => {
                 </p>
                 <button
                   onClick={() =>
-                    navigate(`/article-details/${category[1]?.categoryCode}`)
+                    navigate(`/services/${category[1]?.categoryCode}`)
                   }
                   className="mt-4 btn rounded-none bg-red-500 border-none text-white"
                 >
@@ -181,7 +181,7 @@ const HomeSection2 = () => {
                   </p>
                   <button
                     onClick={() =>
-                      navigate(`/article-details/${category[2]?.categoryCode}`)
+                      navigate(`/services/${category[2]?.categoryCode}`)
                     }
                     className="mt-4 btn rounded-none bg-red-500 border-none text-white"
                   >
@@ -209,9 +209,7 @@ const HomeSection2 = () => {
                     </p>
                     <button
                       onClick={() =>
-                        navigate(
-                          `/article-details/${category[3]?.categoryCode}`
-                        )
+                        navigate(`/services/${category[3]?.categoryCode}`)
                       }
                       className="mt-4 btn rounded-none bg-red-500 border-none text-white"
                     >
@@ -239,9 +237,7 @@ const HomeSection2 = () => {
                     </p>
                     <button
                       onClick={() =>
-                        navigate(
-                          `/article-details/${category[4]?.categoryCode}`
-                        )
+                        navigate(`/services/${category[4]?.categoryCode}`)
                       }
                       className="mt-4 btn rounded-none bg-red-500 border-none text-white"
                     >
@@ -270,9 +266,7 @@ const HomeSection2 = () => {
                   <div className="">
                     <p className="my-4">{x?.categoryDiscription}</p>
                     <button
-                      onClick={() =>
-                        navigate(`/article-details/${x?.categoryCode}`)
-                      }
+                      onClick={() => navigate(`/services/${x?.categoryCode}`)}
                       className="btn rounded-none bg-red-500 border-none"
                     >
                       Read More

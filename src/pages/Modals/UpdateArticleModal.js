@@ -86,6 +86,7 @@ const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
     //   ASSEMBLYING DATA
     let temData = propsData;
     temData.articleTitle = data.articleTitle;
+    temData.slug = data.slug;
     data = temData;
 
     // console.log(data);
@@ -147,27 +148,41 @@ const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
                     </label>
                   )}
                 </div>
+                {/* Article Slug  */}
+                <div className="form-control w-full ">
+                  <label className="label">
+                    <span className="">
+                      Article Slug {"(use dash - between each word)"}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    name="slug"
+                    className="input input-bordered text-xs rounded w-full "
+                    {...register("slug", {
+                      required: true,
+                      message: "This field is required",
+                    })}
+                  />
+                  {errors.slug && (
+                    <label className="label">
+                      <span className="-alt text-sm text-red-500">
+                        This field is required
+                      </span>
+                    </label>
+                  )}
+                </div>
               </div>
 
               <p className="font-semibold  mt-16 mb-3">
                 Article Image and paragraph
               </p>
-              <p className="  mb-2 max-w-[400px]">
-                To add tag with image write{" "}
-                <span className="font-semibold text-red-600">
-                  imranvhaisera
-                </span>{" "}
-                first then write the tag in the{" "}
-                <span className="font-semibold text-red-600">
-                  paragraph with image
-                </span>{" "}
-                box
-              </p>
+
               <p className="text-red-600 uppercase mb-2">
                 If update photo to youtube video just paste the youtube link and
                 don't touch the image
               </p>
-              <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-5">
+              <div className="">
                 {props?.articlePara?.map((x, index) => {
                   return (
                     <UpdateArticlePara

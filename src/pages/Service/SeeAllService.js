@@ -65,9 +65,7 @@ const SeeAllService = () => {
                     <div className="">
                       <p className="my-4">{x?.categoryDiscription}</p>
                       <button
-                        onClick={() =>
-                          navigate(`/article-details/${x?.categoryCode}`)
-                        }
+                        onClick={() => navigate(`/services/${x?.categoryCode}`)}
                         className="btn rounded-none bg-red-500 border-none text-white"
                       >
                         Read More

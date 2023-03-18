@@ -79,7 +79,7 @@ const Blog = () => {
                     </p>
                     <button
                       onClick={() => {
-                        navigate(`/blog-details/${x?._id}`);
+                        navigate(`/blogs/${x?.slug}`);
                       }}
                       className="flex items-center justify-center gap-2 uppercase font-semibold"
                     >
@@ -134,7 +134,7 @@ const Blog = () => {
                     </p>
                     <button
                       onClick={() => {
-                        navigate(`/blog-details/${x?._id}`);
+                        navigate(`/blogs/${x?.slug}`);
                       }}
                       className="flex items-center justify-center gap-2 uppercase font-semibold"
                     >

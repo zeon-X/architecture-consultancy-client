@@ -18,11 +18,19 @@ const AddABlog = () => {
   // ADDING PARA FUNC
   const [blogPara, setBlogPara] = useState([]);
   const [newParagraph, setNewParagraph] = useState("");
+  const [newParagraphFull, setNewParagraphFull] = useState("");
   const [newImg, setNewImg] = useState("");
+  const [newImgTags, setNewImgTags] = useState("");
 
   //   ON CHANGE TITLE IT WILL UPDATE THE TITLE
   const handleParagraph = (event) => {
     setNewParagraph(event.target.value);
+  };
+  const handleParagraphFull = (event) => {
+    setNewParagraphFull(event.target.value);
+  };
+  const handleImageTags = (event) => {
+    setNewImgTags(event.target.value);
   };
   // ON CHANGE IMAGE IT WILL ADD THE IMAGE
   const handleImageChange = async (event) => {
@@ -58,10 +66,14 @@ const AddABlog = () => {
       let temBlogArr = blogPara;
       temBlogArr.push({
         img: newImg,
+        imgTags: newImgTags,
         paragraph: newParagraph,
+        others: newParagraphFull,
       });
       setNewImg("");
+      setNewImgTags("");
       setNewParagraph("");
+      setNewParagraphFull("");
       setBlogPara(temBlogArr);
     }
   };
@@ -124,19 +136,35 @@ const AddABlog = () => {
               </label>
             )}
           </div>
+
+          {/* Blog Slug  */}
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="">
+                Blog Slug {"(use dash - between each word)"}
+              </span>
+            </label>
+            <input
+              type="text"
+              name="slug"
+              className="input input-bordered text-xs rounded w-full "
+              {...register("slug", {
+                required: true,
+                message: "This field is required",
+              })}
+            />
+            {errors.slug && (
+              <label className="label">
+                <span className="-alt text-sm text-red-500">
+                  This field is required
+                </span>
+              </label>
+            )}
+          </div>
         </div>
 
         <p className="font-semibold  mt-16 mb-3">Blog Image and paragraph</p>
-        <p>Add the tag after ending the paragraph</p>
-        <p className="  mb-2 ">
-          To add image tag write{" "}
-          <span className="font-semibold text-red-600">imranvhaisera</span>{" "}
-          first then write the tag in the{" "}
-          <span className="font-semibold text-red-600">
-            paragraph with image
-          </span>{" "}
-          box
-        </p>
+
         <div className="grid lg:grid-cols-1 sm:grid-cols-1 gap-5 border border-gray-300 rounded-lg mb-16 p-5">
           {/* --------single image ----------*/}
 
@@ -152,6 +180,20 @@ const AddABlog = () => {
               className="input input-bordered text-xs rounded w-full "
             />
           </div>
+
+          {/* image  tags*/}
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="">Image Tags</span>
+            </label>
+            <input
+              onChange={handleImageTags}
+              value={newImgTags}
+              type="text"
+              className="input input-bordered text-xs rounded w-full"
+            />
+          </div>
+
           {/* paragraph */}
           <div className="form-control w-full ">
             <label className="label">
@@ -165,6 +207,7 @@ const AddABlog = () => {
               className="textarea textarea-bordered rounded text-xs h-24"
             />
           </div>
+
           {/* add btn */}
           <p
             onClick={handleOnClickAddPara}

@@ -5,18 +5,28 @@ import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 const UpdateArticlePara = ({ index, props, propsData, setPropsData }) => {
   const [newParagraph, setNewParagraph] = useState("");
   const [newImg, setNewImg] = useState("");
+  const [newParagraphFull, setNewParagraphFull] = useState("");
+  const [newImgTags, setNewImgTags] = useState("");
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setNewParagraph(props?.paragraph);
+    setNewParagraphFull(props?.paragraphFull);
     setNewImg(props?.img);
+    setNewImgTags(props?.imgTags);
   }, [props]);
 
   //   ON CHANGE TITLE IT WILL UPDATE THE TITLE
   const handleParagraph = (event) => {
     setNewParagraph(event.target.value);
   };
-
+  const handleParagraphFull = (event) => {
+    setNewParagraphFull(event.target.value);
+  };
+  const handleImageTags = (event) => {
+    setNewImgTags(event.target.value);
+  };
   const handleLinkChange = (event) => {
     setNewImg(event.target.value);
   };
@@ -55,7 +65,9 @@ const UpdateArticlePara = ({ index, props, propsData, setPropsData }) => {
     let temprops;
     temprops = propsData;
     temprops.articlePara[index].img = newImg;
+    temprops.articlePara[index].imgTags = newImgTags;
     temprops.articlePara[index].paragraph = newParagraph;
+    temprops.articlePara[index].paragraphFull = newParagraphFull;
 
     setPropsData(temprops);
   };
@@ -92,18 +104,40 @@ const UpdateArticlePara = ({ index, props, propsData, setPropsData }) => {
 
         <img className="rounded-lg h-40" src={newImg} alt="" />
       </div>
-      {/* paragraph */}
+      {/* image  tags*/}
       <div className="form-control w-full ">
         <label className="label">
-          <span className="uppercase font-semibold">
-            Paragraph with the image
-          </span>
+          <span className="">Image Tags</span>
+        </label>
+        <input
+          onChange={handleImageTags}
+          value={newImgTags}
+          type="text"
+          className="input input-bordered text-xs rounded w-full"
+        />
+      </div>
+      {/* paragraph side to the image */}
+      <div className="form-control w-full ">
+        <label className="label">
+          <span className="">Paragraph side with the image</span>
         </label>
         <textarea
           onChange={handleParagraph}
           value={newParagraph}
           type="text"
-          name="aboutLeft"
+          className="textarea textarea-bordered rounded text-xs h-24"
+        />
+      </div>
+
+      {/* paragraph down to the image */}
+      <div className="form-control w-full ">
+        <label className="label">
+          <span className="">Paragraph down to the image</span>
+        </label>
+        <textarea
+          onChange={handleParagraphFull}
+          value={newParagraphFull}
+          type="text"
           className="textarea textarea-bordered rounded text-xs h-24"
         />
       </div>
@@ -111,7 +145,10 @@ const UpdateArticlePara = ({ index, props, propsData, setPropsData }) => {
       <p
         onClick={handleOnClickAddPara}
         className={
-          newImg !== props?.img || newParagraph !== props?.paragraph
+          newImg !== props?.img ||
+          newParagraph !== props?.paragraph ||
+          newParagraphFull !== props?.paragraphFull ||
+          newImgTags !== props?.imgTags
             ? "btn btn-wide"
             : "btn btn-wide btn-disabled"
         }

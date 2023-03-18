@@ -95,7 +95,7 @@ const HomeSection6 = () => {
 
                         <button
                           onClick={() => {
-                            navigate(`/blog-details/${x?._id}`);
+                            navigate(`/blogs/${x?.slug}`);
                           }}
                           className="flex items-center gap-2 text-sm uppercase mt-2 hover:text-red-500"
                         >

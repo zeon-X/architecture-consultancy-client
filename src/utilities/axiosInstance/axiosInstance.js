@@ -7,11 +7,11 @@ const api = "https://api.imranscreation.com/api/";
 const axiosInstance = axios.create({
   baseURL: api,
   headers: {
-    authorization: localStorage.getItem("authorization") || "load takes time",
+    authorization: localStorage.getItem("authorization") || null,
   },
 });
-const printAuth = () => {
-  // console.log(localStorage.getItem("authorization"));
-};
-printAuth();
+// const printAuth = () => {
+//   // console.log(localStorage.getItem("authorization"));
+// };
+// printAuth();
 export default axiosInstance;

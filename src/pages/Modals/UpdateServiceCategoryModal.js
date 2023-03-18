@@ -134,7 +134,7 @@ const UpdateServiceCategoryModal = ({ props, changes, increaseChanges }) => {
                 {/* category code */}
                 <div className="form-control w-full ">
                   <label className="label">
-                    <span className="">Article Id</span>
+                    <span className="">Article Slug</span>
                   </label>
                   <input
                     type="text"

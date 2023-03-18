@@ -74,7 +74,7 @@ const ManageArticle = () => {
               <th className="p-2 border border-gray-300 max-w-[280px]">
                 Title
               </th>
-              <th className="p-2 border border-gray-300 ">Article Id</th>
+              <th className="p-2 border border-gray-300 ">Slug</th>
               <th className="p-2 border border-gray-300 ">Updation Date</th>
               <th className="p-2 border border-gray-300 ">Delete</th>
               <th className="p-2 border border-gray-300 ">Update</th>
@@ -139,7 +139,7 @@ const ManageArticle = () => {
                   >
                     <button
                       onClick={() => {
-                        navigate(`/article-details/${x?._id}`);
+                        navigate(`/services/${x?.slug}`);
                       }}
                       className="btn btn-xs bg-success border-none text-white"
                     >

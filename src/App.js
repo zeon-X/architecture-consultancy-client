@@ -32,7 +32,7 @@ import AddServiceCategory from "./pages/DashboardPagesAdmin/AddServiceCategory";
 import ManageServiceCategory from "./pages/DashboardPagesAdmin/ManageServiceCategory";
 import AddArticle from "./pages/DashboardPagesAdmin/AddArticle";
 import ManageArticle from "./pages/DashboardPagesAdmin/ManageArticle";
-import ArticleDetails from "./pages/Service/ArticleDetails";
+import ServiceDetails from "./pages/Service/ServiceDetails";
 import ManageCPC from "./pages/DashboardPagesAdmin/ManageCPC";
 import SeeAllService from "./pages/Service/SeeAllService";
 
@@ -97,7 +97,7 @@ function App() {
 
         {/* -------------- SERVICE ----------------*/}
         <Route
-          path="/all-services"
+          path="/services"
           element={
             <Drawer>
               <SeeAllService></SeeAllService>
@@ -105,10 +105,10 @@ function App() {
           }
         ></Route>
         <Route
-          path="/article-details/:_id"
+          path="/services/:slug"
           element={
             <Drawer>
-              <ArticleDetails></ArticleDetails>
+              <ServiceDetails></ServiceDetails>
             </Drawer>
           }
         ></Route>
@@ -122,7 +122,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/blog-details/:_id"
+          path="/blogs/:slug"
           element={
             <Drawer>
               <BlogDetails></BlogDetails>
