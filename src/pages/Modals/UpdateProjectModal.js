@@ -18,8 +18,8 @@ const UpdateProjectModal = ({ props, increaseChanges, changes }) => {
     isError,
     data: category,
     error,
-  } = useQuery(["cateeeeeeegorys"], async ({}) => {
-    return await axiosInstance.get("category/get");
+  } = useQuery(["AllServiceCategory"], async ({}) => {
+    return await axiosInstance.get("service-category/get");
   });
 
   // REACT FORM HOOKS

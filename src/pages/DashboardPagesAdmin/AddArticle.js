@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import axios from "axios";
+import { useQuery } from "react-query";
 
 const AddArticle = () => {
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,18 @@ const AddArticle = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  // category fetching.
+  const [changes, increaseChanges] = useState(0);
+  const {
+    isLoading,
+    isError,
+    data: category,
+    error,
+  } = useQuery(["categorys", changes], async () => {
+    // console.log(changes);
+    return await axiosInstance.get("service-category/get");
+  });
 
   // ADDING PARA FUNC
   const [articlePara, setArticlePara] = useState([]);
@@ -153,6 +166,40 @@ const AddArticle = () => {
               })}
             />
             {errors.slug && (
+              <label className="label">
+                <span className="-alt text-sm text-red-500">
+                  This field is required
+                </span>
+              </label>
+            )}
+          </div>
+
+          {/* category----- */}
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="">Service Category</span>
+            </label>
+            <select
+              {...register("categoryId", {
+                required: true,
+                message: "This field is required",
+              })}
+              className="select select-bordered"
+            >
+              <option disabled selected>
+                Choose a category
+              </option>
+              {category?.data?.map((x) => {
+                return (
+                  <option
+                    key={x?._id}
+                    label={x?.categoryTitle}
+                    value={x?._id}
+                  ></option>
+                );
+              })}
+            </select>
+            {errors.categoryId && (
               <label className="label">
                 <span className="-alt text-sm text-red-500">
                   This field is required

@@ -24,10 +24,10 @@ const Header = () => {
     userInfo = {};
   };
 
-  const { data: category } = useQuery(["servicecategorys"], async () => {
+  const { data: category } = useQuery(["allservicecategorys"], async () => {
     let data = await axiosInstance.get("service-category/get");
     data = data?.data;
-    data = data?.reverse();
+    data = data;
     return data;
   });
 
@@ -98,15 +98,15 @@ const Header = () => {
           <ul className="menu menu-horizontal justify-center items-center text-xs">
             {/* <!-- center portion here --> */}
             <li>
-              <a href="/">Home</a>
+              <a onClick={() => navigate("/")}>Home</a>
             </li>
 
             <li>
-              <a href="/#hs1">Who We Are</a>
+              <a href="/#who-we-are">Who We Are</a>
             </li>
 
             <li tabIndex="0" className="dropdown-end">
-              <a href="/#hs2">
+              <a onClick={() => navigate("/services")}>
                 Service
                 <svg
                   className="fill-current"
@@ -125,12 +125,14 @@ const Header = () => {
                 {cat?.map((x, index) => {
                   return (
                     <li key={index}>
-                      <div
+                      <a
                         tabIndex="1"
                         className="flex justify-between"
-                        onClick={() => {
-                          navigate(`/services/${x?.categoryCode}`);
-                        }}
+                        // onClick={() => {
+                        //   navigate(`/services/${x?.categoryCode}`);
+                        // }}
+                        href={`/services/${x?.categoryCode}`}
+                        // target="_blank"
                       >
                         {x?.categoryTitle}
                         {x?.sub?.length !== 0 && (
@@ -148,7 +150,7 @@ const Header = () => {
                             />
                           </svg>
                         )}
-                      </div>
+                      </a>
                       {x?.sub?.length !== 0 && (
                         <ul
                           tabIndex={1}
@@ -157,13 +159,19 @@ const Header = () => {
                           {x?.sub?.map((y, index) => {
                             return (
                               <li key={index}>
-                                <div
+                                {/* <div
                                   onClick={() => {
                                     navigate(`/services/${y?.categoryCode}`);
                                   }}
                                 >
                                   {y?.categoryTitle}
-                                </div>
+                                </div> */}
+                                <a
+                                  // target="_blank"
+                                  href={`/services/${y?.categoryCode}`}
+                                >
+                                  {y?.categoryTitle}
+                                </a>
                               </li>
                             );
                           })}
@@ -176,11 +184,11 @@ const Header = () => {
             </li>
 
             <li>
-              <a href="/#hs3">Our Latest Works</a>
+              <a href="/#our-latest-works">Our Latest Works</a>
             </li>
 
             <li>
-              <a href="/#hs5">What's Client's Say</a>
+              <a href="/#whats-client-say">What's Client's Say</a>
             </li>
             {/* <li>
               <a href="/#contact-us">Contact Us</a>

@@ -3,23 +3,24 @@ import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import imran from "../../assets/team/imran.webp";
 import mahraj from "../../assets/team/maraj.jpg";
+import waliullah from "../../assets/team/waliullah_sajib.jpg";
 
 const HomeSection4 = () => {
   const team = [
     {
       pic: imran,
       name: "Md Imran Hossain",
-      des: "ceo founder",
+      des: "Founder and CEO",
     },
     {
       pic: mahraj,
       name: "Maraj Mahmud",
-      des: "lead design",
+      des: "Chief architect",
     },
     {
-      pic: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+      pic: waliullah,
       name: "Waliullah Sajib",
-      des: "project manager",
+      des: "Interior Design specialist ",
     },
     // {
     //   pic: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
@@ -52,7 +53,7 @@ const HomeSection4 = () => {
         animate={animation}
         ref={ref}
       >
-        <div className="">
+        <div className="my-16">
           <p className="text-sm text-black tracking-widest uppercase text-center">
             our team
           </p>
@@ -68,12 +69,11 @@ const HomeSection4 = () => {
                 key={index}
                 className="flex flex-col justify-center items-center"
               >
-                <div
-                  className="h-[260px] w-[260px] bg-cover bg-center lg:rounded-[50%] md:rounded-[50%] sm:rounded-none shadow-lg"
-                  style={{
-                    backgroundImage: `url(${x.pic})`,
-                  }}
-                ></div>
+                <img
+                  className="h-[260px] w-[260px] bg-cover bg-center rounded-[50%]  shadow-lg"
+                  src={x.pic}
+                  alt=""
+                />
 
                 <p className="font-semibold mt-3 mb-1"> {x.name}</p>
                 <p className="text-xs uppercase tracking-widest"> {x.des}</p>

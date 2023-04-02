@@ -39,7 +39,7 @@ const HomeSection3 = () => {
     data: category,
     error1,
   } = useQuery(["categoryasdasdadasdsadasds"], async ({}) => {
-    return await axiosInstance.get("category/get");
+    return await axiosInstance.get("service-category/get");
   });
 
   const { ref, inView } = useInView({ threshold: 0.15 });
@@ -68,9 +68,9 @@ const HomeSection3 = () => {
 
   return (
     <section
-      id="hs3"
+      id="our-latest-works"
       ref={ref}
-      className="px-4 w-full pt-44 pb-36 flex justify-center items-center"
+      className="px-4 w-full py-24 flex justify-center items-center"
     >
       <motion.div
         initial={{

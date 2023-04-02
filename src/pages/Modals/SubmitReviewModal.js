@@ -130,13 +130,16 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
 
                   <div className="mb-6">
                     <div className="form-control w-full ">
-                      <p className="text-xs mb-2">Your Designation</p>
+                      <p className="text-xs mb-2">
+                        Your Designation{" "}
+                        <span className="text-red-500">{"*"}</span>
+                      </p>
                       <input
                         {...register("clientDesignation", {
-                          required: false,
+                          required: true,
                         })}
                         type="text"
-                        placeholder="Type here"
+                        placeholder="Owner or Contractor"
                         className="input input-bordered text-xs w-full  rounded"
                       />
                       <label className="label">
@@ -170,13 +173,16 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
                 </div>
 
                 <div className="form-control w-full ">
-                  <p className="text-xs mb-2">Add a Heading/Title</p>
+                  <p className="text-xs mb-2">
+                    Add a Heading/Title{" "}
+                    <span className="text-red-500">{"*"}</span>{" "}
+                  </p>
                   <input
                     {...register("reviewTitle", {
                       required: true,
                     })}
                     type="text"
-                    placeholder="Type here"
+                    placeholder="Great Job Done!"
                     className="input input-bordered text-xs w-full  rounded"
                   />
                   <label className="label">
@@ -187,13 +193,15 @@ const SubmitReviewModal = ({ orderData, increaseChanges, changes }) => {
                     )}
                   </label>
                 </div>
-                <p className="text-xs mb-2">Review</p>
+                <p className="text-xs mb-2">
+                  Review<span className="text-red-500">{"*"}</span>
+                </p>
                 <textarea
                   {...register("reviewDiscription", {
                     required: true,
                   })}
                   className="textarea textarea-bordered h-24 text-xs rounded"
-                  placeholder="Type Here"
+                  placeholder="How was the service!"
                 ></textarea>
                 <label className="label">
                   {errors.reviewDiscription && (

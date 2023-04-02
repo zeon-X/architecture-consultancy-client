@@ -52,7 +52,7 @@ const HomeSection1 = () => {
 
   return (
     <section
-      id="hs1"
+      id="who-we-are"
       className="w-full pt-44 pb-0 flex justify-center items-center"
     >
       <div ref={ref}>

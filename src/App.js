@@ -197,14 +197,14 @@ function App() {
             element={<ManageOrderDetails></ManageOrderDetails>}
           ></Route>
 
-          <Route
+          {/* <Route
             path="manage-add-category"
             element={<AddCategory></AddCategory>}
           ></Route>
           <Route
             path="manage-category"
             element={<ManageCategory></ManageCategory>}
-          ></Route>
+          ></Route> */}
 
           <Route
             path="manage-add-project"

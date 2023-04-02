@@ -17,15 +17,13 @@ const Footer = () => {
       link: "https://www.facebook.com/eng.imranh",
     },
   ];
-  let fotterBgImage =
-    "https://images.unsplash.com/photo-1431576901776-e539bd916ba2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80";
   let year = new Date().getFullYear();
   const navigate = useNavigate();
   return (
     <footer
       // style={{ backgroundImage: `url(${fotterBgImage})` }}
       id="contact-us"
-      className="lg:px-20 lg:py-16 sm:p-10 bg-[#000000da] text-base-content grid grid-cols-1 justify-center items-center bg-cover bg-center"
+      className="lg:px-20 lg:py-28 sm:p-10 bg-[#000000da] text-base-content grid grid-cols-1 justify-center items-center bg-cover bg-center"
     >
       <div className="flex lg:flex-row sm:flex-col gap-6 justify-between items-start w-full h-full max-w-7xl mx-auto text-white ">
         {/* site name */}
@@ -51,13 +49,13 @@ const Footer = () => {
           <a href="/#hs0" className="text-sm mb-3 text-gray-400">
             Home
           </a>
-          <a href="/#hs1" className="text-sm mb-3 text-gray-400">
+          <a href="/#who-we-are" className="text-sm mb-3 text-gray-400">
             Who we are
           </a>
-          <a href="/#hs2" className="text-sm mb-3 text-gray-400">
+          <a href="/services" className="text-sm mb-3 text-gray-400">
             Services
           </a>
-          <a href="/#hs3" className="text-sm mb-3 text-gray-400">
+          <a href="/#our-latest-works" className="text-sm mb-3 text-gray-400">
             Our Latest Work
           </a>
           <a href="/blogs" className="text-sm mb-3 text-gray-400">

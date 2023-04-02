@@ -75,7 +75,7 @@ const ManageArticle = () => {
                 Title
               </th>
               <th className="p-2 border border-gray-300 ">Slug</th>
-              <th className="p-2 border border-gray-300 ">Updation Date</th>
+              {/* <th className="p-2 border border-gray-300 ">Updation Date</th> */}
               <th className="p-2 border border-gray-300 ">Delete</th>
               <th className="p-2 border border-gray-300 ">Update</th>
               <th className="p-2 border border-gray-300 ">Details</th>
@@ -97,11 +97,11 @@ const ManageArticle = () => {
                     {x?.articleTitle}
                   </td>
                   <td align="center" className="p-2 border border-gray-300 ">
-                    {x?._id}
+                    {x?.slug}
                   </td>
-                  <td align="center" className="p-2 border border-gray-300">
+                  {/* <td align="center" className="p-2 border border-gray-300">
                     {x?.updatedAt}
-                  </td>
+                  </td> */}
 
                   {/* BTNS FROM HERE */}
 

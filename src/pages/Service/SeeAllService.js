@@ -1,22 +1,38 @@
 import { useAnimation, motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const SeeAllService = () => {
   const navigate = useNavigate();
-  const {
-    isLoading,
-    isError,
-    data: category,
-    error,
-  } = useQuery(["servicecatalluser"], async () => {
-    // console.log(changes);
+  const { data: category } = useQuery(["allservicecategorys"], async () => {
     let data = await axiosInstance.get("service-category/get");
-    data = data?.data?.reverse();
+    data = data?.data;
+    data = data;
     return data;
   });
+
+  const [cat, setCat] = useState([]);
+
+  useEffect(() => {
+    let tem = category;
+    let main = tem?.filter((x) => x?.parentId === null);
+    let sub = tem?.filter((x) => x?.parentId !== null);
+
+    // console.log(main);
+    // console.log(sub);
+
+    main?.map((x) => {
+      let subCat = sub?.filter((y) => y?.parentId === x?._id);
+      x.sub = subCat;
+      return 1;
+    });
+    setCat(main);
+    // console.log(main);
+  }, [category]);
+
+  // console.log(category);
 
   return (
     <motion.div
@@ -50,19 +66,27 @@ const SeeAllService = () => {
 
         {/* cats service */}
         <div className="w-full">
-          <div className="w-full grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-3 mt-10 text-white ">
-            {category?.map((x) => {
+          <div className="w-full mt-10 ">
+            {cat?.map((x, index) => {
               return (
-                <div
-                  key={x?._id}
-                  style={{
-                    backgroundImage: `url(${x?.categoryImage})`,
-                  }}
-                  className="relative w-full h-[420px] bg-center bg-cover bg-move transition-all ease-in-out"
-                >
-                  <div className="absolute bottom-10 left-10 ">
-                    <p className="font-bold text-2xl">{x?.categoryTitle}</p>
-                    <div className="">
+                <div key={index} className="my-16">
+                  <div
+                    className={
+                      index % 2 === 0
+                        ? "flex gap-6 lg:flex-row md:flex-row sm:flex-col justify-center items-center"
+                        : "flex gap-6 lg:flex-row-reverse md:flex-row-reverse  sm:flex-col justify-center items-center"
+                    }
+                  >
+                    <div
+                      key={x?._id}
+                      style={{
+                        backgroundImage: `url(${x?.categoryImage})`,
+                      }}
+                      className="relative w-full h-[360px] lg:w-7/12 md:w-7/12 sm:w-full bg-center bg-cover "
+                    ></div>
+
+                    <div className="lg:w-5/12 md:w-5/12 sm:w-full">
+                      <p className="font-bold text-2xl">{x?.categoryTitle}</p>
                       <p className="my-4">{x?.categoryDiscription}</p>
                       <button
                         onClick={() => navigate(`/services/${x?.categoryCode}`)}
@@ -72,6 +96,44 @@ const SeeAllService = () => {
                       </button>
                     </div>
                   </div>
+                  {x?.sub?.length !== 0 && (
+                    <div className="w-full grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 mx-auto gap-3 mt-10 ">
+                      {x?.sub?.map((subCategory) => {
+                        return (
+                          <div key={subCategory?._id}>
+                            <div className=" ">
+                              <div
+                                style={{
+                                  backgroundImage: `url(${subCategory?.categoryImage})`,
+                                }}
+                                className="relative w-full h-[320px] md:h-[300px] sm:h-[260px] bg-center bg-cover bg-move shadow-xl "
+                              >
+                                <div className="absolute bottom-6 left-6 ">
+                                  <p className="font-bold text-2xl  text-white">
+                                    {subCategory?.categoryTitle}
+                                  </p>
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `/services/${subCategory?.categoryCode}`
+                                      )
+                                    }
+                                    className="btn rounded-none bg-red-500 border-none text-white shadow-xl mt-6"
+                                  >
+                                    Read More
+                                  </button>
+                                </div>
+                              </div>
+
+                              <p className="my-4">
+                                {subCategory?.categoryDiscription}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               );
             })}

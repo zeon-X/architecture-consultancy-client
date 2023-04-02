@@ -90,10 +90,10 @@ const HomeSection0 = () => {
               x: -100,
               opasity: 0,
             }}
-            className="lg:w-8/12 md:w-8/12 sm:w-full h-full flex flex-col justify-center py-10 items-start"
+            className=" lg:w-8/12 md:w-8/12 sm:w-full h-full flex flex-col justify-center py-10 items-start"
           >
             {/* BIG TITLE */}
-            <div className="mb-24">
+            <div className="mb-24 ">
               <p
                 style={{ color: "rgba(255, 255, 255, 0.9)" }}
                 className="font-bold lg:text-7xl sm:text-5xl"
@@ -163,7 +163,7 @@ const HomeSection0 = () => {
                 }
                 className="mb-8 hover:cursor-pointer hover:scale-90 transition-all ease-in-out"
               >
-                <img className="lg:h-[120px]  md:h-[60px] " src={ar} alt="" />
+                <img height={"80px"} className="" src={ar} alt="" />
               </button>
               <p>
                 {project?.data[heroState]?.title} -{" "}

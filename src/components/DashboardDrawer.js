@@ -105,12 +105,12 @@ const DashboardDrawer = () => {
             <NavLink to="manage-orders">Manage Orders</NavLink>
           </li>
 
-          <li>
+          {/* <li>
             <NavLink to="manage-add-category">Add a Category</NavLink>
           </li>
           <li>
             <NavLink to="manage-category">Manage Category</NavLink>
-          </li>
+          </li> */}
 
           <li>
             <NavLink to="manage-add-project">Add A Project</NavLink>

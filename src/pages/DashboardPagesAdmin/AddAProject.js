@@ -18,7 +18,7 @@ const AddAProject = () => {
     error,
   } = useQuery(["categorys", changes], async () => {
     // console.log(changes);
-    return await axiosInstance.get("category/get");
+    return await axiosInstance.get("service-category/get");
   });
 
   // REACT FORM HOOKS

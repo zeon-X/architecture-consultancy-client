@@ -7,7 +7,7 @@ import Loading from "../../shared/Loading";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 
 const HomeSection1Additional = ({ props }) => {
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ threshold: 0.2 });
   const animation = useAnimation();
   useEffect(() => {
     if (inView) {
@@ -39,12 +39,12 @@ const HomeSection1Additional = ({ props }) => {
   return (
     <div ref={ref} className="mt-10 max-w-7xl w-full ">
       <motion.div
-        // initial={{
-        //   x: -100,
-        //   visibility: "hidden",
-        //   opasity: 0,
-        // }}
-        // animate={animation}
+        initial={{
+          x: -100,
+          visibility: "hidden",
+          opasity: 0,
+        }}
+        animate={animation}
         className=" "
       >
         <div

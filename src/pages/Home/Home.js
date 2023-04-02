@@ -23,10 +23,11 @@ const Home = () => {
         <HomeSection1Additional props={2}></HomeSection1Additional>
       </div>
       <HomeSection3></HomeSection3>
+      <HomeSection5></HomeSection5>
+
       <div className="max-w-7xl w-full py-16 px-4 flex flex-col justify-center items-center">
         <HomeSection4></HomeSection4>
       </div>
-      <HomeSection5></HomeSection5>
 
       <HomeSection6></HomeSection6>
     </div>

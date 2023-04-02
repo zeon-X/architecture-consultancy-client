@@ -13,11 +13,27 @@ const HomeSection6 = () => {
     data: blog,
     error,
   } = useQuery(["blogsuserhome"], async ({}) => {
-    let data = await axiosInstance.get("blog/get?limit=6");
-    return data;
+    let data = await axiosInstance.get("blog/get?limit=4");
+    let tem = data?.data;
+    return tem;
   });
 
   // console.log(blog);
+  const month = [
+    "",
+    "January",
+    "Ferbruary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   const { ref, inView } = useInView({ threshold: 0.3 });
   const animation = useAnimation();
@@ -43,7 +59,7 @@ const HomeSection6 = () => {
   return (
     <div
       ref={ref}
-      className=" px-4 py-28 w-full flex justify-center items-center"
+      className=" px-4 my-16 w-full flex justify-center items-center"
     >
       <motion.div
         initial={{
@@ -70,63 +86,52 @@ const HomeSection6 = () => {
               <button className="btn loading">loading</button>
             </div>
           ) : (
-            <div className="w-full flex flex-col justify-center items-center">
-              <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 w-full max-w-7xl">
-                {blog?.data?.map((x, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="flex flex-col h-full border border-gray-300 w-full bg-white"
-                    >
-                      {/* IMAGE PART */}
-                      <div
-                        style={{
-                          backgroundImage: `url(${x?.blogPara[0]?.img})`,
-                        }}
-                        className="h-[220px] flex justify-end items-start bg-cover bg-center relative"
-                      >
-                        <p className="border border-gray-300 uppercase text-sm bg-gray-100 px-2 absolute left-0">
-                          Published : {x?.updatedAt.split("T")[0]}
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 h-full w-full max-w-7xl my-6">
+              {blog?.map((x, index) => {
+                return (
+                  <div key={index}>
+                    <div className="flex h-full bg-white shadow-lg hover:scale-95 hover:rounded-xl transition-all ease-in-out">
+                      <div className="w-5/12 h-full p-8 relative">
+                        <p className="text-xl font-semibold">{x?.blogTitle}</p>
+                        <p className="my-4 text-sm font-semibold">NEWS</p>
+                        <p className="uppercase text-gray-500">
+                          {
+                            month[
+                              parseInt(
+                                x?.createdAt?.split("T")[0]?.split("-")[1]
+                              )
+                            ]
+                          }{" "}
+                          {x?.createdAt?.split("T")[0]?.split("-")[2]}
+                          {", "}
+                          {x?.createdAt?.split("T")[0]?.split("-")[0]}
                         </p>
-                      </div>
-                      {/* WRITING PART */}
-                      <div className=" p-4">
-                        <p className=" font-semibold">{x?.blogTitle}</p>
-
                         <button
                           onClick={() => {
                             navigate(`/blogs/${x?.slug}`);
                           }}
-                          className="flex items-center gap-2 text-sm uppercase mt-2 hover:text-red-500"
+                          className=" text-sm uppercase mt-2 hover:text-red-500 absolute bottom-10"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-6 h-6 "
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                            />
-                          </svg>
                           Read More
                         </button>
                       </div>
+                      <div
+                        style={{
+                          backgroundImage: `url(${x?.blogPara[0]?.img})`,
+                        }}
+                        className="h-full min-h-[400px] bg-cover bg-center relative w-7/12"
+                      ></div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
 
         <button
           onClick={() => navigate("/blogs")}
-          className="uppercase text-gray-600 text-sm font-semibold"
+          className="uppercase text-gray-600 text-sm font-semibold mt-10"
         >
           view all blogs
         </button>

@@ -57,10 +57,10 @@ const HomeSection5 = () => {
 
   return (
     <section
-      id="hs5"
+      id="whats-client-say"
       className="py-44 w-full flex flex-col justify-center items-center bg-cover bg-center"
       style={{
-        backgroundImage: `url(${rc})`,
+        backgroundImage: `url(https://static5.depositphotos.com/1024166/489/i/600/depositphotos_4892884-stock-photo-abstract-architectural-background-abstract-tunnel.jpg)`,
       }}
     >
       <motion.div

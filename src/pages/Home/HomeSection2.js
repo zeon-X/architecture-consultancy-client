@@ -28,8 +28,22 @@ const HomeSection2 = () => {
     error,
   } = useQuery(["servicecatmainuser"], async () => {
     // console.log(changes);
-    let data = await axiosInstance.get("service-category/get-parent");
-    return data?.data;
+    let data = await axiosInstance.get("service-category/get");
+
+    let tem = data?.data;
+    let temarrp = [];
+    let temarrs = [];
+    for (const x in tem) {
+      if (tem[x]?.categoryType === "parent") temarrp.push(tem[x]);
+      else temarrs.push(tem[x]);
+    }
+
+    tem = temarrp.concat(temarrs);
+    let finalarr = [];
+    for (const x in tem) {
+      if (x < 7) finalarr.push(tem[x]);
+    }
+    return finalarr;
   });
 
   // console.log(category);
@@ -50,7 +64,7 @@ const HomeSection2 = () => {
         className="w-full flex flex-col justify-center items-center"
       >
         {/* heading */}
-        <div className="w-full flex lg:flex-row md:flex-row sm:flex-col justify-between lg:items-center md:items-center sm:items-start lg:px-16 md:px-10 sm:px-2">
+        <div className="w-full flex lg:flex-row md:flex-row sm:flex-col justify-between lg:items-center md:items-center sm:items-start px-2">
           <p className="text-3xl font-bold text-black">What we do</p>
           <button
             onClick={() => navigate("/services")}
@@ -75,36 +89,8 @@ const HomeSection2 = () => {
         </div>
 
         {/* main categories article DSKTOP */}
-        <div className="w-full lg:flex md:hidden sm:hidden h-[580px] mt-6 text-white hover-effect-container">
-          {/* <div className="relative w-3/12 overflow-hidden">
-            <div
-              style={{
-                backgroundImage: `url(${
-                  category ? category[0]?.categoryImage : ""
-                })`,
-              }}
-              className="w-full h-full bg-center bg-cover bg-move hover-parent"
-            ></div>
-            <div className="absolute   w-full  flex flex-col items-start justify-end p-6  affected">
-             
-              <p className="select-none font-bold text-2xl ">
-                {category ? category[0]?.categoryTitle : ""}
-              </p>
-              <div className="mt-16 affected-child">
-                <p className="select-none ">
-                  {category ? category[0]?.categoryDiscription : ""}
-                </p>
-                <button
-                  onClick={() =>
-                    navigate(`/services/${category[0]?.categoryCode}`)
-                  }
-                  className="mt-4 btn rounded-none bg-red-500 border-none text-white"
-                >
-                  Read More
-                </button>
-              </div>
-            </div>
-          </div> */}
+        {/* <div className="w-full lg:flex md:hidden sm:hidden h-[580px] mt-6 text-white hover-effect-container">
+          
 
           <div
             style={{
@@ -248,10 +234,9 @@ const HomeSection2 = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        {/* main categories article MOBILE */}
-        <div className="w-full lg:hidden md:flex sm:flex flex-wrap mx-auto gap-3 mt-10 text-white ">
+        <div className="w-full grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 mx-auto gap-3 mt-10 text-white ">
           {category?.map((x) => {
             return (
               <div
@@ -259,15 +244,15 @@ const HomeSection2 = () => {
                 style={{
                   backgroundImage: `url(${x?.categoryImage})`,
                 }}
-                className="relative w-full h-[420px] bg-center bg-cover bg-move "
+                className="relative w-full h-[320px] md:h-[300px] sm:h-[260px] bg-center bg-cover bg-move shadow-xl"
               >
-                <div className="absolute bottom-10 left-10 ">
-                  <p className="font-bold text-2xl">{x?.categoryTitle}</p>
-                  <div className="">
-                    <p className="my-4">{x?.categoryDiscription}</p>
+                <div className="absolute bottom-6 left-6 ">
+                  <p className="font-bold text-2xl ">{x?.categoryTitle}</p>
+                  <div className="mt-3">
+                    {/* <p className="my-4">{x?.categoryDiscription}</p> */}
                     <button
                       onClick={() => navigate(`/services/${x?.categoryCode}`)}
-                      className="btn rounded-none bg-red-500 border-none"
+                      className="btn rounded-none bg-red-500 border-none text-white shadow-xl"
                     >
                       Read More
                     </button>
@@ -276,6 +261,26 @@ const HomeSection2 = () => {
               </div>
             );
           })}
+
+          <div className="relative">
+            <div
+              onClick={() => navigate("/services")}
+              style={{
+                backgroundImage: `url(https://images.adsttc.com/media/images/5bbe/5c1d/f197/ccec/bc00/002b/newsletter/Yellowsubmarine-11.jpg?1539202073)`,
+              }}
+              className="relative w-full lg:h-[300px] md:h-[300px] sm:h-[260px] bg-center bg-cover bg-move shadow-xl"
+            >
+              <div className="absolute bottom-6 left-6 ">
+                <p className="font-bold text-2xl ">More categories</p>
+              </div>
+            </div>
+            <div
+              onClick={() => navigate("/services")}
+              className="transition-all ease-in-out hover:scale-90 absolute top-0 hover:cursor-pointer w-full lg:h-[300px] md:h-[300px] sm:h-[260px] flex flex-col justify-center items-start p-4 backdrop-blur-sm"
+            >
+              <p className="text-3xl text-center ">Browse More Categories</p>
+            </div>
+          </div>
         </div>
       </motion.div>
     </section>

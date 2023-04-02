@@ -4,14 +4,11 @@
 
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif, 'Herr Von Muellerhoff', cursive, 'Mr Dafoe', cursive, 'Bebas Neue', cursive, 'Water Brush', cursive;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Open Sans', sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Open Sans', sans-serif;
 }
 @layer base {
   input[type="number"]::-webkit-inner-spin-button,

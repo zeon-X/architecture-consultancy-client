@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import UpdateArticlePara from "./UpdateArticlePara";
+import { useQuery } from "react-query";
 
 const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
   // ADDING PARA FUNC
@@ -23,6 +24,16 @@ const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
     defaultValues: useMemo(() => {
       return props;
     }, [props]),
+  });
+
+  // category fetching.
+  const {
+    isLoading,
+    isError,
+    data: category,
+    error,
+  } = useQuery(["AllServiceCategory"], async ({}) => {
+    return await axiosInstance.get("service-category/get");
   });
 
   useEffect(() => {
@@ -85,8 +96,9 @@ const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
 
     //   ASSEMBLYING DATA
     let temData = propsData;
-    temData.articleTitle = data.articleTitle;
-    temData.slug = data.slug;
+    temData.articleTitle = data?.articleTitle;
+    temData.slug = data?.slug;
+    temData.categoryId = data?.categoryId;
     data = temData;
 
     // console.log(data);
@@ -165,6 +177,40 @@ const UpdateArticleModal = ({ props, increaseChanges, changes }) => {
                     })}
                   />
                   {errors.slug && (
+                    <label className="label">
+                      <span className="-alt text-sm text-red-500">
+                        This field is required
+                      </span>
+                    </label>
+                  )}
+                </div>
+
+                {/* category----- */}
+                <div className="form-control w-full ">
+                  <label className="label">
+                    <span className="">Service Category</span>
+                  </label>
+                  <select
+                    {...register("categoryId", {
+                      required: false,
+                      message: "This field is required",
+                    })}
+                    className="select select-bordered"
+                  >
+                    <option disabled selected>
+                      Choose a category
+                    </option>
+                    {category?.data?.map((x) => {
+                      return (
+                        <option
+                          key={x?._id}
+                          label={x?.categoryTitle}
+                          value={x?._id}
+                        ></option>
+                      );
+                    })}
+                  </select>
+                  {errors.categoryId && (
                     <label className="label">
                       <span className="-alt text-sm text-red-500">
                         This field is required

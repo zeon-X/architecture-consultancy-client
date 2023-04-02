@@ -50,9 +50,16 @@ const ProjectDetails = () => {
     error1,
   } = useQuery(["catname", catId], async () => {
     let api = "";
-    api = `project/find-by-cat-basic?_catId=${catId}&limit=3`;
+    api = `project/find-by-cat-basic?_catId=${catId}&limit=4`;
     let fdata = await axiosInstance.get(api);
-    // console.log(fdata);
+    //
+    let returnData = [];
+    for (let i in fdata?.data) {
+      if (fdata?.data[i]?._id !== _id) {
+        returnData.push(fdata.data[i]);
+      }
+    }
+    fdata.data = returnData;
     return fdata;
   });
 
@@ -178,13 +185,12 @@ const ProjectDetails = () => {
               </div>
             ) : (
               <div>
-                {/* <p className="font-semibold text-2xl">Before Images</p> */}
                 <div className="flex flex-col gap-6 ">
                   {projectDetails?.galleryAfter?.map((x, index) => {
                     return (
                       <img
                         key={index}
-                        className="w-full"
+                        style={{ height: "420px", width: "full" }}
                         src={x}
                         alt={
                           imgTags?.length !== 0 && imgTags !== undefined

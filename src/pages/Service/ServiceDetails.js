@@ -4,35 +4,13 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../utilities/axiosInstance/axiosInstance";
 import { useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-} from "react-share";
-import {
-  FacebookIcon,
-  LinkedinIcon,
-  PinterestIcon,
-  TwitterIcon,
-  WhatsappIcon,
-} from "react-share";
 import ShowProjects from "../Project/ShowProjects";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const ServiceDetails = () => {
   const { slug } = useParams();
-  console.log(slug);
-  // REACT FORM HOOKS
-  const {
-    register,
-    resetField,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // console.log(slug);
 
   // ARTICLE DETAILS FETCHING
   const {
@@ -53,9 +31,9 @@ const ServiceDetails = () => {
     isError1,
     data: project,
     error1,
-  } = useQuery(["catnaasjdbme"], async () => {
+  } = useQuery(["relatedProjectsForServicePage", serviceData], async () => {
     let api = "";
-    api = `project/get-active?limit=3`;
+    api = `project/find-by-cat-basic?_catId=${serviceData?.categoryId}&limit=3`;
     let fdata = await axiosInstance.get(api);
     // console.log(fdata);
     return fdata;
@@ -80,7 +58,7 @@ const ServiceDetails = () => {
   }, [inView]);
 
   return (
-    <div className="sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
+    <div className="sm:px-8 py-10 w-full max-w-6xl mx-auto flex flex-col justify-center items-center">
       {/* ARTICLE HEADING */}
 
       <p className="text-4xl font-bold w-full mb-16 mt-6">

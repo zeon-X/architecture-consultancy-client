@@ -23,7 +23,7 @@ const ShowProjects = ({ project }) => {
 
   return (
     <div className="w-full ">
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-5 my-10 max-w-7xl mx-auto ">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 justify-center items-center lg:gap-5 sm:gap-2 my-10 max-w-7xl mx-auto ">
         {project?.data?.map((x, index) => {
           return (
             <motion.div
@@ -36,10 +36,10 @@ const ShowProjects = ({ project }) => {
                 },
               }}
               key={index}
-              // onClick={() => {
-              //   navigate(`/project-details/${x?._id}/${x?.category?._id}`);
-              // }}
-              className="border border-gray-100 bg-white shadow-lg w-full h-full "
+              onClick={() => {
+                navigate(`/project-details/${x?._id}/${x?.category?._id}`);
+              }}
+              className="border border-gray-100 bg-white shadow-lg w-full h-full hover:cursor-pointer"
             >
               <div
                 className="relative h-[250px] w-full bg-cover bg-center   shadow-lg "
@@ -53,17 +53,17 @@ const ShowProjects = ({ project }) => {
                   {x?.category?.categoryTitle}
                 </p>
               </div>
-              <div className="my-2 p-6">
+              <div className="my-2 lg:p-6 sm:p-2">
                 <p className=" text-lg font-semibold ">
                   {x?.title?.slice(0, 35)}
                 </p>
-                <p className="text-sm ">Location: {x?.location}</p>
-                <p className="text-sm mt-5 mb-8 text-gray-500">
+                <p className="text-sm font-semibold">Location: {x?.location}</p>
+                <p className="text-sm my-4 text-gray-500 hidden">
                   {x?.aboutLeft?.slice(0, 140)}..
                 </p>
 
                 <div className="flex justify-between items-center">
-                  <button
+                  {/* <button
                     onClick={() => {
                       navigate(
                         `/project-details/${x?._id}/${x?.category?._id}`
@@ -86,8 +86,8 @@ const ShowProjects = ({ project }) => {
                       />
                     </svg>
                     Read More
-                  </button>
-                  <div className="flex gap-2  text-lg text-gray-400">
+                  </button> */}
+                  {/* <div className="flex gap-2  text-lg text-gray-400">
                     <FacebookShareButton
                       url={`https://imranscreation.com/project-details/${x?._id}/${x?.category?._id}`}
                       quote={x?.title}
@@ -132,7 +132,7 @@ const ShowProjects = ({ project }) => {
                     >
                       <WhatsappIcon size={26} round />
                     </WhatsappShareButton>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>

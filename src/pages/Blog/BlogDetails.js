@@ -112,7 +112,7 @@ const BlogDetails = () => {
           bounce: 0.1,
         },
       }}
-      className="sm:px-8 py-10 w-full max-w-7xl mx-auto flex flex-col justify-center items-center"
+      className="sm:px-8 py-10 w-full max-w-6xl mx-auto flex flex-col justify-center items-center"
     >
       {/* BLOG HEADING */}
       <div className=" mb-16 flex lg:flex-row sm:flex-col justify-between lg:items-center sm:items-start w-full">
@@ -156,7 +156,7 @@ const BlogDetails = () => {
             )}
 
             <p
-              className="my-16 text-lg text-gray-500"
+              className="my-16 text-lg text-black"
               dangerouslySetInnerHTML={{
                 __html: x?.paragraph,
               }}
@@ -169,14 +169,14 @@ const BlogDetails = () => {
       <div className="bg-gray-200 p-12 flex lg:flex-row sm:flex-col justify-between gap-6 w-full ">
         <div>
           <p className="uppercase tracking-widest text-sm">created by</p>
-          <p className="text-lg text-gray-400 font-semibold tracking-widest mt-4">
+          <p className="text-lg text-black font-semibold tracking-widest mt-4">
             admin
           </p>
         </div>
         <div>
           <p className="uppercase tracking-widest text-sm">share to</p>
           {/* SHARE BTNS */}
-          <div className="flex gap-2 mt-4 text-lg text-gray-400">
+          <div className="flex gap-2 mt-4 text-lg text-black">
             <FacebookShareButton
               url={window.location.href}
               quote={blogDetails?.blogTitle}
